@@ -1,0 +1,57 @@
+﻿@model List<Hero>
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Hero Table </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Hero</li>
+                <li class="breadcrumb-item active" aria-current="page">Table</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body" style="height: 350px">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Video Text</th>
+                                    <th>Video</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Hero hero in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img style="width:250px; height:250px" src="~/uploads/hero/@hero.ImageName" class="img-fluid" alt="">
+                                        </td>
+                                        <td>@hero.Title</td>
+                                        <td>@hero.Description</td>
+                                        <td>@hero.VideoText</td>
+                                        <td>
+                                            <a target="_blank" href="@hero.VideoUrl" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
+                                                <div  class="icon d-flex align-items-center justify-content-center">
+                                                    <i class="mdi mdi-play-box-outline"></i>
+                                                </div>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="update" asp-controller="hero" asp-route-id="@hero.Id" class="btn btn-outline-primary">Update</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

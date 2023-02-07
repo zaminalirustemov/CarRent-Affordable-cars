@@ -1,0 +1,64 @@
+﻿@model Hero
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">Update Hero</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Hero</li>
+                <li class="breadcrumb-item">Table</li>
+                <li class="breadcrumb-item active" aria-current="page">Update</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form class="forms-sample" method="post" enctype="multipart/form-data">
+                        <div style ="width: 300px; border: outset; margin-bottom: 20px;">
+                            <img src="~/uploads/hero/@Model.ImageName" class="img-fluid" alt="">
+                            <input asp-for="ImageName" type="hidden" />
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="ImageFile" class="col-sm-3 col-form-label">Image</label>
+                            <div class="col-sm-9">
+                                <input asp-for="ImageFile" class="form-control">
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Title" class="col-sm-3 col-form-label">Title</label>
+                            <div class="col-sm-9">
+                                <input asp-for="Title" class="form-control">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Description" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <input asp-for="Description" class="form-control">
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="VideoText" class="col-sm-3 col-form-label">VideoText</label>
+                            <div class="col-sm-9">
+                                <input asp-for="VideoText" class="form-control">
+                                <span asp-validation-for="VideoText" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="VideoUrl" class="col-sm-3 col-form-label">VideoUrl</label>
+                            <div class="col-sm-9">
+                                <input asp-for="VideoUrl" class="form-control">
+                                <span asp-validation-for="VideoUrl" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-inverse-primary mr-2">Update</button>
+                        <button asp-action="index" asp-controller="hero" class="btn btn-dark">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,234 @@
+﻿@model Car
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">Create Car</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Car</li>
+                <li class="breadcrumb-item">Table</li>
+                <li class="breadcrumb-item active" aria-current="page">Create</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form class="forms-sample" method="post" enctype="multipart/form-data">
+                        
+                        <div class="form-group row">
+                            <label asp-for="BrandId" class="col-sm-3 col-form-label">Brand</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" asp-for="BrandId">
+                                    @foreach (Brand brand in ViewBag.Brands)
+                                    {
+                                        <option value="@brand.Id">@brand.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Model" class="col-sm-3 col-form-label">Model</label>
+                            <div class="col-sm-9">
+                                <input asp-for="Model" class="form-control" placeholder="Model">
+                                <span asp-validation-for="Model" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label asp-for="PricePerHour" class=" col-form-label">PricePerHour</label>
+                                <div >
+                                    <input asp-for="PricePerHour" class="form-control" placeholder="PricePerHour">
+                                    <span asp-validation-for="PricePerHour" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label asp-for="PricePerDay" class=" col-form-label">PricePerDay</label>
+                                <div >
+                                    <input asp-for="PricePerDay" class="form-control" placeholder="PricePerDay">
+                                    <span asp-validation-for="PricePerDay" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label asp-for="PricePerMonth" class=" col-form-label">PricePerMonth</label>
+                                <div >
+                                    <input asp-for="PricePerMonth" class="form-control" placeholder="PricePerMonth">
+                                    <span asp-validation-for="PricePerMonth" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label asp-for="Millage" class=" col-form-label">Millage</label>
+                                <div>
+                                    <input asp-for="Millage" class="form-control" placeholder="Millage">
+                                    <span asp-validation-for="Millage" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label asp-for="ConsumptionPer100KM" class=" col-form-label">ConsumptionPer100KM</label>
+                                <div>
+                                    <input asp-for="ConsumptionPer100KM" class="form-control" placeholder="ConsumptionPer100KM">
+                                    <span asp-validation-for="ConsumptionPer100KM" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label asp-for="Transmission" class=" col-form-label">Transmission</label>
+                                <div class="form-group row">
+                                    <div class="form-check col-sm-6">
+                                        <label class="form-check-label" asp-for="Transmission">
+                                            <input asp-for="Transmission" type="radio" class="form-check-input" value="Manual"> Manual <i class="input-helper"></i>
+                                        </label>                                                               
+                                    </div>                                                                     
+                                    <div class="form-check col-sm-6">                                          
+                                        <label class="form-check-label" asp-for="Transmission">                                       
+                                            <input asp-for="Transmission" type="radio" class="form-check-input" value="Automatic"> Automatic <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="Transmission" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label asp-for="Seats" class=" col-form-label">Seats</label>
+                                <div >
+                                    <input asp-for="Seats" class="form-control" placeholder="Seats">
+                                    <span asp-validation-for="Seats" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label asp-for="Luggage" class=" col-form-label">Luggage</label>
+                                <div >
+                                    <input asp-for="Luggage" class="form-control" placeholder="Luggage">
+                                    <span asp-validation-for="Luggage" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" style="margin-top:10px">
+                                    <label asp-for="Fuel">Fuel</label>
+                                    <select class="form-control" asp-for="Fuel">
+                                        <option value="Petrol">Petrol</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Electric">Electric</option>
+                                        <option value="Hybrid">Hybrid</option>
+                                        <option value="Gas">Gas</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 style="text-align-last:center">--- Features ---</h3>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <div class="form-check form-check-primary">
+                                    <label class="form-check-label">
+                                        <input asp-for="Airconditions" type="checkbox" class="form-check-input" checked=""> Airconditions <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-primary">
+                                    <label class="form-check-label">
+                                        <input asp-for="ChildSeat" type="checkbox" class="form-check-input" checked=""> Child Seat <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-primary">
+                                    <label class="form-check-label">
+                                        <input asp-for="GPS" type="checkbox" class="form-check-input" checked=""> GPS <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-primary">
+                                    <label class="form-check-label">
+                                        <input asp-for="Music" type="checkbox" class="form-check-input" checked=""> Music <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-check form-check-danger">
+                                    <label class="form-check-label">
+                                        <input asp-for="SeatBelt" type="checkbox" class="form-check-input" checked=""> Seat Belt <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-danger">
+                                    <label class="form-check-label">
+                                        <input asp-for="SleepingBed" type="checkbox" class="form-check-input" checked=""> Sleeping Bed <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-danger">
+                                    <label class="form-check-label">
+                                        <input asp-for="Bluetooth" type="checkbox" class="form-check-input" checked=""> Bluetooth <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-danger">
+                                    <label class="form-check-label">
+                                        <input asp-for="OnboardComputer" type="checkbox" class="form-check-input" checked=""> On Board Computer <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-check form-check-success">
+                                    <label class="form-check-label">
+                                        <input asp-for="LongTermTrips" type="checkbox" class="form-check-input" checked=""> Long Term Trips <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-success">
+                                    <label class="form-check-label">
+                                        <input asp-for="CarKit" type="checkbox" class="form-check-input" checked=""> Car Kit <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-success">
+                                    <label class="form-check-label">
+                                        <input asp-for="RemoteCentralLocking" type="checkbox" class="form-check-input" checked=""> Remote Central Locking <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-success">
+                                    <label class="form-check-label">
+                                        <input asp-for="ClimateControl" type="checkbox" class="form-check-input" checked=""> Climate Control <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row" >
+                            <div class="col-sm-4">
+                                <div class="form-check form-check-info">
+                                    <label class="form-check-label">
+                                        <input asp-for="isNew" type="checkbox" class="form-check-input" checked=""> isNew <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-check form-check-info">
+                                    <label class="form-check-label">
+                                        <input asp-for="isFeatured" type="checkbox" class="form-check-input" checked=""> isFeatured <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 style="text-align-last:center">--- Description ---</h3>
+                        <div class="form-group">
+                            <textarea asp-for="Description" class="form-control" id="exampleTextarea1" rows="10"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <h3 style="text-align-last:center">--- Images ---</h3>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label asp-for="PosterImageFile" class="col-form-label">Poster Image</label>
+                                <div>
+                                    <input asp-for="PosterImageFile" class="form-control">
+                                    <span asp-validation-for="PosterImageFile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label asp-for="ImageFiles" class=" col-form-label">Gallery</label>
+                                <div>
+                                    <input asp-for="ImageFiles" class="form-control">
+                                    <span asp-validation-for="ImageFiles" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-inverse-success mr-2">Create</button>
+                        <button asp-action="index" asp-controller="car" class="btn btn-dark">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
