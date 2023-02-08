@@ -92,7 +92,7 @@ public class CarController : Controller
     {
         ViewBag.Brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
         Car car = _carRentDbContext.Cars.Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
-        if (car == null) return NotFound();
+        if (car == null) return View("Error-404");
 
         return View(car);
     }
@@ -101,7 +101,7 @@ public class CarController : Controller
     {
         ViewBag.Brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
         Car existCar = _carRentDbContext.Cars.Include(x => x.CarImages).FirstOrDefault(x => x.Id == newCar.Id);
-        if (existCar == null) return NotFound();
+        if (existCar == null) return View("Error-404");
         if (!ModelState.IsValid) return View(existCar);
         //Poster Image--------------------------
         if (newCar.PosterImageFile is not null)
@@ -130,12 +130,19 @@ public class CarController : Controller
         //Gallery----------------------------------
         if (newCar.CarImagesIds is not null)
         {
+            foreach (var image in existCar.CarImages.Where(x => !newCar.CarImagesIds.Contains(x.Id) && x.isPoster == false))
+            {
+                FileManager.DeleteFile(_environment.WebRootPath, "uploads/car", image.ImageName);
+            }
             existCar.CarImages?.RemoveAll(x => !newCar.CarImagesIds.Contains(x.Id) && x.isPoster == false);
-            //foreach (var image in existCar.CarImages.Where(x=> newCar.CarImagesIds.Contains(x.Id) && x.isPoster == false))
-            //{
-            //    FileManager.DeleteFile(_environment.WebRootPath, "uploads/car", image.ImageName);
-
-            //}
+        }
+        else
+        {
+            foreach (var image in existCar.CarImages.Where(x => x.isPoster == false))
+            {
+                FileManager.DeleteFile(_environment.WebRootPath, "uploads/car", image.ImageName);
+            }
+            existCar.CarImages.RemoveAll(x => x.isPoster == false);
         }
         
         
@@ -197,4 +204,13 @@ public class CarController : Controller
         return RedirectToAction(nameof(Index));
     }
     //Soft Delete-----------------------------------------------------------------------------------
+    public IActionResult SoftDelete(int id)
+    {
+        Car car = _carRentDbContext.Cars.Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
+        if (car == null) return BadRequest();
+
+        car.isDeleted=true;
+        _carRentDbContext.SaveChanges();
+        return Ok();
+    }
 }

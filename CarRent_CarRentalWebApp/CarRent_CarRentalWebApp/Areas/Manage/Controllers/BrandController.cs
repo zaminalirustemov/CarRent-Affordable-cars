@@ -24,13 +24,6 @@ public class BrandController : Controller
         var paginatedList = PaginatedList<Brand>.Create(query, 5, page);
         return View(paginatedList);
     }
-    public IActionResult Detail(int id)
-    {
-        Brand brand = _carRentDbContext.Brands.FirstOrDefault(x => x.Id == id);
-        if (brand == null) return NotFound();
-
-        return View(brand);
-    }
     //Create-------------------------------------------------------------------------------
     public IActionResult Create()
     {
@@ -50,7 +43,7 @@ public class BrandController : Controller
     public IActionResult Update(int id)
     {
         Brand brand = _carRentDbContext.Brands.FirstOrDefault(x => x.Id == id);
-        if (brand == null) return NotFound();
+        if (brand == null) return View("Error-404");
 
         return View(brand);
     }
@@ -58,7 +51,7 @@ public class BrandController : Controller
     public IActionResult Update(Brand newBrand)
     {
         Brand existBrand = _carRentDbContext.Brands.FirstOrDefault(x => x.Id == newBrand.Id);
-        if (existBrand == null) return NotFound();
+        if (existBrand == null) return View("Error-404");
         if (!ModelState.IsValid) return View(newBrand);
 
         existBrand.Name = newBrand.Name;
@@ -70,11 +63,11 @@ public class BrandController : Controller
     public IActionResult SoftDelete(int id)
     {
         Brand brand = _carRentDbContext.Brands.FirstOrDefault(x => x.Id == id);
-        if (brand == null) return NotFound();
+        if (brand == null) return BadRequest();
 
         brand.isDeleted = true;
         _carRentDbContext.SaveChanges();
 
-        return RedirectToAction(nameof(Index));
+        return Ok();
     }
 }

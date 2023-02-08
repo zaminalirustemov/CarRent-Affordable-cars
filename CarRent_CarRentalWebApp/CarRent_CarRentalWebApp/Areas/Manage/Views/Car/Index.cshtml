@@ -2,7 +2,9 @@
 @{
     int count = (Model.ActivePage - 1) * 5;
 }
-
+@section css{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title"> Car Table </h3>
@@ -49,7 +51,7 @@
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2" style="">
                                                     <a class="dropdown-item btn btn-primary" asp-action="update" asp-controller="car" asp-route-id="@car.Id">Update</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item btn btn-danger" asp-action="softdelete" asp-controller="car" asp-route-id="@car.Id">Delete</a>
+                                                    <a class="dropdown-item btn btn-danger softdelete-btn" asp-action="softdelete" asp-controller="car" asp-route-id="@car.Id">Delete</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -83,3 +85,7 @@
         </ul>
     </nav>
 </div>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}

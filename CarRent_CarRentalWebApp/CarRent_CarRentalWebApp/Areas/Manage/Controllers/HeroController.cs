@@ -27,15 +27,15 @@ public class HeroController : Controller
     public IActionResult Update(int id)
     {
         Hero hero=_carRentDbContext.Heroes.FirstOrDefault(i=>i.Id==id);
-        if (hero == null) return NotFound();
-        
+        if (hero == null) return View("Error-404");
+
         return View(hero);
     }
     [HttpPost]
     public IActionResult Update(Hero newHero)
     {
         Hero existHero = _carRentDbContext.Heroes.FirstOrDefault(i => i.Id == newHero.Id);
-        if (existHero == null) return NotFound();
+        if (existHero == null) return View("Error-404");
         if (!ModelState.IsValid) return View(existHero);
         if (newHero.ImageFile is not null)
         {

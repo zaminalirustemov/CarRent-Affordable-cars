@@ -2,7 +2,9 @@
 @{
     int count = (Model.ActivePage - 1) * 5;
 }
-
+@section css{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">Deleted Brand Table </h3>
@@ -40,11 +42,9 @@
                                             <div class="dropdown">
                                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Actions </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2" style="">
-                                                    <a class="dropdown-item btn btn-warning" asp-action="detail" asp-controller="deletedbrand" asp-route-id="@brand.Id">Detail</a>
-                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item btn btn-primary" asp-action="restore" asp-controller="deletedbrand" asp-route-id="@brand.Id">Restore</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item btn btn-danger" asp-action="harddelete" asp-controller="deletedbrand" asp-route-id="@brand.Id">Delete</a>
+                                                    <a class="dropdown-item btn btn-danger harddelete-btn" asp-action="harddelete" asp-controller="deletedbrand" asp-route-id="@brand.Id">Delete</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -78,3 +78,6 @@
         </ul>
     </nav>
 </div>
+@section scripts{
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}

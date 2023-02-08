@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="~/manage/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/manage/assets/images/favicon.png" />
+    @RenderSection("css",required:false)
     <style>
         .imagezr {
             opacity: 1;
@@ -124,7 +125,7 @@
                 <li class="nav-item menu-items">
                     <a class="nav-link" asp-action="index" asp-controller="hero">
                         <span class="menu-icon">
-                            <i class="mdi mdi-clipboard-outline"></i>
+                            <i class="mdi mdi-image-area-close"></i>
                         </span>
                         <span class="menu-title">Hero</span>
                     </a>
@@ -132,7 +133,7 @@
                 <li class="nav-item menu-items">
                     <a class="nav-link" asp-action="index" asp-controller="brand">
                         <span class="menu-icon">
-                            <i class="mdi mdi-clipboard-outline"></i>
+                            <i class="mdi mdi-buffer"></i>
                         </span>
                         <span class="menu-title">Brand</span>
                     </a>
@@ -140,29 +141,30 @@
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-icon">
-                            <i class="mdi mdi-laptop"></i>
+                            <i class="mdi mdi-car"></i>
                         </span>
                         <span class="menu-title">Car</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="car">Active car</a></li>
-                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="rentalcar">Rental car</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="car"><span style="padding-right: 5px;"><i class="mdi mdi-key-variant"></i></span>  Active car</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="rentalcar"><span style="padding-right: 5px;"><i class="mdi mdi-key-remove"></i></span>  Rental car</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-icon">
-                            <i class="mdi mdi-laptop"></i>
+                            <i class="mdi mdi-delete-variant"></i>
                         </span>
                         <span class="menu-title">Recycle Bin</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="deletedbrand">Delete~Brand</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="deletedbrand">Brand[Deleted]</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="deletedcar">Car[Deleted]</a></li>
                         </ul>
                     </div>
                 </li>
@@ -396,6 +398,7 @@
     <!-- Custom js for this page -->
     <script src="~/manage/assets/js/dashboard.js"></script>
     <script src="~/manage/assets/js/carrent.js"></script>
+    @RenderSection("scripts",required:false)
     <!-- End custom js for this page -->
 </body>
 </html>

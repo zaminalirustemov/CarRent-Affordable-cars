@@ -23,18 +23,11 @@ public class DeletedBrandController : Controller
         var paginatedList = PaginatedList<Brand>.Create(query, 5, page);
         return View(paginatedList);
     }
-    public IActionResult Detail(int id)
-    {
-        Brand brand = _carRentDbContext.Brands.FirstOrDefault(x => x.Id == id);
-        if (brand == null) return NotFound();
-
-        return View(brand);
-    }
     //Restore--------------------------------------------------------------------------
     public IActionResult Restore(int id)
     {
         Brand brand = _carRentDbContext.Brands.FirstOrDefault(x => x.Id == id);
-        if (brand == null) return NotFound();
+        if (brand == null) return View("Error-404");
 
         brand.isDeleted = false;
         _carRentDbContext.SaveChanges();
@@ -45,11 +38,11 @@ public class DeletedBrandController : Controller
     public IActionResult HardDelete(int id)
     {
         Brand brand = _carRentDbContext.Brands.FirstOrDefault(x => x.Id == id);
-        if (brand == null) return NotFound();
+        if (brand == null) return BadRequest();
 
         _carRentDbContext.Brands.Remove(brand);
         _carRentDbContext.SaveChanges();
 
-        return RedirectToAction(nameof(Index));
+        return Ok();
     }
 }
