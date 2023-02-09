@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@inject CarRent_CarRentalWebApp.Services.MemberLayoutService memberservice
+@{
+    AppUser user = await memberservice.GetUser();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
@@ -44,12 +49,32 @@
                     <li class="nav-item"><a asp-action="index" asp-controller="car" class="nav-link">Cars</a></li>
                     <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <a class="nav-link" style="color:white"> <img style="width:25px;margin-right:5px" class=" rounded-circle" src="~/assets/images/memperphoto.jpg">@user.Fullname</a>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li style="text-align-last:center"><a style="color:black" asp-action="logout" asp-controller="account"><span class="icon icon-arrow-left" style="margin-right:5px"></span>Log out</a></li>
+                                </ul>
+                            </div>
+
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a asp-action="register" asp-controller="account" class="nav-link"><span class="icon icon-plus" style="margin-right:5px"></span>Register</a></li>
+                        <li class="nav-item"><a asp-action="login" asp-controller="account" class="nav-link"><span class="icon icon-user" style="margin-right:5px"></span>Log in</a></li>
+                    }
                 </ul>
             </div>
         </div>
     </nav>
     <!-- END nav -->
-
     @RenderBody()
     <footer class="ftco-footer ftco-bg-dark ftco-section">
         <div class="container">
@@ -115,7 +140,7 @@
         </div>
         @RenderBody()
     </footer>
-    
+
 
 
     <!-- loader -->

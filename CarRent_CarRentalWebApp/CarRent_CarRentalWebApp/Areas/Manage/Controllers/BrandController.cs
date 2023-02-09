@@ -1,11 +1,13 @@
 ﻿using CarRent_CarRentalWebApp.Context;
 using CarRent_CarRentalWebApp.Helpers;
 using CarRent_CarRentalWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace CarRent_CarRentalWebApp.Areas.Manage.Controllers;
 [Area("Manage")]
+[Authorize(Roles = "SuperAdmin,Admin,Editor")]
 public class BrandController : Controller
 {
     private readonly CarRentDbContext _carRentDbContext;
@@ -15,10 +17,10 @@ public class BrandController : Controller
         _carRentDbContext = carRentDbContext;
     }
     //Read---------------------------------------------------------------------------------
-    public IActionResult Index(int page=1)
+    public IActionResult Index(int page = 1)
     {
         var query = _carRentDbContext.Brands
-                                     .Where(x=>x.isDeleted==false)
+                                     .Where(x => x.isDeleted == false)
                                      .AsQueryable();
 
         var paginatedList = PaginatedList<Brand>.Create(query, 5, page);

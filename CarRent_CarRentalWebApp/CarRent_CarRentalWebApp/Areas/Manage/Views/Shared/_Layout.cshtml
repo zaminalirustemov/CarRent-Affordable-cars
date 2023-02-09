@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@inject CarRent_CarRentalWebApp.Areas.Manage.Services.AdminLayoutService service
+@{
+    AppUser appUser = await service.GetUser();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -64,14 +69,17 @@
                 <li class="nav-item profile">
                     <div class="profile-desc">
                         <div class="profile-pic">
-                            <div class="count-indicator">
-                                <img class="img-xs rounded-circle " src="~/manage/assets/images/faces/face15.jpg" alt="">
-                                <span class="count bg-success"></span>
-                            </div>
-                            <div class="profile-name">
-                                <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-                                <span>Gold Member</span>
-                            </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <div class="count-indicator">
+                                    <img class="img-xs rounded-circle " src="~/manage/assets/images/download.jpg" alt="">
+                                    <span class="count bg-success"></span>
+                                </div>
+                                <div class="profile-name">
+                                    <h5 class="mb-0 font-weight-normal">@appUser.UserName</h5>
+                                    <span>@appUser.Email</span>
+                                </div>
+                            }
                         </div>
                         <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
                         <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
@@ -97,14 +105,14 @@
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item preview-item">
+                            <a asp-action="logout" asp-controller="account" class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-calendar-today text-success"></i>
+                                        <i class="mdi mdi-logout text-danger"></i>
                                     </div>
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
+                                    <p class="preview-subject mb-1">Log out</p>
                                 </div>
                             </a>
                         </div>
@@ -328,9 +336,12 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                                 <div class="navbar-profile">
-                                    <img class="img-xs rounded-circle" src="~/manage/assets/images/faces/face15.jpg" alt="">
-                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
-                                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <img class="img-xs rounded-circle" src="~/manage/assets/images/download.jpg" alt="">
+                                        <p class="mb-0 d-none d-sm-block navbar-profile-name">@appUser.Fullname</p>
+                                        <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                                    }
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
@@ -347,7 +358,7 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
+                                <a asp-action="logout" asp-controller="account" class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
                                         <div class="preview-icon bg-dark rounded-circle">
                                             <i class="mdi mdi-logout text-danger"></i>

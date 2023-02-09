@@ -1,8 +1,9 @@
 ﻿using CarRent_CarRentalWebApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRent_CarRentalWebApp.Context;
-public class CarRentDbContext:DbContext
+public class CarRentDbContext:IdentityDbContext
 {
 	public CarRentDbContext(DbContextOptions<CarRentDbContext> options) : base(options) { }
 
@@ -10,4 +11,5 @@ public class CarRentDbContext:DbContext
 	public DbSet<Brand> Brands { get; set; }
 	public DbSet<Car> Cars { get; set; }
 	public DbSet<CarImage> CarImages { get; set; }
+	public DbSet<AppUser> AppUsers { get; set; }
 }

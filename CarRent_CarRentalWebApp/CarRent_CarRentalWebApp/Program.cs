@@ -1,4 +1,8 @@
+using CarRent_CarRentalWebApp.Areas.Manage.Services;
 using CarRent_CarRentalWebApp.Context;
+using CarRent_CarRentalWebApp.Models;
+using CarRent_CarRentalWebApp.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +13,20 @@ builder.Services.AddDbContext<CarRentDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
+builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
+{
+    opt.Password.RequiredUniqueChars = 0;
+    opt.Password.RequiredLength = 8;
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequireDigit = true;
+    opt.Password.RequireLowercase = true;
+    opt.Password.RequireUppercase = true;
+
+    opt.User.RequireUniqueEmail = false;
+
+}).AddEntityFrameworkStores<CarRentDbContext>().AddDefaultTokenProviders();
+builder.Services.AddScoped<AdminLayoutService>();
+builder.Services.AddScoped<MemberLayoutService>();
 
 var app = builder.Build();
 
@@ -25,6 +43,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

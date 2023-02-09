@@ -27,8 +27,11 @@
                                     <th>№</th>
                                     <th>ID</th>
                                     <th>Image</th>
+                                    <th>Status</th>
+                                    <th>Category</th>
                                     <th>Brand</th>
                                     <th>Model</th>
+                                    <th>Millage</th>
                                     <th>Price Per Day</th>
                                 </tr>
                             </thead>
@@ -42,9 +45,12 @@
                                         <td>
                                             <img style="border: outset;width: 100px;height: 100px;" src="~/uploads/car/@car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="">
                                         </td>
+                                        <td><label class="badge badge-outline-@(car.isRent == false ? "success" : "info")">@(car.isRent == false ? "Active" : "On rent")</label></td>
+                                        <td>Category</td>
                                         <td>@car.Brand.Name</td>
                                         <td>@car.Model</td>
-                                        <td>@car.PricePerDay</td>
+                                        <td>@(car.Millage) km</td>
+                                        <td>@(car.PricePerDay) $</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Actions </button>
