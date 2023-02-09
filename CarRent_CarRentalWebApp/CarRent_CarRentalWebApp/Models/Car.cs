@@ -41,6 +41,7 @@ public class Car
     public bool SleepingBed { get; set; }
     public bool Bluetooth { get; set; }
     public bool OnboardComputer{ get; set; }
+
     public bool LongTermTrips { get; set; }
     public bool CarKit{ get; set; }
     public bool RemoteCentralLocking { get; set; }
