@@ -30,7 +30,7 @@
                                 <p class="price ml-auto">$@(car.PricePerDay) <span>/day</span></p>
                             </div>
                             <p class="d-flex mb-0 d-block">
-                                <a href="#" class="btn btn-primary py-2 mr-1">Book now</a>
+                                <a asp-action="index" asp-controller="checkout" asp-route-id="@car.Id" class="btn btn-primary py-2 mr-1">Book now</a>
                                 <a asp-action="detail" asp-controller="car" asp-route-id="@car.Id" class="btn btn-secondary py-2 ml-1">Details</a>
                             </p>
                         </div>

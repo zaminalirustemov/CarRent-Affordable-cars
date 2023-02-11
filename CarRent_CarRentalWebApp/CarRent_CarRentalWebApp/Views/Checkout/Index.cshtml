@@ -1,4 +1,5 @@
-﻿
+﻿@model OrderViewModel
+
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -18,54 +19,84 @@
             <div class="col-md-12 featured-top">
                 <div class="row no-gutters">
                     <div class="col-md-4 d-flex align-items-center">
-                        <form action="#" class="request-form ftco-animate bg-primary">
+                        <form asp-action="index" asp-controller="checkout" method="post" class="request-form ftco-animate bg-primary">
                             <h2>Make your trip</h2>
                             <div class="form-group">
-                                <label for="" class="label">Fullname</label>
-                                <input type="text" class="form-control" placeholder="Fulname">
+                                <label asp-for="Fullname" class="label">Fullname</label>
+                                <input asp-for="Fullname" class="form-control" placeholder="Fulname">
+                                <span asp-validation-for="Fullname" style="color:yellow"></span>
                             </div>
                             <div class="form-group">
-                                <label for="" class="label">Phone number</label>
-                                <input type="text" class="form-control" placeholder="Phone number">
+                                <label asp-for="Phonenumber" class="label">Phone number</label>
+                                <input asp-for="Phonenumber" class="form-control" placeholder="Phone number">
+                                <span asp-validation-for="Phonenumber" style="color:yellow"></span>
                             </div>
                             <div class="form-group">
-                                <label for="" class="label">Email adress</label>
-                                <input type="text" class="form-control" placeholder="Email">
+                                <label asp-for="Email" class="label">Email adress</label>
+                                <input asp-for="Email" class="form-control" placeholder="Email">
+                                <span asp-validation-for="Email" style="color:yellow"></span>
                             </div>
                             <div class="form-group">
-                                <label for="" class="label">Drop-off location</label>
-                                <input type="text" class="form-control" placeholder="City, Airport, Station, etc">
+                                <label asp-for="DropOffLocation" class="label">Drop-off location</label>
+                                <input asp-for="DropOffLocation" class="form-control" placeholder="City, Airport, Station, etc">
+                                <span asp-validation-for="DropOffLocation" style="color:yellow"></span>
                             </div>
-                            <div class="d-flex">
+                            <div class="d-flex" style="width:152px">
                                 <div class="form-group mr-1">
-                                    <label for="" class="label">Pick-up</label>
-                                    <input type="text" class="form-control" id="book_pick_date" placeholder="Date">
+                                    <label asp-for="PickUp" class="label">Pick-up</label>
+                                    <input asp-for="PickUp" class="form-control" placeholder="Date">
+                                    <span asp-validation-for="PickUp" style="color:yellow"></span>
                                 </div>
                                 <div class="form-group mr-1">
-                                    <label for="" class="label">Drop-off</label>
-                                    <input type="text" class="form-control" id="book_off_date" placeholder="Date">
-                                </div>
+                                    <label asp-for="DropOff" class="label">Drop-off</label>
+                                    <input asp-for="DropOff" class="form-control" placeholder="Date">
+                                    <span asp-validation-for="DropOff" style="color:yellow"></span>
+                                </div>@*
                                 <div class="form-group mr-1">
-                                    <label for="" class="label">Pick-up time</label>
-                                    <input type="text" class="form-control" id="time_pick" placeholder="Time">
-                                </div>
+                                    <label asp-for="PickUpTime" class="label">Pick-up time</label>
+                                    <input asp-for="PickUpTime" class="form-control" placeholder="Time">
+                                </div>*@
+                            </div>
+
+                            @*
+                            <div class="form-group">
+                            <label asp-for="PickUp" class="label">Pick-up</label>
+                            <input asp-for="PickUp" class="form-control" placeholder="Date">
+                            <span asp-validation-for="PickUp" style="color:yellow"></span>
                             </div>
                             <div class="form-group">
-                                <label for="" class="label">Card number</label>
-                                <input type="text" class="form-control" placeholder="**** **** **** ****">
+                            <label asp-for="DropOff" class="label">Drop-off</label>
+                            <input asp-for="DropOff" class="form-control" placeholder="Date">
+                            <span asp-validation-for="DropOff" style="color:yellow"></span>
+                            </div>*@
+                            <div class="form-group">
+                                <label asp-for="PickUpTime" class="label">Pick-up time</label>
+                                <input asp-for="PickUpTime" class="form-control" placeholder="Time">
+                                <span asp-validation-for="PickUpTime" style="color:yellow"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="CardNumber" class="label">Card number</label>
+                                <input asp-for="CardNumber" class="form-control" placeholder="**** **** **** ****">
+                                <span asp-validation-for="CardNumber" style="color:yellow"></span>
                             </div>
                             <div class="d-flex">
                                 <div class="form-group mr-2">
-                                    <label for="" class="label">End time</label>
-                                    <input type="text" class="form-control" placeholder="MM/YY">
+                                    <label asp-for="EndTime" class="label">End time</label>
+                                    <input asp-for="EndTime" class="form-control" placeholder="MM/YY">
+                                    <span asp-validation-for="EndTime" style="color:yellow"></span>
                                 </div>
                                 <div class="form-group mr-2">
-                                    <label for="" class="label">CVC</label>
-                                    <input type="text" class="form-control" placeholder="***">
+                                    <label asp-for="CVC" class="label">CVC</label>
+                                    <input asp-for="CVC" class="form-control" placeholder="***">
+                                    <span asp-validation-for="CVC" style="color:yellow"></span>
                                 </div>
                             </div>
+                            <input type="hidden" asp-for="CarId" value="@Model.CarId" />
                             <div class="form-group">
-                                <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
+                                @* <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">*@
+                                <button @*asp-route-id="@Model.Car.Id"*@ type="submit" class="btn btn-primary" @*itemid="xx"*@>add</button>
                             </div>
                         </form>
                     </div>
@@ -74,18 +105,19 @@
                             <div class="item">
                                 <div class="car-wrap rounded ftco-animate">
                                     <div class="img rounded d-flex align-items-end">
-                                        <img src="~/assets/images/car-12.jpg" class="img-fluid" alt="" style="width: 644px;height: 270px;border-radius: 30px;border-style: outset;">
+                                        <img src="~/uploads/car/@Model.Car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="" style="width: 644px;height: 270px;border-radius: 30px;border-style: outset;">
                                     </div>
                                     <div class="text">
-                                        <h2 class="mb-0"><a href="car-single.html">Model</a></h2>
+                                        <h2 class="mb-0"><a href="car-single.html">@Model.Car.Model</a></h2>
                                         <div class="d-flex mb-3">
-                                            <span class="cat">BrandName</span>
-                                            <p class="price ml-auto">$999 <span>/day</span></p>
+                                            <span class="cat">@Model.Car.Brand.Name</span>
+                                            <p class="price ml-auto">$@(Model.Car.PricePerDay) <span>/day</span></p>
+                                            <p class="price ml-auto">$@(Model.Car.PricePerMonth) <span>/Month</span></p>
                                         </div>
                                         <div>
-                                            <h2><span class="flaticon-dashboard" style="margin-right:5px"></span>Millage: <span style="color:slategrey">2343222 km</span></h2>
-                                            <h2><span class="flaticon-pistons" style="margin-right:5px"></span>Transmission: <span style="color:slategrey">Manual</span></h2>
-                                            <h2><span class="flaticon-diesel" style="margin-right:5px"></span>Fuel: <span style="color:slategrey">Petrol</span></h2>
+                                            <h2><span class="flaticon-dashboard" style="margin-right:5px"></span>Millage: <span style="color:slategrey">@Model.Car.Millage km</span></h2>
+                                            <h2><span class="flaticon-pistons" style="margin-right:5px"></span>Transmission: <span style="color:slategrey">@Model.Car.Transmission</span></h2>
+                                            <h2><span class="flaticon-diesel" style="margin-right:5px"></span>Fuel: <span style="color:slategrey">@Model.Car.Fuel</span></h2>
                                         </div>
 
                                     </div>

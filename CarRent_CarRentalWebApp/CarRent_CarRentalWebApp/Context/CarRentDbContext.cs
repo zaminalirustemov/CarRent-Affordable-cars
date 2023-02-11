@@ -12,4 +12,6 @@ public class CarRentDbContext:IdentityDbContext
 	public DbSet<Car> Cars { get; set; }
 	public DbSet<CarImage> CarImages { get; set; }
 	public DbSet<AppUser> AppUsers { get; set; }
+	public DbSet<Order> Orders { get; set; }
+	public DbSet<OrderItem> OrderItems { get; set; }
 }
