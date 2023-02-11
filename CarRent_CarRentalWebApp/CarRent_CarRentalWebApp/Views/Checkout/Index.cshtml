@@ -19,7 +19,7 @@
             <div class="col-md-12 featured-top">
                 <div class="row no-gutters">
                     <div class="col-md-4 d-flex align-items-center">
-                        <form asp-action="index" asp-controller="checkout" method="post" class="request-form ftco-animate bg-primary">
+                        <form asp-action="index" asp-controller="checkout" method="post" class="request-form ftco-animate bg-info" style="width:370px">
                             <h2>Make your trip</h2>
                             <div class="form-group">
                                 <label asp-for="Fullname" class="label">Fullname</label>
@@ -51,52 +51,17 @@
                                     <label asp-for="DropOff" class="label">Drop-off</label>
                                     <input asp-for="DropOff" class="form-control" placeholder="Date">
                                     <span asp-validation-for="DropOff" style="color:yellow"></span>
-                                </div>@*
-                                <div class="form-group mr-1">
-                                    <label asp-for="PickUpTime" class="label">Pick-up time</label>
-                                    <input asp-for="PickUpTime" class="form-control" placeholder="Time">
-                                </div>*@
+                                </div>
                             </div>
 
-                            @*
-                            <div class="form-group">
-                            <label asp-for="PickUp" class="label">Pick-up</label>
-                            <input asp-for="PickUp" class="form-control" placeholder="Date">
-                            <span asp-validation-for="PickUp" style="color:yellow"></span>
-                            </div>
-                            <div class="form-group">
-                            <label asp-for="DropOff" class="label">Drop-off</label>
-                            <input asp-for="DropOff" class="form-control" placeholder="Date">
-                            <span asp-validation-for="DropOff" style="color:yellow"></span>
-                            </div>*@
                             <div class="form-group">
                                 <label asp-for="PickUpTime" class="label">Pick-up time</label>
                                 <input asp-for="PickUpTime" class="form-control" placeholder="Time">
                                 <span asp-validation-for="PickUpTime" style="color:yellow"></span>
                             </div>
-
-
-                            <div class="form-group">
-                                <label asp-for="CardNumber" class="label">Card number</label>
-                                <input asp-for="CardNumber" class="form-control" placeholder="**** **** **** ****">
-                                <span asp-validation-for="CardNumber" style="color:yellow"></span>
-                            </div>
-                            <div class="d-flex">
-                                <div class="form-group mr-2">
-                                    <label asp-for="EndTime" class="label">End time</label>
-                                    <input asp-for="EndTime" class="form-control" placeholder="MM/YY">
-                                    <span asp-validation-for="EndTime" style="color:yellow"></span>
-                                </div>
-                                <div class="form-group mr-2">
-                                    <label asp-for="CVC" class="label">CVC</label>
-                                    <input asp-for="CVC" class="form-control" placeholder="***">
-                                    <span asp-validation-for="CVC" style="color:yellow"></span>
-                                </div>
-                            </div>
                             <input type="hidden" asp-for="CarId" value="@Model.CarId" />
                             <div class="form-group">
-                                @* <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">*@
-                                <button @*asp-route-id="@Model.Car.Id"*@ type="submit" class="btn btn-primary" @*itemid="xx"*@>add</button>
+                                <button  type="submit" class="btn btn-primary" >add</button>
                             </div>
                         </form>
                     </div>

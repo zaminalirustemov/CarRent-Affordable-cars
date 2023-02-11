@@ -46,8 +46,17 @@ public class CheckoutController : Controller
     {
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).FirstOrDefault(x => x.Id == orderVM.CarId);
         orderVM.Car = car;
-        //if (!ModelState.IsValid) return View(orderVM);
-
+        if (!ModelState.IsValid) return View(orderVM);
+        if (orderVM.PickUp.CompareTo(DateTime.Now) <0)
+        {
+            ModelState.AddModelError("PickUp", "The pick-up date cannot be selected later than the current time");
+            return View(orderVM);
+        }
+        if (orderVM.PickUp >= orderVM.DropOff)
+        {
+            ModelState.AddModelError("DropOff", "The drop-off date must be after the pick-up date");
+            return View(orderVM);
+        }
         AppUser member = null;
         if (HttpContext.User.Identity.IsAuthenticated)
         {
@@ -66,9 +75,6 @@ public class CheckoutController : Controller
             PickUp = orderVM.PickUp,
             DropOff = orderVM.DropOff,
             PickUpTime = orderVM.PickUpTime,
-            CardNumber = orderVM.CardNumber,
-            EndTime = orderVM.EndTime,
-            CVC = orderVM.CVC,
             AppUserId = member?.Id
 
         };
@@ -87,18 +93,12 @@ public class CheckoutController : Controller
             Order = order
         };
 
-
         TempData.Put<OrderItem>("orderItem", orderItem);
 
-        //TempData.Get<Order>("order").OrderItems.Add(TempData.Get<OrderItem>("orderItem"));
-        //order.OrderItems.Add(orderItem);
+        //OrderItem orderItemRoute = TempData.Get<OrderItem>("orderItem");
+        //Order orderroute = TempData.Get<Order>("order");
 
-
-        //_carRentDbContext.Orders.Add(order);
-        //_carRentDbContext.SaveChanges();
-
-        //return RedirectToAction("index", "home");
-        return RedirectToAction(nameof(ConfirmOrder));
+        return RedirectToAction("confirmorder");
     }
 
     public async Task<IActionResult> ConfirmOrder()
@@ -108,7 +108,6 @@ public class CheckoutController : Controller
         Order order = TempData.Get<Order>("order");
 
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).FirstOrDefault(x => x.Id == orderItem.CarId);
-
         int day = order.DropOff.Subtract(order.PickUp).Days;
         var totalPrice = day * orderItem.PricePerDay;
 
@@ -128,9 +127,6 @@ public class CheckoutController : Controller
             PickUp=order.PickUp,
             DropOff=order.DropOff,
             PickUpTime=order.PickUpTime,
-            CardNumber=order.CardNumber,
-            CVC=order.CVC,
-            EndTime=order.EndTime,
 
         };
         
@@ -140,10 +136,17 @@ public class CheckoutController : Controller
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult ConfirmOrder(ConfirmOrderViewModel confirmOrderVM)
+    public async Task<IActionResult> ConfirmOrder(ConfirmOrderViewModel confirmOrderVM)
     {
+        AppUser member = null;
+        if (HttpContext.User.Identity.IsAuthenticated)
+        {
+            member = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
+        }
+
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).FirstOrDefault(x => x.Id == confirmOrderVM.CarId);
         confirmOrderVM.Car = car;
+        if(!ModelState.IsValid) return View(confirmOrderVM);
 
         Order order = new Order
         {
@@ -159,6 +162,7 @@ public class CheckoutController : Controller
             CVC = confirmOrderVM.CVC,
             Day=confirmOrderVM.Day,
             TotalPrice=confirmOrderVM.TotalPrice,
+            AppUserId=member?.Id
         };
 
         OrderItem orderItem = new OrderItem

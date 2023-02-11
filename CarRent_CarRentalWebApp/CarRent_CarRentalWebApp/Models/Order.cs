@@ -18,10 +18,10 @@ public class Order
     public DateTime PickUp { get; set; }
     public DateTime DropOff { get; set; }
     public DateTime PickUpTime { get; set; }
-    public int CardNumber { get; set; }
+    public int? CardNumber { get; set; }
     [StringLength(maximumLength: 5)]
-    public string EndTime { get; set; }
-    public int CVC { get; set; }
+    public string? EndTime { get; set; }
+    public int? CVC { get; set; }
     public int? Day { get; set; }
     public double? TotalPrice { get; set; }
     public bool isDeleted { get; set; }
