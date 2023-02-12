@@ -223,12 +223,10 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("CVC")
-                        .HasMaxLength(3)
+                    b.Property<int?>("CVC")
                         .HasColumnType("int");
 
-                    b.Property<int>("CardNumber")
-                        .HasMaxLength(16)
+                    b.Property<int?>("CardNumber")
                         .HasColumnType("int");
 
                     b.Property<int?>("Day")
@@ -248,7 +246,6 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("EndTime")
-                        .IsRequired()
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
@@ -256,6 +253,9 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<byte>("OrderStatus")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("Phonenumber")
                         .IsRequired()
@@ -318,7 +318,8 @@ namespace CarRent_CarRentalWebApp.Migrations
 
                     b.HasIndex("CarId");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrderId")
+                        .IsUnique();
 
                     b.ToTable("OrderItems");
                 });
@@ -579,8 +580,8 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .IsRequired();
 
                     b.HasOne("CarRent_CarRentalWebApp.Models.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
+                        .WithOne("OrderItem")
+                        .HasForeignKey("CarRent_CarRentalWebApp.Models.OrderItem", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -654,7 +655,7 @@ namespace CarRent_CarRentalWebApp.Migrations
 
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Order", b =>
                 {
-                    b.Navigation("OrderItems");
+                    b.Navigation("OrderItem");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CarRent_CarRentalWebApp.Enums;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarRent_CarRentalWebApp.Models;
 public class Order
 {
     public int Id { get; set; }
     public string? AppUserId { get; set; }
+    
 
 
     [StringLength(maximumLength: 100)]
@@ -25,7 +28,12 @@ public class Order
     public int? Day { get; set; }
     public double? TotalPrice { get; set; }
     public bool isDeleted { get; set; }
+    public OrderStatus OrderStatus { get; set; }
 
     public AppUser? AppUser { get; set; }
-    public List<OrderItem>? OrderItems { get; set; }=new List<OrderItem>();
+    public OrderItem? OrderItem { get; set; } = new OrderItem(); 
+    [NotMapped]
+    public int CarId { get; set; }
+    [NotMapped]
+    public Car Car { get; set; }
 } 

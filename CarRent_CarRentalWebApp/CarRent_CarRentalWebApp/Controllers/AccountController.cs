@@ -1,19 +1,24 @@
-﻿using CarRent_CarRentalWebApp.Models;
+﻿using CarRent_CarRentalWebApp.Context;
+using CarRent_CarRentalWebApp.Models;
 using CarRent_CarRentalWebApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarRent_CarRentalWebApp.Controllers;
 public class AccountController : Controller
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
+    private readonly CarRentDbContext _carRentDbContext;
 
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,CarRentDbContext carRentDbContext)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _carRentDbContext = carRentDbContext;
     }
+    //Register-----------------------------------------------------------------------------------------------------
     public IActionResult Register()
     {
         return View();
@@ -65,6 +70,7 @@ public class AccountController : Controller
         return RedirectToAction("index", "home");
     }
 
+    //Log in-------------------------------------------------------------------------------------------------------
     public IActionResult Login()
     {
         return View();
@@ -90,10 +96,21 @@ public class AccountController : Controller
 
         return RedirectToAction("index", "home");
     }
+    //Log out------------------------------------------------------------------------------------------------------
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
 
         return RedirectToAction("index", "home");
+    }
+    //Orders-------------------------------------------------------------------------------------------------------
+    public async Task<IActionResult> Orders()
+    {
+        AppUser member = null;
+        if (User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(User.Identity.Name);
+
+        List<Order> orders = _carRentDbContext.Orders.Where(x=>x.AppUserId==member.Id).ToList();
+
+        return View(orders);
     }
 }
