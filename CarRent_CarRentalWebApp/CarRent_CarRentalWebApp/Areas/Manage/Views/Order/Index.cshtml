@@ -1,7 +1,6 @@
-﻿@model List<Order>
+﻿@model PaginatedList<Order>
 @{
-    //int count = (Model.ActivePage - 1) * 5;
-    int count = 0;
+    int count = (Model.ActivePage - 1) * 5;
 }
 
 @section css{
@@ -27,6 +26,7 @@
                                     <tr>
                                         <th scope="col">№</th>
                                         <th scope="col">ID</th>
+                                        <th scope="col">Car</th>
                                         <th scope="col">User</th>
                                         <th scope="col">Fullname</th>
                                         <th scope="col">PickUp</th>
@@ -43,6 +43,7 @@
                                     <tr>
                                         <td>@count</td>
                                         <td>@order.Id</td>
+                                        <td>@order.OrderItem.Model</td>
                                         <td><span class="badge badge-outline-@(order.AppUserId==null? "info" :"success")">@(order.AppUserId == null ? "Guest" : "Member")</span></td>
                                         <td>@order.Fullname</td>
                                         <td>@order.PickUp.ToShortDateString()</td>
@@ -60,8 +61,11 @@
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2" style="">
 
                                                     <a class="dropdown-item btn btn-primary" asp-action="detail" asp-controller="order" asp-route-id="@order.Id">Detail</a>
+                                                    @if (order.OrderStatus==OrderStatus.Rejected || order.OrderStatus==OrderStatus.Finished)
+                                                    {
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item btn btn-danger softdelete-btn" @*asp-action="softdelete" asp-controller="brand" asp-route-id="@brand.Id"*@>Delete</a>
+                                                        <a class="dropdown-item btn btn-danger softdelete-btn" asp-action="softdelete" asp-controller="order" asp-route-id="@order.Id">Delete</a>
+                                                    }
                                                 </div>
                                             </div>
                                         </td>
@@ -74,7 +78,7 @@
             </div>
         </div>
     </div>
-    @*<nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             @if (Model.PreviousPage)
             {
@@ -93,7 +97,7 @@
                 </li>
             }
         </ul>
-    </nav>*@
+    </nav>
 </div>
 
 @section scripts{

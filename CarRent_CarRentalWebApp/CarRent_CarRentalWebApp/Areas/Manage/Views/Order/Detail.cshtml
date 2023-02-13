@@ -3,6 +3,7 @@
     //int count = (Model.ActivePage - 1) * 5;
     int count = 0;
     Car Car = ViewBag.Car;
+    List<Order> orders = ViewBag.Orders;
 }
 @section css{
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -112,7 +113,7 @@
                                                  <a class="dropdown-item btn btn-warning" asp-action="Pending" asp-controller="order" asp-route-id="@Model.Id">Pending</a>
                                                  <div class="dropdown-divider"></div>
                                              }
-                                             @if (Model.OrderStatus != OrderStatus.Accepted)
+                                             @if (Model.OrderStatus != OrderStatus.Accepted && orders.Count()<=0)
                                              {
                                                  <a class="dropdown-item btn btn-success" asp-action="Accepted" asp-controller="order" asp-route-id="@Model.Id">Accepted</a>
                                                  <div class="dropdown-divider"></div>
@@ -132,6 +133,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <div asp-validation-summary="ModelOnly" style="color:yellow"></div>
                     </form>
                 </div>
             </div>

@@ -24,12 +24,20 @@ public class CheckoutController : Controller
     public async Task<IActionResult> Index(int id)
     {
         OrderViewModel orderViewModel = null;
+        List<Order> orders = null;
         AppUser member = null;
         if (HttpContext.User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
 
 
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == id);
         if (car == null) return NotFound();
+
+        ViewBag.RelatedOrders = _carRentDbContext.Orders.Include(x => x.OrderItem)
+                                                        .Where(x => x.isDeleted == false)
+                                                        .Where(x=>x.OrderItem.CarId==id)
+                                                        .Where(x=>x.OrderStatus==OrderStatus.Accepted || x.OrderStatus==OrderStatus.Pending)
+                                                        .ToList();
+        
 
         orderViewModel = new OrderViewModel
         {
@@ -45,6 +53,12 @@ public class CheckoutController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Index(OrderViewModel orderVM)
     {
+        ViewBag.RelatedOrders = _carRentDbContext.Orders.Include(x => x.OrderItem)
+                                                       .Where(x => x.isDeleted == false)
+                                                       .Where(x => x.OrderItem.CarId == orderVM.CarId)
+                                                       .Where(x => x.OrderStatus == OrderStatus.Accepted || x.OrderStatus == OrderStatus.Pending)
+                                                       .ToList();
+
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == orderVM.CarId);
         if (car == null) return NotFound();
         orderVM.Car = car;
@@ -56,14 +70,16 @@ public class CheckoutController : Controller
             return View(orderVM);
         }
 
-        List<OrderItem> orderItems = _carRentDbContext.OrderItems.Where(x => x.CarId == car.Id).ToList();
-        foreach (var OI in orderItems)
+        List<Order> orders = _carRentDbContext.Orders.Include(x => x.OrderItem)
+                                                     .Where(x => x.OrderItem.CarId == car.Id)
+                                                     .Where(x => x.OrderStatus == OrderStatus.Accepted || x.OrderStatus == OrderStatus.Pending)
+                                                     .ToList();
+        foreach (Order o in orders)
         {
-            Order rentOrder = _carRentDbContext.Orders.FirstOrDefault(x => x.Id == OI.OrderId);
-            if (DateManager.IntersectionTimeIntervals(orderVM.PickUp, orderVM.DropOff, rentOrder.PickUp, rentOrder.DropOff))
+            if (DateManager.IntersectionTimeIntervals(orderVM.PickUp, orderVM.DropOff,o.PickUp,o.DropOff))
             {
-               ModelState.AddModelError("", "Car was rented between the selected dates");
-               return View(orderVM);
+                ModelState.AddModelError("", "Car was rented between the selected dates");
+                return View(orderVM);
             }
         }
 

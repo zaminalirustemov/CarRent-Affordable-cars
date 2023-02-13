@@ -147,17 +147,17 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="#car" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-icon">
                             <i class="mdi mdi-car"></i>
                         </span>
                         <span class="menu-title">Car</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="ui-basic">
+                    <div class="collapse" id="car">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="car"><span style="padding-right: 5px;"><i class="mdi mdi-key-variant"></i></span>  Active car</a></li>
-                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="rentalcar"><span style="padding-right: 5px;"><i class="mdi mdi-key-remove"></i></span>  Rental car</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="RenatlIndex" asp-controller="car"><span style="padding-right: 5px;"><i class="mdi mdi-key-remove"></i></span>  Rental car</a></li>
                         </ul>
                     </div>
                 </li>
@@ -170,17 +170,18 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="#recycle-bin" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-icon">
                             <i class="mdi mdi-delete-variant"></i>
                         </span>
                         <span class="menu-title">Recycle Bin</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="ui-basic">
+                    <div class="collapse" id="recycle-bin">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="deletedbrand">Brand[Deleted]</a></li>
                             <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="deletedcar">Car[Deleted]</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="deletedorder">Order[Deleted]</a></li>
                         </ul>
                     </div>
                 </li>

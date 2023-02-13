@@ -1,5 +1,6 @@
 ﻿@model OrderViewModel
 
+
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -40,6 +41,16 @@
                                 <label asp-for="DropOffLocation" class="label">Drop-off location</label>
                                 <input asp-for="DropOffLocation" class="form-control" placeholder="City, Airport, Station, etc">
                                 <span asp-validation-for="DropOffLocation" style="color:yellow"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Leasing dates</label>
+                                <select class="form-control" >
+
+                                    @foreach (Order order in ViewBag.RelatedOrders)
+                                    {
+                                        <option style="color :black">@order.PickUp - @order.DropOff</option>
+                                    }
+                                </select>
                             </div>
                             <div class="d-flex" style="width:152px">
                                 <div class="form-group mr-1">
