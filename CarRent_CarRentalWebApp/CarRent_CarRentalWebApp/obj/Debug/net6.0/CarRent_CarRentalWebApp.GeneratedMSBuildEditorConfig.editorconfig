@@ -63,6 +63,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEhlcm9cVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/HP/Desktop/CarRent-Zaminali Rustemov/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Order/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXE9yZGVyXERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Desktop/CarRent-Zaminali Rustemov/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Order/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXE9yZGVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/HP/Desktop/CarRent-Zaminali Rustemov/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Shared/Error-404.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFNoYXJlZFxFcnJvci00MDQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -77,6 +85,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/HP/Desktop/CarRent-Zaminali Rustemov/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Desktop/CarRent-Zaminali Rustemov/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Views/Account/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/HP/Desktop/CarRent-Zaminali Rustemov/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Views/Account/Login.cshtml]

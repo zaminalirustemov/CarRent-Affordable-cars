@@ -8,7 +8,6 @@ using System.Data;
 
 namespace CarRent_CarRentalWebApp.Areas.Manage.Controllers;
 [Area("Manage")]
-[Authorize(Roles = "SuperAdmin,Admin,Editor")]
 public class DeletedBrandController : Controller
 {
     private readonly CarRentDbContext _carRentDbContext;

@@ -1,0 +1,96 @@
+﻿@model Order
+@{
+    Car Car = ViewBag.Car;
+}
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+            <div class="col-md-9 ftco-animate pb-5" style="margin-bottom: 250px;">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Checkout <i class="ion-ios-arrow-forward"></i></span></p>
+                <h1 class="mb-3 bread">Checkout</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= MakeYouTrip Section ======= -->
+<section class="ftco-section ftco-no-pt bg-light">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-12 featured-top">
+                <div class="row no-gutters">
+                    
+                        <form  class="request-form ftco-animate bg-black" style="width:370px">
+                            <h2>Make your trip</h2>
+                            <div>
+                                <div class="form-group">
+                                    <label asp-for="Fullname" class="label">Fullname</label>
+                                    <input asp-for="Fullname" value="@Model.Fullname" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Day" class="label">day</label>
+                                    <input asp-for="Day" value="@Model.Day" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="TotalPrice" class="label">Total Price</label>
+                                    <input asp-for="TotalPrice" value="@Model.TotalPrice" class="form-control" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Phonenumber" class="label">Phone number</label>
+                                    <input asp-for="Phonenumber" class="form-control" value="@Model.Phonenumber" readonly>
+                                    <span asp-validation-for="Phonenumber" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Email" class="label">Email adress</label>
+                                    <input asp-for="Email" class="form-control" value="@Model.Email" readonly>
+                                    <span asp-validation-for="Email" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="DropOffLocation" class="label">Drop-off location</label>
+                                    <input asp-for="DropOffLocation" class="form-control" value="@Model.DropOffLocation" readonly>
+                                    <span asp-validation-for="DropOffLocation" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label">Status : </label>
+                                <span class="badge rounded-pill badge-@(Model.OrderStatus==OrderStatus.Pending? "warning" :
+                                                                       (Model.OrderStatus==OrderStatus.Accepted? "success" :
+                                                                       (Model.OrderStatus==OrderStatus.Rejected? "danger" : "dark")))" style="padding:7px">@Model.OrderStatus</span>
+                                </div>
+                                <div style="text-align-last:right"> 
+                                    <a asp-action="orders" asp-controller="account" class="btn btn-info text-white">Back</a>
+                                </div>
+                            </div>
+                        </form>
+                    
+                    <div class="col-md-8 d-flex align-items-center">
+                        <div class="services-wrap rounded-right w-100">
+                            <div class="item">
+                                <div class="car-wrap rounded ftco-animate">
+                                    <div class="img rounded d-flex align-items-end">
+                                        <img src="~/uploads/car/@Car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="" style="width: 644px;height: 270px;border-radius: 30px;border-style: outset;">
+                                    </div>
+                                    <div class="text">
+                                        <h2 class="mb-0"><a href="car-single.html">@Car.Model</a></h2>
+                                        <div class="d-flex mb-3">
+                                            <span class="cat">@Car.Brand.Name</span>
+                                            <p class="price ml-auto">$@(Car.PricePerDay) <span>/day</span></p>
+                                            <p class="price ml-auto">$@(Car.PricePerMonth) <span>/Month</span></p>
+                                        </div>
+                                        <div>
+                                            <h2><span class="flaticon-dashboard" style="margin-right:5px"></span>Millage: <span style="color:slategrey">@Car.Millage km</span></h2>
+                                            <h2><span class="flaticon-pistons" style="margin-right:5px"></span>Transmission: <span style="color:slategrey">@Car.Transmission</span></h2>
+                                            <h2><span class="flaticon-diesel" style="margin-right:5px"></span>Fuel: <span style="color:slategrey">@Car.Fuel</span></h2>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

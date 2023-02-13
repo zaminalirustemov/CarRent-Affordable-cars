@@ -28,7 +28,7 @@ public class CheckoutController : Controller
         if (HttpContext.User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
         
 
-        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x=>x.isDeleted==false).FirstOrDefault(x => x.Id == id);
         if (car == null) return NotFound();
 
         orderViewModel = new OrderViewModel
@@ -45,7 +45,7 @@ public class CheckoutController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Index(OrderViewModel orderVM)
     {
-        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).FirstOrDefault(x => x.Id == orderVM.CarId);
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == orderVM.CarId);
         if (car == null) return NotFound();
         orderVM.Car = car;
 
@@ -103,7 +103,7 @@ public class CheckoutController : Controller
     {
         ConfirmOrderViewModel confirmOrderVM = null;
 
-        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).FirstOrDefault(x => x.Id == order.CarId);
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == order.CarId);
         if (car == null) return NotFound();
 
         int day = order.DropOff.Subtract(order.PickUp).Days;
@@ -135,7 +135,8 @@ public class CheckoutController : Controller
         AppUser member = null;
         if (HttpContext.User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
         
-        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).FirstOrDefault(x => x.Id == confirmOrderVM.CarId);
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == confirmOrderVM.CarId);
+        if (car == null) return NotFound();
         confirmOrderVM.Car = car;
         if(!ModelState.IsValid) return View(confirmOrderVM);
 

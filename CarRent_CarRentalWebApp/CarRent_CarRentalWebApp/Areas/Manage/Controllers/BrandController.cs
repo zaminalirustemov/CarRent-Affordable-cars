@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace CarRent_CarRentalWebApp.Areas.Manage.Controllers;
 [Area("Manage")]
-[Authorize(Roles = "SuperAdmin,Admin,Editor")]
 public class BrandController : Controller
 {
     private readonly CarRentDbContext _carRentDbContext;

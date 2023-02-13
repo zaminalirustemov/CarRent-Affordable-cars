@@ -109,8 +109,21 @@ public class AccountController : Controller
         AppUser member = null;
         if (User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(User.Identity.Name);
 
-        List<Order> orders = _carRentDbContext.Orders.Where(x=>x.AppUserId==member.Id).ToList();
+        List<Order> orders = _carRentDbContext.Orders.Where(x=>x.AppUserId==member.Id).Where(x => x.isDeleted == false).ToList();
+        
 
         return View(orders);
+    }
+    public IActionResult Detail(int id)
+    {
+        Order order = _carRentDbContext.Orders.Include(x => x.OrderItem).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == id);
+        if (order is null) return NotFound();
+
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == order.OrderItem.CarId);
+        if (car == null) return NotFound();
+        ViewBag.Car = car;
+
+
+        return View(order);
     }
 }

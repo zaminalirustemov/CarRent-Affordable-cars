@@ -1,7 +1,8 @@
 ﻿@model List<Order>
 @{
-   int count = 0;
+    int count = 0;
 }
+
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
@@ -19,9 +20,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">№</th>
                     <th scope="col">Pick-Up</th>
                     <th scope="col">Drop-Off</th>
+                    <th scope="col">Day</th>
                     <th scope="col">Total Price</th>
                     <th scope="col">Status</th>
                 </tr>
@@ -31,11 +33,19 @@
                 {
                     count++;
                     <tr>
-                        <th >@count</th>
-                        <td>@order.PickUp</td>
-                        <td>@order.DropOff</td>
-                        <td>@order.TotalPrice</td>
-                        <td>@order.OrderStatus</td>
+                        <th style="padding: 30px 10px" >@count</th>
+                        <td>@order.PickUp.ToShortDateString()</td>
+                        <td>@order.DropOff.ToShortDateString()</td>
+                        <td>@order.Day</td>
+                        <td>@(order.TotalPrice) $</td>
+                        <td>
+                            <span class="badge rounded-pill badge-@(order.OrderStatus==OrderStatus.Pending? "warning" :
+                                                                   (order.OrderStatus==OrderStatus.Accepted? "success" :
+                                                                   (order.OrderStatus==OrderStatus.Rejected? "danger" : "dark")))" style="padding:7px">@order.OrderStatus</span>
+                        </td>
+                        <td>
+                            <a asp-action="detail" asp-controller="account" asp-route-id="@order.Id" class="btn btn-info" style="padding-right:7px"><span class="icon icon-eye" style="margin-right:5px"></span></a>
+                        </td>
                     </tr>
                 }
             </tbody>

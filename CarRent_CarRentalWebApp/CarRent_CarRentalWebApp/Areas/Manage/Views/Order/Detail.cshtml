@@ -1,0 +1,176 @@
+﻿@model Order
+@{
+    //int count = (Model.ActivePage - 1) * 5;
+    int count = 0;
+    Car Car = ViewBag.Car;
+}
+@section css{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title"> Order Detail </h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Order</li>
+                    <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="forms-sample" method="post">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Fullname</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.Fullname</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Day</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.Day</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Total Price</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.TotalPrice</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Phone Number</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.Phonenumber</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.Email</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Drop-off Location</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.DropOffLocation</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Drop-off</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.DropOff</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Pick up</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.PickUp</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">PickUpTime</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.PickUpTime</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">CardNumber</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.CardNumber</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">EndTime</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.EndTime</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">CVC</label>
+                                <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                    <span>@Model.CVC</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-9 col-form-label">OrderStatus</label>
+                                <div style="text-align-last: right">
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-@(Model.OrderStatus==OrderStatus.Pending? "warning" :
+                                                                (Model.OrderStatus==OrderStatus.Accepted? "success" :
+                                                                (Model.OrderStatus==OrderStatus.Rejected? "danger" : "dark"))) dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            @Model.OrderStatus
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2" style="">
+
+                                             @if (Model.OrderStatus != OrderStatus.Pending)
+                                             {
+                                                 <a class="dropdown-item btn btn-warning" asp-action="Pending" asp-controller="order" asp-route-id="@Model.Id">Pending</a>
+                                                 <div class="dropdown-divider"></div>
+                                             }
+                                             @if (Model.OrderStatus != OrderStatus.Accepted)
+                                             {
+                                                 <a class="dropdown-item btn btn-success" asp-action="Accepted" asp-controller="order" asp-route-id="@Model.Id">Accepted</a>
+                                                 <div class="dropdown-divider"></div>
+                                             }
+                                             @if (Model.OrderStatus != OrderStatus.Rejected)
+                                             {
+                                                 <a class="dropdown-item btn btn-danger" asp-action="Rejected" asp-controller="order" asp-route-id="@Model.Id">Rejected</a>
+                                                 <div class="dropdown-divider"></div>
+                                             }
+                                             @if (Model.OrderStatus != OrderStatus.Finished)
+                                             {
+                                                 <a class="dropdown-item btn btn-dark" asp-action="Finished" asp-controller="order" asp-route-id="@Model.Id">Finished</a>
+
+                                             }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="services-wrap rounded-right w-100">
+                        <div class="item">
+                            <div class="car-wrap rounded ftco-animate">
+                                <div class="img rounded d-flex align-items-end" style="margin-bottom:15px">
+                                    <img src="~/uploads/car/@Car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="" style="width: 644px;height: 270px;border-radius: 30px;border-style: outset;">
+                                </div>
+                                <div class="text">
+                                    <h2 class="mb-0"><span style="color:cornflowerblue">@Car.Model</span></h2>
+                                    <div class="d-flex mb-3">
+                                        <span class="cat">@Car.Brand.Name</span>
+                                        <p class="price ml-auto">$@(Car.PricePerDay) <span>/day</span></p>
+                                        <p class="price ml-auto">$@(Car.PricePerMonth) <span>/Month</span></p>
+                                    </div>
+                                    <div>
+                                        <h2><span class="flaticon-dashboard" style="margin-right:5px"></span>Millage: <span style="color:slategrey">@Car.Millage km</span></h2>
+                                        <h2><span class="flaticon-pistons" style="margin-right:5px"></span>Transmission: <span style="color:slategrey">@Car.Transmission</span></h2>
+                                        <h2><span class="flaticon-diesel" style="margin-right:5px"></span>Fuel: <span style="color:slategrey">@Car.Fuel</span></h2>
+                                    </div>
+                                    <div style="text-align:end">
+                                        <a asp-action="index" asp-controller="order" class="btn btn-outline-secondary" style="width:100px">Back</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
