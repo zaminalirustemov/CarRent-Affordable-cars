@@ -26,9 +26,9 @@ public class CheckoutController : Controller
         OrderViewModel orderViewModel = null;
         AppUser member = null;
         if (HttpContext.User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
-        
 
-        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x=>x.isDeleted==false).FirstOrDefault(x => x.Id == id);
+
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == id);
         if (car == null) return NotFound();
 
         orderViewModel = new OrderViewModel
@@ -48,23 +48,28 @@ public class CheckoutController : Controller
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == orderVM.CarId);
         if (car == null) return NotFound();
         orderVM.Car = car;
-
         if (!ModelState.IsValid) return View(orderVM);
 
-        if (orderVM.PickUp.CompareTo(DateTime.Now) <0)
+        if (!DateManager.DateLogical(orderVM.PickUp, orderVM.DropOff))
         {
-            ModelState.AddModelError("PickUp", "The pick-up date cannot be selected later than the current time");
+            ModelState.AddModelError("", "This time interval does not match the current time");
             return View(orderVM);
         }
-        if (orderVM.PickUp >= orderVM.DropOff)
+
+        List<OrderItem> orderItems = _carRentDbContext.OrderItems.Where(x => x.CarId == car.Id).ToList();
+        foreach (var OI in orderItems)
         {
-            ModelState.AddModelError("DropOff", "The drop-off date must be after the pick-up date");
-            return View(orderVM);
+            Order rentOrder = _carRentDbContext.Orders.FirstOrDefault(x => x.Id == OI.OrderId);
+            if (DateManager.IntersectionTimeIntervals(orderVM.PickUp, orderVM.DropOff, rentOrder.PickUp, rentOrder.DropOff))
+            {
+               ModelState.AddModelError("", "Car was rented between the selected dates");
+               return View(orderVM);
+            }
         }
 
         AppUser member = null;
         if (HttpContext.User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
-        
+
         Order order = null;
         OrderItem orderItem = null;
 
@@ -90,7 +95,7 @@ public class CheckoutController : Controller
             PickUpTime = orderVM.PickUpTime,
             AppUserId = member?.Id,
             OrderItem = orderItem,
-            CarId=car.Id,
+            CarId = car.Id,
         };
 
         TempData.Put<Order>("order", order);
@@ -107,7 +112,7 @@ public class CheckoutController : Controller
         if (car == null) return NotFound();
 
         int day = order.DropOff.Subtract(order.PickUp).Days;
-        var totalPrice = car.PricePerDay*day;
+        var totalPrice = car.PricePerDay * day;
 
         confirmOrderVM = new ConfirmOrderViewModel
         {
@@ -116,16 +121,16 @@ public class CheckoutController : Controller
             Fullname = order.Fullname,
             TotalPrice = totalPrice,
             Day = day,
-            Car=car,
-            CarId=car.Id,
-            Phonenumber=order.Phonenumber,
-            Email=order.Email,
-            DropOffLocation=order.DropOffLocation,
-            PickUp=order.PickUp,
-            DropOff=order.DropOff,
-            PickUpTime=order.PickUpTime,
+            Car = car,
+            CarId = car.Id,
+            Phonenumber = order.Phonenumber,
+            Email = order.Email,
+            DropOffLocation = order.DropOffLocation,
+            PickUp = order.PickUp,
+            DropOff = order.DropOff,
+            PickUpTime = order.PickUpTime,
         };
-        
+
         return View(confirmOrderVM);
     }
     [HttpPost]
@@ -134,11 +139,11 @@ public class CheckoutController : Controller
     {
         AppUser member = null;
         if (HttpContext.User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
-        
+
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == confirmOrderVM.CarId);
         if (car == null) return NotFound();
         confirmOrderVM.Car = car;
-        if(!ModelState.IsValid) return View(confirmOrderVM);
+        if (!ModelState.IsValid) return View(confirmOrderVM);
 
         Order order = new Order
         {
@@ -152,11 +157,11 @@ public class CheckoutController : Controller
             CardNumber = confirmOrderVM.CardNumber,
             EndTime = confirmOrderVM.EndTime,
             CVC = confirmOrderVM.CVC,
-            Day=confirmOrderVM.Day,
-            TotalPrice=confirmOrderVM.TotalPrice,
-            OrderStatus=OrderStatus.Pending,
-            Car=car,
-            AppUserId=member?.Id
+            Day = confirmOrderVM.Day,
+            TotalPrice = confirmOrderVM.TotalPrice,
+            OrderStatus = OrderStatus.Pending,
+            Car = car,
+            AppUserId = member?.Id
         };
 
         OrderItem orderItem = new OrderItem
@@ -168,13 +173,13 @@ public class CheckoutController : Controller
             PricePerDay = car.PricePerDay,
             PricePerMonth = car.PricePerMonth,
             Order = order,
-            
-            
+
+
         };
         order.OrderItem = orderItem;
 
         _carRentDbContext.Orders.Add(order);
         _carRentDbContext.SaveChanges();
-        return RedirectToAction("index","home");
+        return RedirectToAction("index", "home");
     }
 }
