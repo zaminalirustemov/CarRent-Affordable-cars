@@ -32,6 +32,7 @@
                                         <th>Model</th>
                                         <th>Millage</th>
                                         <th>Price Per Day</th>
+                                        <th>Created Date<br />Updated Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,6 +51,8 @@
                                         <td>@car.Model</td>
                                         <td>@(car.Millage) km</td>
                                         <td>@(car.PricePerDay) $</td>
+                                        <td>@String.Format("{0:d/M/yyyy HH:mm:ss}", car.CreatedDate).Replace(" ","-")<br />@String.Format("{0:d/M/yyyy HH:mm:ss}", car.UpdatedDate).Replace(" ","-")</td>
+
                                         <td>
                                             <div class="dropdown">
                                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Actions </button>

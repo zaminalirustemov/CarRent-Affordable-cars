@@ -24,7 +24,7 @@ public class CarController : Controller
                                                 .Where(x => x.isDeleted == false).Where(x => x.isNew == true)
                                                 .ToList();
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x=>x.CarImages).FirstOrDefault(x => x.Id == id);
-        if (car == null) return NotFound();
+        if (car == null) return View("Error");
         return View(car);
     }
 }

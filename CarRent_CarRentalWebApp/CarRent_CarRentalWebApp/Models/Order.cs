@@ -28,6 +28,8 @@ public class Order
     public int? Day { get; set; }
     public double? TotalPrice { get; set; }
     public bool isDeleted { get; set; }
+    public DateTime? CreatedDate { get; set; }
+    public DateTime? UpdatedDate { get; set; }
     public OrderStatus OrderStatus { get; set; }
 
     public AppUser? AppUser { get; set; }

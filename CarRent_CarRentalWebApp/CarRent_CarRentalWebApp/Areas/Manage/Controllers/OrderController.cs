@@ -59,6 +59,7 @@ public class OrderController : Controller
 
         car.isRent = false;
         order.OrderStatus = OrderStatus.Pending;
+        order.UpdatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
         return RedirectToAction(nameof(Index));
     }
@@ -71,6 +72,7 @@ public class OrderController : Controller
 
         car.isRent = true;
         order.OrderStatus = OrderStatus.Accepted;
+        order.UpdatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
         return RedirectToAction(nameof(Index));
     }
@@ -83,6 +85,7 @@ public class OrderController : Controller
 
         car.isRent = false;
         order.OrderStatus = OrderStatus.Rejected;
+        order.UpdatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
         return RedirectToAction(nameof(Index));
     }
@@ -95,7 +98,53 @@ public class OrderController : Controller
 
         car.isRent = false;
         order.OrderStatus = OrderStatus.Finished;
+        order.UpdatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
         return RedirectToAction(nameof(Index));
+    }
+
+
+    //*************************************************************************************
+    //*************************************Recycle Bin*************************************
+    //*************************************************************************************
+    //Deleted Index------------------------------------------------------------------------
+    public IActionResult DeletedIndex(int page = 1)
+    {
+        var query = _carRentDbContext.Orders.Where(x => x.isDeleted == true).AsQueryable();
+        var paginatedList = PaginatedList<Order>.Create(query, 5, page);
+        return View(paginatedList);
+    }
+    //Restore------------------------------------------------------------------------------
+    public IActionResult Restore(int id)
+    {
+        Order order = _carRentDbContext.Orders.FirstOrDefault(x => x.Id == id);
+        if (order == null) return View("Error-404");
+
+        order.isDeleted = false;
+        _carRentDbContext.SaveChanges();
+
+        return RedirectToAction(nameof(Index));
+    }
+    //Hard Delete--------------------------------------------------------------------------
+    public IActionResult HardDelete(int id)
+    {
+        Order order = _carRentDbContext.Orders.FirstOrDefault(x => x.Id == id);
+        if (order == null) return BadRequest();
+
+        _carRentDbContext.Orders.Remove(order);
+        _carRentDbContext.SaveChanges();
+
+        return Ok();
+    }
+    //All Delete-----------------------------------------------------------------------
+    public IActionResult AllDelete()
+    {
+        List<Order> orders = _carRentDbContext.Orders.Where(x => x.isDeleted == true).ToList();
+        if (orders.Count == 0) return BadRequest();
+
+        _carRentDbContext.Orders.RemoveRange(orders);
+        _carRentDbContext.SaveChanges();
+
+        return Ok();
     }
 }

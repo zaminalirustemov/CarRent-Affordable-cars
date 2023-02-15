@@ -16,6 +16,7 @@ public class Hero
     public string VideoText { get; set; }
     [StringLength(maximumLength:500)]
     public string VideoUrl { get; set; }
+    public DateTime? UpdatedDate { get; set; }
 
     [NotMapped]
     public IFormFile? ImageFile { get; set; }

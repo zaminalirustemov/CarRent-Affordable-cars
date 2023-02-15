@@ -117,10 +117,10 @@ public class AccountController : Controller
     public IActionResult Detail(int id)
     {
         Order order = _carRentDbContext.Orders.Include(x => x.OrderItem).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == id);
-        if (order is null) return NotFound();
+        if (order is null) return View("Error");
 
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == order.OrderItem.CarId);
-        if (car == null) return NotFound();
+        if (car == null) return View("Error");
         ViewBag.Car = car;
 
 

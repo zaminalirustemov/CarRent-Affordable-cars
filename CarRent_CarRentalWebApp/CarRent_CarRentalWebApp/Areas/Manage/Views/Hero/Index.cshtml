@@ -23,6 +23,7 @@
                                     <th>Description</th>
                                     <th>Video Text</th>
                                     <th>Video</th>
+                                    <th>Update Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,6 +43,7 @@
                                                 </div>
                                             </a>
                                         </td>
+                                        <td>@String.Format("{0:d/M/yyyy HH:mm:ss}", hero.UpdatedDate).Replace(" ","-")</td>
                                         <td>
                                             <a asp-action="update" asp-controller="hero" asp-route-id="@hero.Id" class="btn btn-outline-primary">Update</a>
                                         </td>

@@ -30,10 +30,16 @@ namespace CarRent_CarRentalWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
@@ -71,6 +77,9 @@ namespace CarRent_CarRentalWebApp.Migrations
 
                     b.Property<double>("ConsumptionPer100KM")
                         .HasColumnType("float");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -130,6 +139,9 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
@@ -197,6 +209,9 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .HasMaxLength(75)
                         .HasColumnType("nvarchar(75)");
 
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("VideoText")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -228,6 +243,9 @@ namespace CarRent_CarRentalWebApp.Migrations
 
                     b.Property<int?>("CardNumber")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("Day")
                         .HasColumnType("int");
@@ -270,6 +288,9 @@ namespace CarRent_CarRentalWebApp.Migrations
 
                     b.Property<double?>("TotalPrice")
                         .HasColumnType("float");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");

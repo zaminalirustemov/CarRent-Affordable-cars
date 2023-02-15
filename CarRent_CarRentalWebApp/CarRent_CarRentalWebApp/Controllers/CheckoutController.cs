@@ -30,7 +30,7 @@ public class CheckoutController : Controller
 
 
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == id);
-        if (car == null) return NotFound();
+        if (car == null) return View("Error");
 
         ViewBag.RelatedOrders = _carRentDbContext.Orders.Include(x => x.OrderItem)
                                                         .Where(x => x.isDeleted == false)
@@ -60,7 +60,7 @@ public class CheckoutController : Controller
                                                        .ToList();
 
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == orderVM.CarId);
-        if (car == null) return NotFound();
+        if (car == null) return View("Error");
         orderVM.Car = car;
         if (!ModelState.IsValid) return View(orderVM);
 
@@ -125,7 +125,7 @@ public class CheckoutController : Controller
         ConfirmOrderViewModel confirmOrderVM = null;
 
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == order.CarId);
-        if (car == null) return NotFound();
+        if (car == null) return View("Error");
 
         int day = order.DropOff.Subtract(order.PickUp).Days;
         var totalPrice = car.PricePerDay * day;
@@ -157,7 +157,7 @@ public class CheckoutController : Controller
         if (HttpContext.User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
 
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == confirmOrderVM.CarId);
-        if (car == null) return NotFound();
+        if (car == null) return View("Error");
         confirmOrderVM.Car = car;
         if (!ModelState.IsValid) return View(confirmOrderVM);
 
@@ -177,6 +177,7 @@ public class CheckoutController : Controller
             TotalPrice = confirmOrderVM.TotalPrice,
             OrderStatus = OrderStatus.Pending,
             Car = car,
+            CreatedDate = DateTime.UtcNow.AddHours(4),
             AppUserId = member?.Id
         };
 

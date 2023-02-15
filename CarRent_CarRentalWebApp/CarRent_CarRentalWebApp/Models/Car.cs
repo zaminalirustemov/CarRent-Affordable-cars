@@ -48,6 +48,9 @@ public class Car
     public bool ClimateControl{ get; set; }
     //Featured End*****
 
+    public DateTime? CreatedDate { get; set; }
+    public DateTime? UpdatedDate { get; set; }
+
 
     public Brand? Brand { get; set; }
     public List<OrderItem>? OrderItems { get; set; }

@@ -35,6 +35,7 @@ public class BrandController : Controller
     {
         if (!ModelState.IsValid) return View(brand);
 
+        brand.CreatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.Brands.Add(brand);
         _carRentDbContext.SaveChanges();
 
@@ -56,6 +57,7 @@ public class BrandController : Controller
         if (!ModelState.IsValid) return View(newBrand);
 
         existBrand.Name = newBrand.Name;
+        existBrand.UpdatedDate=DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
 
         return RedirectToAction(nameof(Index));
@@ -67,6 +69,54 @@ public class BrandController : Controller
         if (brand == null) return BadRequest();
 
         brand.isDeleted = true;
+        _carRentDbContext.SaveChanges();
+
+        return Ok();
+    }
+
+
+    //*************************************************************************************
+    //*************************************Recycle Bin*************************************
+    //*************************************************************************************
+    //Deleted Index------------------------------------------------------------------------
+    public IActionResult DeletedIndex(int page = 1)
+    {
+        var query = _carRentDbContext.Brands
+                                      .Where(x => x.isDeleted == true)
+                                      .AsQueryable();
+
+        var paginatedList = PaginatedList<Brand>.Create(query, 5, page);
+        return View(paginatedList);
+    }
+    //Restore------------------------------------------------------------------------------
+    public IActionResult Restore(int id)
+    {
+        Brand brand = _carRentDbContext.Brands.FirstOrDefault(x => x.Id == id);
+        if (brand == null) return View("Error-404");
+
+        brand.isDeleted = false;
+        _carRentDbContext.SaveChanges();
+
+        return RedirectToAction(nameof(DeletedIndex));
+    }
+    //Hard Delete--------------------------------------------------------------------------
+    public IActionResult HardDelete(int id)
+    {
+        Brand brand = _carRentDbContext.Brands.FirstOrDefault(x => x.Id == id);
+        if (brand == null) return BadRequest();
+
+        _carRentDbContext.Brands.Remove(brand);
+        _carRentDbContext.SaveChanges();
+
+        return Ok();
+    }
+    //All Delete-----------------------------------------------------------------------
+    public IActionResult AllDelete()
+    {
+        List<Brand> brands = _carRentDbContext.Brands.Where(x => x.isDeleted == true).ToList();
+        if (brands.Count == 0) return BadRequest();
+
+        _carRentDbContext.Brands.RemoveRange(brands);
         _carRentDbContext.SaveChanges();
 
         return Ok();

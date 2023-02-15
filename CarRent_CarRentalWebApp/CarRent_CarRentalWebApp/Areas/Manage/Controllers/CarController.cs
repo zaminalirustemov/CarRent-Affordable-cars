@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Drawing.Drawing2D;
 
 namespace CarRent_CarRentalWebApp.Areas.Manage.Controllers;
 [Area("Manage")]
@@ -91,6 +92,8 @@ public class CarController : Controller
                 _carRentDbContext.CarImages.Add(carImage);
             }
         }
+
+        car.CreatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.Cars.Add(car);
         _carRentDbContext.SaveChanges();
 
@@ -207,7 +210,7 @@ public class CarController : Controller
         existCar.isFeatured = newCar.isFeatured;
         //--------------
         existCar.Description = newCar.Description;
-
+        existCar.UpdatedDate =DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
 
         return RedirectToAction(nameof(Index));
@@ -220,6 +223,62 @@ public class CarController : Controller
 
         car.isDeleted=true;
         _carRentDbContext.SaveChanges();
+        return Ok();
+    }
+
+
+
+    //*************************************************************************************
+    //*************************************Recycle Bin*************************************
+    //*************************************************************************************
+    //Deleted Index------------------------------------------------------------------------
+    public IActionResult DeletedIndex(int page = 1)
+    {
+        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == true).AsQueryable();
+        var paginatedList = PaginatedList<Car>.Create(query, 5, page);
+
+        return View(paginatedList);
+    }
+    //Restore---------------------------------------------------------------------------------
+    public IActionResult Restore(int id)
+    {
+        Car car = _carRentDbContext.Cars.Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
+        if (car == null) return View("Error-404");
+
+        car.isDeleted = false;
+        _carRentDbContext.SaveChanges();
+        return RedirectToAction(nameof(Index));
+    }
+    //Hard Delete-----------------------------------------------------------------------------
+    public IActionResult HardDelete(int id)
+    {
+        Car car = _carRentDbContext.Cars.Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
+        if (car == null) return BadRequest();
+
+
+        foreach (CarImage carImage in car.CarImages) FileManager.DeleteFile(_environment.WebRootPath, "uploads/car", carImage.ImageName);
+
+        _carRentDbContext.Cars.Remove(car);
+        _carRentDbContext.SaveChanges();
+        return Ok();
+    }
+    //All Delete-----------------------------------------------------------------------
+    public IActionResult AllDelete()
+    {
+        List<Car> cars = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == true).ToList();
+        if (cars.Count == 0) return BadRequest();
+
+        foreach (Car car in cars)
+        {
+            foreach (CarImage carImage in car.CarImages)
+            {
+                FileManager.DeleteFile(_environment.WebRootPath, "uploads/car", carImage.ImageName);
+            }
+        }
+
+        _carRentDbContext.Cars.RemoveRange(cars);
+        _carRentDbContext.SaveChanges();
+
         return Ok();
     }
 }

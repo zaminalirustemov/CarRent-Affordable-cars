@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
 using System.Data;
+using System.Drawing.Drawing2D;
 
 namespace CarRent_CarRentalWebApp.Areas.Manage.Controllers;
 [Area("Manage")]
@@ -59,6 +60,7 @@ public class HeroController : Controller
         existHero.Description = newHero.Description;
         existHero.VideoText = newHero.VideoText;
         existHero.VideoUrl = newHero.VideoUrl;
+        existHero.UpdatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
 
         return RedirectToAction(nameof(Index));
