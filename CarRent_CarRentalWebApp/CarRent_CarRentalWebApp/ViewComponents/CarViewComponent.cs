@@ -16,7 +16,8 @@ public class CarViewComponent : ViewComponent
 	{
 		List<Car> cars=_carRentDbContext.Cars
 										.Include(x=>x.Brand)
-										.Include(x => x.CarImages)
+                                        .Include(x => x.Category)
+                                        .Include(x => x.CarImages)
 										.Where(x => x.isDeleted == false)
 										.ToList();
 		return View(cars);

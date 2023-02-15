@@ -7,10 +7,11 @@
 }
     <div class="content-wrapper">
         <div class="page-header">
-            <h3 class="page-title"> Car Table </h3>
+            <h3 class="page-title">Rental Car Table </h3>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Car</li>
+                    <li class="breadcrumb-item">Rental Car</li>
                     <li class="breadcrumb-item active" aria-current="page">Table</li>
                 </ol>
             </nav>
@@ -46,21 +47,21 @@
                                             <img style="border: outset;width: 100px;height: 100px;" src="~/uploads/car/@car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="">
                                         </td>
                                         <td><label class="badge badge-outline-@(car.isRent == false ? "success" : "info")">@(car.isRent == false ? "Active" : "On rent")</label></td>
-                                        <td>Category</td>
+                                        <td>@car.Category.Name</td>
                                         <td>@car.Brand.Name</td>
                                         <td>@car.Model</td>
                                         <td>@(car.Millage) km</td>
                                         <td>@(car.PricePerDay) $</td>
                                         <td>@String.Format("{0:d/M/yyyy HH:mm:ss}", car.CreatedDate).Replace(" ","-")<br />@String.Format("{0:d/M/yyyy HH:mm:ss}", car.UpdatedDate).Replace(" ","-")</td>
-
+                                      @*
                                         <td>
                                             <div class="dropdown">
                                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Actions </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2" style="">
-                                                    <a class="dropdown-item btn btn-primary" asp-action="update" asp-controller="car" asp-route-id="@car.Id">Update</a>
+                                                    <a class="dropdown-item btn btn-primary" asp-action="update" asp-controller="car" asp-route-id="@car.Id">Detail</a>
                                                 </div>
                                             </div>
-                                        </td>
+                                        </td>*@
                                     </tr>
                                 }
                             </tbody>

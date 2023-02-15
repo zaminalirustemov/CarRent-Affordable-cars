@@ -14,16 +14,16 @@ public class CarController : Controller
     }
     public IActionResult Index()
     {
-        List<Car> cars = _carRentDbContext.Cars.Include(x=>x.Brand).Include(x=>x.CarImages).Where(x=>x.isDeleted==false).ToList();
+        List<Car> cars = _carRentDbContext.Cars.Include(x=>x.Brand).Include(x => x.Category).Include(x=>x.CarImages).Where(x=>x.isDeleted==false).ToList();
         return View(cars);
     }
 
     public IActionResult Detail(int id)
     {
-        ViewBag.NewCars = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages)
+        ViewBag.NewCars = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages)
                                                 .Where(x => x.isDeleted == false).Where(x => x.isNew == true)
                                                 .ToList();
-        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x=>x.CarImages).FirstOrDefault(x => x.Id == id);
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x=>x.CarImages).FirstOrDefault(x => x.Id == id);
         if (car == null) return View("Error");
         return View(car);
     }

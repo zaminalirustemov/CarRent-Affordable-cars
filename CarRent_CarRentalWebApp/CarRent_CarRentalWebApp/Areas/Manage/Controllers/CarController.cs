@@ -22,14 +22,16 @@ public class CarController : Controller
     }
     public IActionResult Index(int page = 1)
     {
-        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).Where(x => x.isRent == false).AsQueryable();
+        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages)
+                                          .Where(x => x.isDeleted == false).Where(x => x.isRent == false).AsQueryable();
         var paginatedList = PaginatedList<Car>.Create(query, 5, page);
 
         return View(paginatedList);
     }
     public IActionResult RenatlIndex(int page = 1)
     {
-        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).Where(x=>x.isRent==true).AsQueryable();
+        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Include(x => x.Category)
+                                          .Where(x => x.isDeleted == false).Where(x=>x.isRent==true).AsQueryable();
         var paginatedList = PaginatedList<Car>.Create(query, 5, page);
 
         return View(paginatedList);
@@ -38,12 +40,15 @@ public class CarController : Controller
     public IActionResult Create()
     {
         ViewBag.Brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
+        ViewBag.Categories = _carRentDbContext.Categories.Where(x => x.isDeleted == false).ToList();
+
         return View();
     }
     [HttpPost]
     public IActionResult Create(Car car)
     {
         ViewBag.Brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
+        ViewBag.Categories = _carRentDbContext.Categories.Where(x => x.isDeleted == false).ToList();
         if (!ModelState.IsValid) return View(car);
         //Poster Image--------------------------
         if (car.PosterImageFile is null)
@@ -103,7 +108,8 @@ public class CarController : Controller
     public IActionResult Update(int id)
     {
         ViewBag.Brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
-        Car car = _carRentDbContext.Cars.Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
+        ViewBag.Categories = _carRentDbContext.Categories.Where(x => x.isDeleted == false).ToList();
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
         if (car == null) return View("Error-404");
 
         return View(car);
@@ -112,7 +118,8 @@ public class CarController : Controller
     public IActionResult Update(Car newCar)
     {
         ViewBag.Brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
-        Car existCar = _carRentDbContext.Cars.Include(x => x.CarImages).FirstOrDefault(x => x.Id == newCar.Id);
+        ViewBag.Categories = _carRentDbContext.Categories.Where(x => x.isDeleted == false).ToList();
+        Car existCar = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).FirstOrDefault(x => x.Id == newCar.Id);
         if (existCar == null) return View("Error-404");
         if (!ModelState.IsValid) return View(existCar);
         //Poster Image--------------------------
@@ -183,6 +190,7 @@ public class CarController : Controller
         }
 
         existCar.BrandId = newCar.BrandId;
+        existCar.CategoryId = newCar.CategoryId;
         existCar.Model = newCar.Model;
         existCar.PricePerHour = newCar.PricePerHour;
         existCar.PricePerDay = newCar.PricePerDay;
@@ -218,7 +226,7 @@ public class CarController : Controller
     //Soft Delete-----------------------------------------------------------------------------------
     public IActionResult SoftDelete(int id)
     {
-        Car car = _carRentDbContext.Cars.Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
         if (car == null) return BadRequest();
 
         car.isDeleted=true;
@@ -234,7 +242,7 @@ public class CarController : Controller
     //Deleted Index------------------------------------------------------------------------
     public IActionResult DeletedIndex(int page = 1)
     {
-        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == true).AsQueryable();
+        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).Where(x => x.isDeleted == true).AsQueryable();
         var paginatedList = PaginatedList<Car>.Create(query, 5, page);
 
         return View(paginatedList);
@@ -247,7 +255,7 @@ public class CarController : Controller
 
         car.isDeleted = false;
         _carRentDbContext.SaveChanges();
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction(nameof(DeletedIndex));
     }
     //Hard Delete-----------------------------------------------------------------------------
     public IActionResult HardDelete(int id)

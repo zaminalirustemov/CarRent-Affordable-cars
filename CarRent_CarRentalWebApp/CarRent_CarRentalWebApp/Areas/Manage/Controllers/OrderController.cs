@@ -123,7 +123,7 @@ public class OrderController : Controller
         order.isDeleted = false;
         _carRentDbContext.SaveChanges();
 
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction(nameof(DeletedIndex));
     }
     //Hard Delete--------------------------------------------------------------------------
     public IActionResult HardDelete(int id)

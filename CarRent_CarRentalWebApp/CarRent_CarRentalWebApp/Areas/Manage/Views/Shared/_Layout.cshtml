@@ -139,12 +139,19 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" asp-action="index" asp-controller="brand">
+                    <a class="nav-link" data-toggle="collapse" href="#related-car" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-icon">
-                            <i class="mdi mdi-buffer"></i>
+                            <i class="mdi mdi-relative-scale"></i>
                         </span>
-                        <span class="menu-title">Brand</span>
+                        <span class="menu-title">Car related</span>
+                        <i class="menu-arrow"></i>
                     </a>
+                    <div class="collapse" id="related-car">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="brand">Brand</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="category">Category</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#car" aria-expanded="false" aria-controls="ui-basic">
@@ -161,6 +168,7 @@
                         </ul>
                     </div>
                 </li>
+
                 <li class="nav-item menu-items">
                     <a class="nav-link" asp-action="index" asp-controller="order">
                         <span class="menu-icon">
@@ -180,6 +188,7 @@
                     <div class="collapse" id="recycle-bin">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="brand">Brand[Deleted]</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="category">Category[Deleted]</a></li>
                             <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="car">Car[Deleted]</a></li>
                             <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="order">Order[Deleted]</a></li>
                         </ul>

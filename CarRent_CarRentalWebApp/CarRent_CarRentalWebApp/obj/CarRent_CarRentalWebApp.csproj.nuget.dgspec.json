@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\layihe\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp.csproj": {}
+    "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\layihe\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp.csproj": {
+    "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\layihe\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp.csproj",
         "projectName": "CarRent_CarRentalWebApp",
-        "projectPath": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\layihe\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp.csproj",
+        "projectPath": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\layihe\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",

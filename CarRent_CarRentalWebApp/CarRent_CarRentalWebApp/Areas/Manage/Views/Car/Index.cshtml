@@ -7,11 +7,12 @@
 }
     <div class="content-wrapper">
         <div class="page-header">
-            <h3 class="page-title"> Car Table </h3>
+            <h3 class="page-title">Active Car Table </h3>
             <a class="btn btn-outline-success" asp-action="create" asp-controller="car">New Car</a>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Car</li>
+                    <li class="breadcrumb-item">Active Car</li>
                     <li class="breadcrumb-item active" aria-current="page">Table</li>
                 </ol>
             </nav>
@@ -47,7 +48,7 @@
                                             <img style="border: outset;width: 100px;height: 100px;" src="~/uploads/car/@car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="">
                                         </td>
                                         <td><label class="badge badge-outline-@(car.isRent == false ? "success" : "info")">@(car.isRent == false ? "Active" : "On rent")</label></td>
-                                        <td>Category</td>
+                                        <td>@car.Category.Name</td>
                                         <td>@car.Brand.Name</td>
                                         <td>@car.Model</td>
                                         <td>@(car.Millage) km</td>

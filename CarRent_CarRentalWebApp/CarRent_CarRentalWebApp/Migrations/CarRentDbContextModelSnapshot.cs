@@ -69,6 +69,9 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Property<bool>("CarKit")
                         .HasColumnType("bit");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("ChildSeat")
                         .HasColumnType("bit");
 
@@ -159,6 +162,8 @@ namespace CarRent_CarRentalWebApp.Migrations
 
                     b.HasIndex("BrandId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Cars");
                 });
 
@@ -185,6 +190,33 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.HasIndex("CarId");
 
                     b.ToTable("CarImages");
+                });
+
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Hero", b =>
@@ -569,7 +601,15 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarRent_CarRentalWebApp.Models.Category", "Category")
+                        .WithMany("Cars")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Brand");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.CarImage", b =>
@@ -672,6 +712,11 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Navigation("CarImages");
 
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Category", b =>
+                {
+                    b.Navigation("Cars");
                 });
 
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Order", b =>
