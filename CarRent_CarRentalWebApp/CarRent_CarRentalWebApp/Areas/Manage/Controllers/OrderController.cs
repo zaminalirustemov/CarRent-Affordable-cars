@@ -27,7 +27,7 @@ public class OrderController : Controller
         Order order = _carRentDbContext.Orders.Include(x => x.OrderItem).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == id);
         if (order is null) return View("Error-404");
 
-        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == order.OrderItem.CarId);
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).FirstOrDefault(x => x.Id == order.OrderItem.CarId);
         if (car == null) return View("Error-404");
         ViewBag.Car = car;
 

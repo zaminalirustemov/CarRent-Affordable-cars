@@ -2,16 +2,20 @@
 using CarRent_CarRentalWebApp.Helpers;
 using CarRent_CarRentalWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Drawing.Drawing2D;
 
 namespace CarRent_CarRentalWebApp.Areas.Manage.Controllers;
 [Area("Manage")]
 public class CategoryController : Controller
 {
     private readonly CarRentDbContext _carRentDbContext;
+    private readonly IWebHostEnvironment _environment;
 
-    public CategoryController(CarRentDbContext carRentDbContext)
+    public CategoryController(CarRentDbContext carRentDbContext,IWebHostEnvironment environment)
     {
         _carRentDbContext = carRentDbContext;
+        _environment = environment;
     }
     //Read---------------------------------------------------------------------------------
     public IActionResult Index(int page = 1)
@@ -103,6 +107,15 @@ public class CategoryController : Controller
         Category category = _carRentDbContext.Categories.FirstOrDefault(x => x.Id == id);
         if (category == null) return BadRequest();
 
+        List<Car> cars = _carRentDbContext.Cars.Include(x => x.CarImages).Where(x => x.CategoryId == category.Id).ToList();
+        foreach (Car car in cars)
+        {
+            foreach (CarImage carImage in car.CarImages)
+            {
+                FileManager.DeleteFile(_environment.WebRootPath, "uploads/car", carImage.ImageName);
+            }
+        }
+
         _carRentDbContext.Categories.Remove(category);
         _carRentDbContext.SaveChanges();
 
@@ -114,6 +127,17 @@ public class CategoryController : Controller
         List<Category> categories = _carRentDbContext.Categories.Where(x => x.isDeleted == true).ToList();
         if (categories.Count == 0) return BadRequest();
 
+        foreach (Category category in categories)
+        {
+            List<Car> cars = _carRentDbContext.Cars.Include(x => x.CarImages).Where(x => x.CategoryId == category.Id).ToList();
+            foreach (Car car in cars)
+            {
+                foreach (CarImage carImage in car.CarImages)
+                {
+                    FileManager.DeleteFile(_environment.WebRootPath, "uploads/car", carImage.ImageName);
+                }
+            }
+        }
         _carRentDbContext.Categories.RemoveRange(categories);
         _carRentDbContext.SaveChanges();
 
