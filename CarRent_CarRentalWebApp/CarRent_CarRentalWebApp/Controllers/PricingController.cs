@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace CarRent_CarRentalWebApp.Controllers
+namespace CarRent_CarRentalWebApp.Controllers;
+public class PricingController : Controller
 {
-    public class PricingController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
     }
 }

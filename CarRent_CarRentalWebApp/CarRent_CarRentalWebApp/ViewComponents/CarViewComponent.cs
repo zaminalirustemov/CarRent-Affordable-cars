@@ -6,20 +6,8 @@ using Microsoft.EntityFrameworkCore;
 namespace CarRent_CarRentalWebApp.ViewComponents;
 public class CarViewComponent : ViewComponent
 {
-	private readonly CarRentDbContext _carRentDbContext;
-
-	public CarViewComponent(CarRentDbContext carRentDbContext)
+	public IViewComponentResult Invoke(List<Car> cars)
 	{
-		_carRentDbContext = carRentDbContext;
-	}
-	public IViewComponentResult Invoke()
-	{
-		List<Car> cars=_carRentDbContext.Cars
-										.Include(x=>x.Brand)
-                                        .Include(x => x.Category)
-                                        .Include(x => x.CarImages)
-										.Where(x => x.isDeleted == false)
-										.ToList();
 		return View(cars);
     }
 }

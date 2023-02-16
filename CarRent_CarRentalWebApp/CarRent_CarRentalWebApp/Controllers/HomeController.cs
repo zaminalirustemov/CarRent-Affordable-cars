@@ -17,7 +17,7 @@ public class HomeController : Controller
         HomeViewModel homeVM = new HomeViewModel
         {
             Heroes = _carRentDbContext.Heroes.ToList(),
-            FeaturedCars = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages)
+            FeaturedCars = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Include(x=>x.Category)
                                                  .Where(x => x.isDeleted == false).Where(x=>x.isFeatured==true)
                                                  .ToList()
         };

@@ -1,25 +1,42 @@
 ﻿@model List<Car>
 
-@foreach (Car car in Model)
-{
-
-    <div class="item">
-        <div class="car-wrap rounded ftco-animate">
-            <div class="img rounded d-flex align-items-end">
-                <img src="~/uploads/car/@car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="">
+<section class="ftco-section ftco-no-pt bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+                <span class="subheading">What we offer</span>
+                <h2 class="mb-2">Featured Vehicles</h2>
             </div>
-            <div class="text">
-                <h2 class="mb-0"><a href="car-single.html">@car.Model</a></h2>
-                <div class="d-flex mb-3">
-                    <span class="cat">@car.Brand.Name</span><br>
-                    <p class="cat" style="margin-left: 20px;">@car.Category.Name</p>
-                    <p class="price ml-auto">$@(car.PricePerDay) <span>/day</span></p>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel-car owl-carousel">
+                    @foreach (Car car in Model)
+                    {
+
+                        <div class="item">
+                            <div class="car-wrap rounded ftco-animate">
+                                <div class="img rounded d-flex align-items-end">
+                                    <img src="~/uploads/car/@car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="">
+                                </div>
+                                <div class="text">
+                                    <h2 class="mb-0"><a href="car-single.html">@car.Model</a></h2>
+                                    <div class="d-flex mb-3">
+                                        <span class="cat">@car.Brand.Name</span><br>
+                                        <p class="cat" style="margin-left: 20px;">@car.Category.Name</p>
+                                        <p class="price ml-auto">$@(car.PricePerDay) <span>/day</span></p>
+                                    </div>
+                                    <p class="d-flex mb-0 d-block">
+                                        <a asp-action="index" asp-controller="checkout" asp-route-id="@car.Id" class="btn btn-primary py-2 mr-1">Book now</a>
+                                        <a asp-action="detail" asp-controller="car" asp-route-id="@car.Id" class="btn btn-secondary py-2 ml-1">Details</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
                 </div>
-                <p class="d-flex mb-0 d-block">
-                    <a asp-action="index" asp-controller="checkout" asp-route-id="@car.Id" class="btn btn-primary py-2 mr-1">Book now</a>
-                    <a asp-action="detail" asp-controller="car" asp-route-id="@car.Id" class="btn btn-secondary py-2 ml-1">Details</a>
-                </p>
             </div>
         </div>
     </div>
-}
+</section>
