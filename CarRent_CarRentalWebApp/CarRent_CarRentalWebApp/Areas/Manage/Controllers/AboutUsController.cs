@@ -54,7 +54,7 @@ public class AboutUsController : Controller
                 ModelState.AddModelError("ImageFile", "The size of your uploaded file must be less than 2 MB.");
                 return View(newAbout);
             }
-            FileManager.DeleteFile(_environment.WebRootPath, "uploads/aboutus", newAbout.ImageName);
+            FileManager.DeleteFile(_environment.WebRootPath, "uploads/aboutus", existAbout.ImageName);
             existAbout.ImageName = FileManager.SaveFile(_environment.WebRootPath, "uploads/aboutus", newAbout.ImageFile);
         }
 

@@ -4,4 +4,6 @@ namespace CarRent_CarRentalWebApp.ViewModels;
 public class AboutViewModel
 {
     public List<AboutUs> AboutUs { get; set; }
+    public List<DoYouWant> DoYouWants { get; set; }
+    public List<Testimonial> Testimonials { get; set; }
 }

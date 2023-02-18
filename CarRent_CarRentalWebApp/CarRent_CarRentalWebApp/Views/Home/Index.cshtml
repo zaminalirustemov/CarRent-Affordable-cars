@@ -9,9 +9,9 @@
 <!-- ======= Services Section ======= -->
 @await Component.InvokeAsync("Services")
 <!-- ======= Do You Want Section ======= -->
-@await Component.InvokeAsync("DoYouWant")
+@await Component.InvokeAsync("DoYouWant",Model.DoYouWants)
 <!-- ======= Testimonial Section ======= -->
-@await Component.InvokeAsync("Testimonial")
+@await Component.InvokeAsync("Testimonial",Model.Testimonials)
 <!-- ======= Blog Section ======= -->
 @await Component.InvokeAsync("Blog")
 <!-- ======= Info Section ======= -->

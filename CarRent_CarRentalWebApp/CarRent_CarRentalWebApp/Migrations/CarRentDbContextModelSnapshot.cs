@@ -249,6 +249,31 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.DoYouWant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ImageName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(90)
+                        .HasColumnType("nvarchar(90)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DoYouWants");
+                });
+
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Hero", b =>
                 {
                     b.Property<int>("Id")
@@ -405,6 +430,36 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .IsUnique();
 
                     b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Testimonial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Quote")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime?>("SendedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Testimonials");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -683,6 +738,17 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Navigation("Car");
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Testimonial", b =>
+                {
+                    b.HasOne("CarRent_CarRentalWebApp.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

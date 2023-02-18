@@ -154,6 +154,30 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
+                    <a class="nav-link" asp-action="index" asp-controller="doyouwant">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-book-open-page-variant"></i>
+                        </span>
+                        <span class="menu-title">Do You Want</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#testimonial" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-lightbulb-outline"></i>
+                        </span>
+                        <span class="menu-title">Testimonial</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="testimonial">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="Testimonial">New</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="activeIndex" asp-controller="Testimonial">Active</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="passiveIndex" asp-controller="Testimonial">Passive</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#related-car" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-icon">
                             <i class="mdi mdi-relative-scale"></i>

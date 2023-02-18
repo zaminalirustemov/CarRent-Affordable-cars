@@ -21,6 +21,8 @@ public class HomeController : Controller
                                                  .Where(x => x.isDeleted == false).Where(x=>x.isFeatured==true)
                                                  .ToList(),
             AboutUs=_carRentDbContext.AboutUs.ToList(),
+            DoYouWants = _carRentDbContext.DoYouWants.ToList(),
+            Testimonials = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isActive == true).ToList(),
         };
         return View(homeVM);
     }

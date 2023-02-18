@@ -1,11 +1,16 @@
-﻿<section class="ftco-section ftco-intro" style="background-image: url(../assets/images/bg_3.jpg);">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row justify-content-end">
-            <div class="col-md-6 heading-section heading-section-white ftco-animate">
-                <h2 class="mb-3">Your thoughts are very valuable to us. Would you like to share your thoughts about us?</h2>
-                <a href="#" class="btn btn-primary btn-lg">Give your opinion</a>
+﻿@model List<DoYouWant>
+
+@foreach (DoYouWant want in Model)
+{
+    <section class="ftco-section ftco-intro" style="background-image: url(../uploads/doyouwant/@want.ImageName);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-md-6 heading-section heading-section-white ftco-animate">
+                    <h2 class="mb-3">@want.Title</h2>
+                    <a asp-action="quote" asp-controller="about" class="btn btn-primary btn-lg">Give your opinion</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}

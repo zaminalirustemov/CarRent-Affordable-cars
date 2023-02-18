@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tT3RzBvBHImep2fMNo1PSD1lvvgGhkbFGCszdft1hcY=",
+  "Hash": "a+toXZn9prFRzajJ90ETG5mpBaF8k35cwYQNxs3m9Jc=",
   "Source": "CarRent_CarRentalWebApp",
   "BasePath": "_content/CarRent_CarRentalWebApp",
   "Mode": "Default",
@@ -238,6 +238,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\css\\bootstrap-reboot.css"
     },
     {
+      "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\assets\\css\\css\\quotebutton.css",
+      "SourceId": "CarRent_CarRentalWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\",
+      "BasePath": "_content/CarRent_CarRentalWebApp",
+      "RelativePath": "assets/css/css/quotebutton.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\css\\quotebutton.css"
+    },
+    {
       "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\assets\\css\\css\\mixins\\_text-hide.css",
       "SourceId": "CarRent_CarRentalWebApp",
       "SourceType": "Discovered",
@@ -321,6 +338,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\css\\jquery.timepicker.css"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\assets\\css\\quoteform.css",
+      "SourceId": "CarRent_CarRentalWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\",
+      "BasePath": "_content/CarRent_CarRentalWebApp",
+      "RelativePath": "assets/css/quoteform.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\quoteform.css"
     },
     {
       "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\assets\\css\\magnific-popup.css",
@@ -20519,12 +20553,12 @@
       "OriginalItemSpec": "wwwroot\\manage\\login\\vendor\\select2\\select2.min.js"
     },
     {
-      "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\uploads\\aboutus\\fcbd5bd7-bc35-4023-ab5d-0769dcc7b894image_1.jpg",
+      "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\uploads\\aboutus\\29ded437-bf34-4d0f-9f26-e82b6f49f2b7image_3.jpg",
       "SourceId": "CarRent_CarRentalWebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\",
       "BasePath": "_content/CarRent_CarRentalWebApp",
-      "RelativePath": "uploads/aboutus/fcbd5bd7-bc35-4023-ab5d-0769dcc7b894image_1.jpg",
+      "RelativePath": "uploads/aboutus/29ded437-bf34-4d0f-9f26-e82b6f49f2b7image_3.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -20533,7 +20567,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\aboutus\\fcbd5bd7-bc35-4023-ab5d-0769dcc7b894image_1.jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\aboutus\\29ded437-bf34-4d0f-9f26-e82b6f49f2b7image_3.jpg"
     },
     {
       "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\uploads\\car\\12da5e67-b8e6-4c40-8e29-2020a7744299car-8.jpg",
@@ -20772,6 +20806,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\car\\efbbff02-d48b-4328-8851-71826513f629image_4.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\uploads\\doyouwant\\14ef366d-618b-4e30-b740-8e579c05400ccar-7.jpg",
+      "SourceId": "CarRent_CarRentalWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\",
+      "BasePath": "_content/CarRent_CarRentalWebApp",
+      "RelativePath": "uploads/doyouwant/14ef366d-618b-4e30-b740-8e579c05400ccar-7.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\doyouwant\\14ef366d-618b-4e30-b740-8e579c05400ccar-7.jpg"
     },
     {
       "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\uploads\\hero\\797f13d0-0b86-4489-9c4d-6bef84141c3fbg_1.jpg",
