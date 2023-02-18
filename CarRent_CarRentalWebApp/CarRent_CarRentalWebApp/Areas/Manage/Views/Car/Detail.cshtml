@@ -1,0 +1,237 @@
+﻿@model Car
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">Detail Car</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Car</li>
+                <li class="breadcrumb-item">Table</li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form class="forms-sample" enctype="multipart/form-data">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Category</label>
+                            <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                <span>@Model.Category.Name</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Brand</label>
+                            <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                <span>@Model.Brand.Name</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Model</label>
+                            <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                <span>@Model.Model</span>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <div class="form-group ">
+                                    <label>PricePerHour</label>
+                                    <div style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                        <span>@Model.PricePerHour</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group ">
+                                    <label>PricePerDay</label>
+                                    <div style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                        <span>@Model.PricePerDay</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group ">
+                                    <label>PricePerMonth</label>
+                                    <div style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                        <span>@Model.PricePerMonth</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <div class="form-group ">
+                                    <label>Millage</label>
+                                    <div style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                        <span>@Model.Millage</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group ">
+                                    <label>ConsumptionPer100KM</label>
+                                    <div style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                        <span>@Model.ConsumptionPer100KM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group ">
+                                    <label>Transmission</label>
+                                    <div style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                        <span>@Model.Transmission</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <div class="form-group ">
+                                    <label>Seats</label>
+                                    <div style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                        <span>@Model.Seats</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group ">
+                                    <label>Luggage</label>
+                                    <div style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                        <span>@Model.Luggage</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group ">
+                                    <label>Fuel</label>
+                                    <div style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                        <span>@Model.Fuel</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 style="text-align-last:center">--- Features ---</h3>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <ul class="features">
+                                    @if (Model.Airconditions)
+                                    {
+                                        <li><span class="ion-ios-checkmark"></span>Airconditions</li>
+                                    }
+                                    @if (Model.ChildSeat)
+                                    {
+                                        <li><span class="ion-ios-checkmark"></span>ChildSeat</li>
+                                    }
+                                    @if (Model.GPS)
+                                    {
+                                        <li><span class="ion-ios-checkmark"></span>GPS</li>
+                                    }
+                                    @if (Model.Music)
+                                    {
+                                        <li><span class="ion-ios-checkmark"></span>Music</li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                @if (Model.SeatBelt)
+                                {
+                                    <li><span class="ion-ios-checkmark"></span>SeatBelt</li>
+                                }
+                                @if (Model.SleepingBed)
+                                {
+                                    <li><span class="ion-ios-checkmark"></span>SleepingBed</li>
+                                }
+                                @if (Model.Bluetooth)
+                                {
+                                    <li><span class="ion-ios-checkmark"></span>Bluetooth</li>
+                                }
+                                @if (Model.OnboardComputer)
+                                {
+                                    <li><span class="ion-ios-checkmark"></span>OnboardComputer</li>
+                                }
+                            </div>
+                            <div class="col-sm-4">
+
+                                @if (Model.LongTermTrips)
+                                {
+                                    <li><span class="ion-ios-checkmark"></span>LongTermTrips</li>
+                                }
+                                @if (Model.CarKit)
+                                {
+                                    <li><span class="ion-ios-checkmark"></span>CarKit</li>
+                                }
+                                @if (Model.RemoteCentralLocking)
+                                {
+                                    <li><span class="ion-ios-checkmark"></span>RemoteCentralLocking</li>
+                                }
+                                @if (Model.ClimateControl)
+                                {
+                                    <li><span class="ion-ios-checkmark"></span>ClimateControl</li>
+                                }
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <div class="form-check form-check-info">
+                                    @if (Model.isNew)
+                                {
+                                        <li><span class="ion-ios-checkmark"></span>isNew</li>
+                                }
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                @if (Model.isFeatured)
+                                {
+                                    <li><span class="ion-ios-checkmark"></span>isFeatured</li>
+                                }
+                            </div>
+                        </div>
+                        <h3 style="text-align-last:center">--- Description ---</h3>
+                        <div class="form-group">
+                            <div class="col-sm-9" >
+                                <span>@Model.Description</span>
+                            </div>
+                        </div>
+
+
+
+                        <h3 style="text-align-last:center">--- Images ---</h3>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Poster Image</label>
+                            <div class="col-sm-9">
+                                <img style="width:250px" src="~/uploads/car/@Model.CarImages.FirstOrDefault(x=>x.isPoster==true)?.ImageName" alt="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Poster Image</label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    @if (Model.CarImages is not null)
+                                    {
+                                        @foreach (var image in Model.CarImages?.Where(x => x.isPoster == false))
+                                        {
+                                            <div style="width:250px; margin-top:10px;border:outset" class="container col-md-3">
+
+                                                <img class="imagezr" style="max-width:100%" src="~/uploads/car/@image?.ImageName" alt="" />
+
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <button asp-action="index" asp-controller="car" class="btn btn-dark">Go Back</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

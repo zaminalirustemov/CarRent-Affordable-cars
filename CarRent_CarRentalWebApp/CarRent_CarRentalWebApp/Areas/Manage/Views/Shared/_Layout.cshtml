@@ -72,7 +72,14 @@
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <div class="count-indicator">
-                                    <img class="img-xs rounded-circle " src="~/manage/assets/images/download.jpg" alt="">
+                                    @if (appUser.ImageName is null)
+                                    {
+                                        <img class="img-xs rounded-circle " src="~/manage/assets/images/download.jpg" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img class="img-xs rounded-circle " src="~/uploads/user/@appUser.ImageName" alt="">
+                                    }
                                     <span class="count bg-success"></span>
                                 </div>
                                 <div class="profile-name">
@@ -136,6 +143,14 @@
                             <i class="mdi mdi-image-area-close"></i>
                         </span>
                         <span class="menu-title">Hero</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" asp-action="index" asp-controller="aboutus">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-information-variant"></i>
+                        </span>
+                        <span class="menu-title">About Us</span>
                     </a>
                 </li>
                 <li class="nav-item menu-items">
@@ -356,7 +371,14 @@
                                 <div class="navbar-profile">
                                     @if (User.Identity.IsAuthenticated)
                                     {
-                                        <img class="img-xs rounded-circle" src="~/manage/assets/images/download.jpg" alt="">
+                                        @if (appUser.ImageName is null)
+                                        {
+                                            <img class="img-xs rounded-circle " src="~/manage/assets/images/download.jpg" alt="">
+                                        }
+                                        else
+                                        {
+                                            <img class="img-xs rounded-circle " src="~/uploads/user/@appUser.ImageName" alt="">
+                                        }
                                         <p class="mb-0 d-none d-sm-block navbar-profile-name">@appUser.Fullname</p>
                                         <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                     }

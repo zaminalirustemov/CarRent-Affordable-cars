@@ -20,6 +20,8 @@
   <ItemGroup>
     <Folder Include="wwwroot\uploads\car\" />
     <Folder Include="wwwroot\uploads\hero\" />
+    <Folder Include="wwwroot\uploads\aboutus\" />
+    <Folder Include="wwwroot\uploads\user\" />
   </ItemGroup>
 
 </Project>

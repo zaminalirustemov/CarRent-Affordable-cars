@@ -32,6 +32,18 @@
     <link rel="stylesheet" href="~/assets/css/style.css">
     @RenderSection("css",required:false)
 
+    <style>
+
+        .gradient-customzr {
+            /* fallback for old browsers */
+            background: #f6d365;
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+
+    </style>
+
 </head>
 <body>
 
@@ -57,9 +69,19 @@
 
                             <div class="dropdown">
                                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <a class="nav-link" style="color:white"> <img style="width:25px;margin-right:5px" class=" rounded-circle" src="~/assets/images/memperphoto.jpg">@user.Fullname</a>
+                                    @if (user.ImageName is null)
+                                    {
+                                        <a class="nav-link" style="color:white"> <img style="width:25px;margin-right:5px" class=" rounded-circle" src="~/assets/images/memperphoto.jpg">@user.Fullname</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="nav-link" style="color:white"> <img style="width:25px;margin-right:5px" class=" rounded-circle" src="~/uploads/user/@user.ImageName">@user.Fullname</a>
+                                    }
+
+
                                 </button>
                                 <ul class="dropdown-menu">
+                                    <li style="text-align-last:center"><a style="color:black" asp-action="profile" asp-controller="account"><span class="icon icon-user" style="margin-right:5px"></span>Profile</a></li>
                                     <li style="text-align-last:center"><a style="color:black" asp-action="orders" asp-controller="account"><span class="icon icon-list" style="margin-right:5px"></span>Orders</a></li>
                                     <li style="text-align-last:center"><a style="color:black" asp-action="logout" asp-controller="account"><span class="icon icon-arrow-left" style="margin-right:5px"></span>Log out</a></li>
                                 </ul>

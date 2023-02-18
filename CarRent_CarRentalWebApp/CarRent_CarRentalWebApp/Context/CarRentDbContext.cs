@@ -15,4 +15,5 @@ public class CarRentDbContext:IdentityDbContext
 	public DbSet<Order> Orders { get; set; }
 	public DbSet<OrderItem> OrderItems { get; set; }
 	public DbSet<Category> Categories { get; set; }
+	public DbSet<AboutUs> AboutUs { get; set; }
 }

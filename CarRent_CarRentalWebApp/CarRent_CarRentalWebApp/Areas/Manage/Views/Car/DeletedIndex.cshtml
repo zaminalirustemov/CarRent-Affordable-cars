@@ -26,6 +26,7 @@
                                 <a asp-action="AllDelete" asp-controller="car" class="btn btn-danger all-delete-button">All Delete</a>
                                 <thead>
                                     <tr>
+                                        <th> </th>
                                         <th>№</th>
                                         <th>ID</th>
                                         <th>Image</th>
@@ -39,6 +40,9 @@
                                 {
                                     count++;
                                     <tr>
+                                        <td>
+                                            <a asp-action="detail" asp-controller="car" asp-route-id="@car.Id" class="btn btn-info"><i style="margin:0px" class="mdi mdi-eye"></i></a>
+                                        </td>
                                         <td>@count</td>
                                         <td>@car.Id</td>
                                         <td>

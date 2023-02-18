@@ -17,7 +17,6 @@ public class CategoryController : Controller
         _carRentDbContext = carRentDbContext;
         _environment = environment;
     }
-    //Read---------------------------------------------------------------------------------
     public IActionResult Index(int page = 1)
     {
         var query = _carRentDbContext.Categories
@@ -26,6 +25,14 @@ public class CategoryController : Controller
 
         var paginatedList = PaginatedList<Category>.Create(query, 5, page);
         return View(paginatedList);
+    }
+    //Detail----------------------------------------------------------------------------------------
+    public IActionResult Detail(int id)
+    {
+        Category category = _carRentDbContext.Categories.FirstOrDefault(x => x.Id == id);
+        if (category == null) return View("Error-404");
+
+        return View(category);
     }
     //Create-------------------------------------------------------------------------------
     public IActionResult Create()

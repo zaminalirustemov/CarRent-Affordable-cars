@@ -20,10 +20,17 @@ public class HeroController : Controller
         _carRentDbContext = carRentDbContext;
         _environment = environment;
     }
-    //Read------------------------------------------------------------------------------------------
     public IActionResult Index()
     {
         List<Hero> hero = _carRentDbContext.Heroes.ToList();
+        return View(hero);
+    }
+    //Detail----------------------------------------------------------------------------------------
+    public IActionResult Detail(int id)
+    {
+        Hero hero = _carRentDbContext.Heroes.FirstOrDefault(i => i.Id == id);
+        if (hero == null) return View("Error-404");
+
         return View(hero);
     }
     //Update----------------------------------------------------------------------------------------

@@ -18,7 +18,6 @@ public class BrandController : Controller
         _carRentDbContext = carRentDbContext;
         _environment = environment;
     }
-    //Read---------------------------------------------------------------------------------
     public IActionResult Index(int page = 1)
     {
         var query = _carRentDbContext.Brands
@@ -27,6 +26,14 @@ public class BrandController : Controller
 
         var paginatedList = PaginatedList<Brand>.Create(query, 5, page);
         return View(paginatedList);
+    }
+    //Detail----------------------------------------------------------------------------------------
+    public IActionResult Detail(int id)
+    {
+        Brand brand = _carRentDbContext.Brands.FirstOrDefault(x => x.Id == id);
+        if (brand == null) return View("Error-404");
+
+        return View(brand);
     }
     //Create-------------------------------------------------------------------------------
     public IActionResult Create()

@@ -25,14 +25,12 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">№</th>
-                                        <th scope="col">Car</th>
                                         <th scope="col">User</th>
                                         <th scope="col">Fullname</th>
                                         <th scope="col">PickUp<br />Drop-Off</th>
                                         <th scope="col">Day</th>
                                         <th scope="col">Total Price</th>
-                                        <th scope="col">Created Date</th>
-                                        <th scope="col">Updated Date</th>
+                                        <th scope="col">Created Date<br />Updated Date</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
@@ -42,7 +40,6 @@
                                     count++;
                                     <tr>
                                         <td>@count</td>
-                                        <td>@order.OrderItem.Model</td>
                                         <td><span class="badge badge-outline-@(order.AppUserId==null? "info" :"success")">@(order.AppUserId == null ? "Guest" : "Member")</span></td>
                                         <td>@order.Fullname</td>
                                         <td>@order.PickUp.ToShortDateString()<br />@order.DropOff.ToShortDateString()</td>

@@ -19,7 +19,8 @@ public class HomeController : Controller
             Heroes = _carRentDbContext.Heroes.ToList(),
             FeaturedCars = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Include(x=>x.Category)
                                                  .Where(x => x.isDeleted == false).Where(x=>x.isFeatured==true)
-                                                 .ToList()
+                                                 .ToList(),
+            AboutUs=_carRentDbContext.AboutUs.ToList(),
         };
         return View(homeVM);
     }

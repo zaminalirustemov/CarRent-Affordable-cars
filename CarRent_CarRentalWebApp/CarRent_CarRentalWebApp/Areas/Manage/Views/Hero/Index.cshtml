@@ -18,6 +18,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th> </th>
                                     <th>Image</th>
                                     <th>Title</th>
                                     <th>Description</th>
@@ -30,6 +31,9 @@
                                 @foreach (Hero hero in Model)
                                 {
                                     <tr>
+                                        <td>
+                                            <a asp-action="detail" asp-controller="hero" asp-route-id="@hero.Id" class="btn btn-info"><i style="margin:0px" class="mdi mdi-eye"></i></a>
+                                        </td>
                                         <td>
                                             <img style="width:250px; height:250px" src="~/uploads/hero/@hero.ImageName" class="img-fluid" alt="">
                                         </td>

@@ -15,6 +15,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\HP\Desktop\CarRent-R.Zaminali\CarRent_CarRentalWebApp\CarRent_CarRentalWebApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/AboutUs/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEFib3V0VXNcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/AboutUs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEFib3V0VXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/AboutUs/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEFib3V0VXNcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEFjY291bnRcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -25,6 +37,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Brand/DeletedIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEJyYW5kXERlbGV0ZWRJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Brand/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEJyYW5kXERldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Brand/Index.cshtml]
@@ -41,6 +57,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Car/DeletedIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXENhclxEZWxldGVkSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Car/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXENhclxEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Car/Index.cshtml]
@@ -63,6 +83,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXENhdGVnb3J5XERlbGV0ZWRJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Category/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXENhdGVnb3J5XERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXENhdGVnb3J5XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -73,6 +97,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXERhc2hib2FyZFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Hero/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEhlcm9cRGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Areas/Manage/Views/Hero/Index.cshtml]
@@ -119,12 +147,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Views/Account/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Views/Account/Orders.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxPcmRlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Views/Account/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/HP/Desktop/CarRent-R.Zaminali/CarRent_CarRentalWebApp/CarRent_CarRentalWebApp/Views/Account/Register.cshtml]

@@ -36,6 +36,14 @@ public class CarController : Controller
 
         return View(paginatedList);
     }
+    //Detail----------------------------------------------------------------------------------------
+    public IActionResult Detail(int id)
+    {
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
+        if (car == null) return View("Error-404");
+
+        return View(car);
+    }
     //Create-------------------------------------------------------------------------------
     public IActionResult Create()
     {

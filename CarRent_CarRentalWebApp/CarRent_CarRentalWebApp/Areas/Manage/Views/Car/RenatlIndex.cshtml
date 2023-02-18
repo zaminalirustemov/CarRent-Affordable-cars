@@ -24,6 +24,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th> </th>
                                         <th>№</th>
                                         <th>ID</th>
                                         <th>Image</th>
@@ -41,6 +42,9 @@
                                 {
                                     count++;
                                     <tr>
+                                        <td>
+                                            <a asp-action="detail" asp-controller="car" asp-route-id="@car.Id" class="btn btn-info"><i style="margin:0px" class="mdi mdi-eye"></i></a>
+                                        </td>
                                         <td>@count</td>
                                         <td>@car.Id</td>
                                         <td>
@@ -53,15 +57,7 @@
                                         <td>@(car.Millage) km</td>
                                         <td>@(car.PricePerDay) $</td>
                                         <td>@String.Format("{0:d/M/yyyy HH:mm:ss}", car.CreatedDate).Replace(" ","-")<br />@String.Format("{0:d/M/yyyy HH:mm:ss}", car.UpdatedDate).Replace(" ","-")</td>
-                                      @*
-                                        <td>
-                                            <div class="dropdown">
-                                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Actions </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2" style="">
-                                                    <a class="dropdown-item btn btn-primary" asp-action="update" asp-controller="car" asp-route-id="@car.Id">Detail</a>
-                                                </div>
-                                            </div>
-                                        </td>*@
+                                      
                                     </tr>
                                 }
                             </tbody>
