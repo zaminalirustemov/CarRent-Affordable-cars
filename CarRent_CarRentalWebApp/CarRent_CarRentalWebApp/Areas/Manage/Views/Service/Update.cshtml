@@ -1,0 +1,121 @@
+﻿@model Service
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">Update Service</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Service</li>
+                <li class="breadcrumb-item">Table</li>
+                <li class="breadcrumb-item active" aria-current="page">Update</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form class="forms-sample" method="post">
+                        <div class="form-group row" style="margin-top:10px">
+                            <label asp-for="IconKeyword" class="col-sm-3 col-form-label">Icon</label>
+                            <div class="col-sm-9">
+
+                                <div class="form-group row">
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="wedding-car"> Wedding Car <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/wedding-car.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="car"> Car <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/car.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="suv"> Suv <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/suv.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="transportation"> Transportation <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/transportation.png" alt="Avatar" class="img-fluid my-5 " style="width: 80px;" /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="route"> Route <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/route.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="handshake"> Handshake <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/handshake.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="rent"> Rent <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/rent.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="dashboard"> Dashboard <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/dashboard.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="pistons"> Pistons <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/pistons.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="car-seat"> Car Seat <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/car-seat.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="backpack"> Backpack <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/backpack.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-sm-2">
+                                        <label class="form-check-label" asp-for="IconKeyword">
+                                            <input asp-for="IconKeyword" type="radio" class="form-check-input" value="diesel"> Diesel <i class="input-helper"></i>
+                                            <div><img style="width: 70px;background-color: white;border-radius: 10px;" src="~/manage/icon/diesel.png" alt="Avatar" class="img-fluid my-5 " /></div>
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="IconKeyword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label asp-for="Title" class="col-sm-3 col-form-label">Title</label>
+                            <div class="col-sm-9">
+                                <input asp-for="Title" class="form-control" placeholder="Title">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Description" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <input asp-for="Description" class="form-control" placeholder="Description">
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-inverse-primary mr-2">Update</button>
+                        <button asp-action="index" asp-controller="service" class="btn btn-dark">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

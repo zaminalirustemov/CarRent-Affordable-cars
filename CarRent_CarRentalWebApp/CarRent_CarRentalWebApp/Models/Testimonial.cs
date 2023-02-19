@@ -9,6 +9,7 @@ public class Testimonial
     public string Quote { get; set; }
     public bool? isActive { get; set; }
     public DateTime? SendedDate { get; set; }
+    public bool isDeleted { get; set; }
 
     public AppUser AppUser { get; set; }
 

@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="~/manage/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/manage/assets/images/favicon.png" />
+
+
     @RenderSection("css",required:false)
     <style>
         .imagezr {
@@ -154,6 +156,14 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
+                    <a class="nav-link" asp-action="index" asp-controller="service">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-pen"></i>
+                        </span>
+                        <span class="menu-title">Service</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
                     <a class="nav-link" asp-action="index" asp-controller="doyouwant">
                         <span class="menu-icon">
                             <i class="mdi mdi-book-open-page-variant"></i>
@@ -226,6 +236,8 @@
                     </a>
                     <div class="collapse" id="recycle-bin">
                         <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="service">Service[Deleted]</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="testimonial">Testimonial[Deleted]</a></li>
                             <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="brand">Brand[Deleted]</a></li>
                             <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="category">Category[Deleted]</a></li>
                             <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="car">Car[Deleted]</a></li>

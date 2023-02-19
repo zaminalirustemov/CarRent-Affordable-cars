@@ -17,19 +17,19 @@ public class TestimonialController : Controller
     }
     public IActionResult Index(int page=1)
     {
-        var query = _carRentDbContext.Testimonials.Include(x=>x.AppUser).Where(x => x.isActive == null).AsQueryable();
+        var query = _carRentDbContext.Testimonials.Include(x=>x.AppUser).Where(x=>x.isDeleted==false).Where(x => x.isActive == null).AsQueryable();
         var paginatedList = PaginatedList<Testimonial>.Create(query, 5, page);
         return View(paginatedList);
     }
     public IActionResult ActiveIndex(int page = 1)
     {
-        var query = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isActive == true).AsQueryable();
+        var query = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isDeleted == false).Where(x => x.isActive == true).AsQueryable();
         var paginatedList = PaginatedList<Testimonial>.Create(query, 5, page);
         return View(paginatedList);
     }
     public IActionResult PassiveIndex(int page = 1)
     {
-        var query = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isActive == false).AsQueryable();
+        var query = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isDeleted == false).Where(x => x.isActive == false).AsQueryable();
         var paginatedList = PaginatedList<Testimonial>.Create(query, 5, page);
         return View(paginatedList);
     }
@@ -67,5 +67,62 @@ public class TestimonialController : Controller
         testimonial.isActive = false;
         _carRentDbContext.SaveChanges();
         return RedirectToAction(nameof(Index));
+    }
+    //Soft Delete--------------------------------------------------------------------------
+    public IActionResult SoftDelete(int id)
+    {
+        Testimonial testimonial = _carRentDbContext.Testimonials.Include(x => x.AppUser).FirstOrDefault(x => x.Id == id);
+        if (testimonial is null) return BadRequest();
+
+        testimonial.isDeleted = true;
+        _carRentDbContext.SaveChanges();
+
+        return Ok();
+    }
+
+
+
+    //*************************************************************************************
+    //*************************************Recycle Bin*************************************
+    //*************************************************************************************
+    //Deleted Index------------------------------------------------------------------------
+    public IActionResult DeletedIndex(int page = 1)
+    {
+        var query = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isDeleted == true).AsQueryable();
+        var paginatedList = PaginatedList<Testimonial>.Create(query, 5, page);
+        return View(paginatedList);
+    }
+    //Restore------------------------------------------------------------------------------
+    public IActionResult Restore(int id)
+    {
+        Testimonial testimonial = _carRentDbContext.Testimonials.Include(x => x.AppUser).FirstOrDefault(x => x.Id == id);
+        if (testimonial is null) return View("Error-404");
+
+        testimonial.isDeleted = false;
+        _carRentDbContext.SaveChanges();
+
+        return RedirectToAction(nameof(DeletedIndex));
+    }
+    //Hard Delete--------------------------------------------------------------------------
+    public IActionResult HardDelete(int id)
+    {
+        Testimonial testimonial = _carRentDbContext.Testimonials.Include(x => x.AppUser).FirstOrDefault(x => x.Id == id);
+        if (testimonial is null) return View("Error-404");
+
+        _carRentDbContext.Testimonials.Remove(testimonial);
+        _carRentDbContext.SaveChanges();
+
+        return Ok();
+    }
+    //All Delete-----------------------------------------------------------------------
+    public IActionResult AllDelete()
+    {
+        List<Testimonial> testimonials = _carRentDbContext.Testimonials.Where(x => x.isDeleted == true).ToList();
+        if (testimonials.Count == 0) return BadRequest();
+        
+        _carRentDbContext.Testimonials.RemoveRange(testimonials);
+        _carRentDbContext.SaveChanges();
+
+        return Ok();
     }
 }

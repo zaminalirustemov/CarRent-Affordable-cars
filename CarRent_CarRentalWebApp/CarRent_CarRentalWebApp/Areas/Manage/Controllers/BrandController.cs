@@ -91,9 +91,7 @@ public class BrandController : Controller
     //Deleted Index------------------------------------------------------------------------
     public IActionResult DeletedIndex(int page = 1)
     {
-        var query = _carRentDbContext.Brands
-                                      .Where(x => x.isDeleted == true)
-                                      .AsQueryable();
+        var query = _carRentDbContext.Brands.Where(x => x.isDeleted == true).AsQueryable();
 
         var paginatedList = PaginatedList<Brand>.Create(query, 5, page);
         return View(paginatedList);

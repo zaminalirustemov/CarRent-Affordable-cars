@@ -8,4 +8,5 @@ public class HomeViewModel
     public List<AboutUs> AboutUs { get; set; }
     public List<DoYouWant> DoYouWants { get; set; }
     public List<Testimonial> Testimonials { get; set; }
+    public List<Service> Services { get; set; }
 }

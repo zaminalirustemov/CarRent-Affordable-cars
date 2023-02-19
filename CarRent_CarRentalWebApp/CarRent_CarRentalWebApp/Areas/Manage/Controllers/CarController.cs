@@ -55,9 +55,22 @@ public class CarController : Controller
     [HttpPost]
     public IActionResult Create(Car car)
     {
-        ViewBag.Brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
-        ViewBag.Categories = _carRentDbContext.Categories.Where(x => x.isDeleted == false).ToList();
+        List<Brand> brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
+        List<Category> categories = _carRentDbContext.Categories.Where(x => x.isDeleted == false).ToList();
+
+        ViewBag.Brands = brands;
+        ViewBag.Categories = categories;
         if (!ModelState.IsValid) return View(car);
+        if(brands.Count==0)
+        {
+            ModelState.AddModelError("BrandId", "Brand is required");
+            return View(car);
+        }
+        if (categories.Count == 0)
+        {
+            ModelState.AddModelError("CategoryId", "Category is required");
+            return View(car);
+        }
         //Poster Image--------------------------
         if (car.PosterImageFile is null)
         {

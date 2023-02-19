@@ -432,6 +432,43 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.ToTable("OrderItems");
                 });
 
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("IconKeyword")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
+                });
+
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Testimonial", b =>
                 {
                     b.Property<int>("Id")
@@ -453,6 +490,9 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<bool?>("isActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");

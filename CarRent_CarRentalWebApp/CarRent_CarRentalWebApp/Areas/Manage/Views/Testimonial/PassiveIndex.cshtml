@@ -2,14 +2,17 @@
 @{
     int count = (Model.ActivePage - 1) * 5;
 }
+@section css{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
 
 <div class="content-wrapper">
     <div class="page-header">
-        <h3 class="page-title">New Testimonial Table </h3>
+        <h3 class="page-title">Passive Testimonial Table </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">Testimonial</li>
-                <li class="breadcrumb-item">New Testimonial</li>
+                    <li class="breadcrumb-item">Passive Testimonial</li>
                 <li class="breadcrumb-item active" aria-current="page">Table</li>
             </ol>
         </nav>
@@ -67,6 +70,9 @@
                                         <td>
                                             <a class="btn btn-outline-info" asp-action="detail" asp-controller="testimonial" asp-route-id="@testimonial.Id">Detail</a>
                                         </td>
+                                        <td>
+                                            <a class="btn btn-outline-danger softdelete-btn" asp-action="softdelete" asp-controller="testimonial" asp-route-id="@testimonial.Id"><i style="margin:0px" class="mdi mdi-delete"></i></a>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
@@ -97,3 +103,6 @@
         </ul>
     </nav>
 </div>
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}

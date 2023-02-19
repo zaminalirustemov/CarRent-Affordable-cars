@@ -17,12 +17,11 @@ public class HomeController : Controller
         HomeViewModel homeVM = new HomeViewModel
         {
             Heroes = _carRentDbContext.Heroes.ToList(),
-            FeaturedCars = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Include(x=>x.Category)
-                                                 .Where(x => x.isDeleted == false).Where(x=>x.isFeatured==true)
-                                                 .ToList(),
+            FeaturedCars = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Include(x=>x.Category).Where(x => x.isDeleted == false).Where(x=>x.isFeatured==true).Where(x => x.Brand.isDeleted == false).Where(x => x.Category.isDeleted == false).ToList(),
             AboutUs=_carRentDbContext.AboutUs.ToList(),
             DoYouWants = _carRentDbContext.DoYouWants.ToList(),
-            Testimonials = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isActive == true).ToList(),
+            Testimonials = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isDeleted == false).Where(x => x.isActive == true).ToList(),
+            Services = _carRentDbContext.Services.Where(x => x.isDeleted == false).ToList(),
         };
         return View(homeVM);
     }

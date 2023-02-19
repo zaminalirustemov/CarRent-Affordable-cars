@@ -17,7 +17,7 @@ public class OrderController : Controller
     }
     public IActionResult Index(int page=1)
     {
-        var query = _carRentDbContext.Orders.Include(x=>x.OrderItem).Where(x => x.isDeleted == false).AsQueryable();
+        var query = _carRentDbContext.Orders.Include(x=>x.OrderItem).Where(x => x.isDeleted == false).OrderByDescending(x=>x.PickUp).AsQueryable();
         var paginatedList = PaginatedList<Order>.Create(query, 5, page);
         return View(paginatedList);
     }

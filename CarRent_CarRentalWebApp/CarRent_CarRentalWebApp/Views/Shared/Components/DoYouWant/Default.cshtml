@@ -8,7 +8,14 @@
             <div class="row justify-content-end">
                 <div class="col-md-6 heading-section heading-section-white ftco-animate">
                     <h2 class="mb-3">@want.Title</h2>
-                    <a asp-action="quote" asp-controller="about" class="btn btn-primary btn-lg">Give your opinion</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="quote" asp-controller="about" class="btn btn-primary btn-lg">Give your opinion</a>
+                    }
+                    else
+                    {
+                        <a asp-action="login" asp-controller="account" class="btn btn-primary btn-lg">Give your opinion</a>
+                    }
                 </div>
             </div>
         </div>

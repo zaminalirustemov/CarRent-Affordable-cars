@@ -23,7 +23,8 @@ public class AboutController : Controller
         {
             AboutUs = _carRentDbContext.AboutUs.ToList(),
             DoYouWants = _carRentDbContext.DoYouWants.ToList(),
-            Testimonials = _carRentDbContext.Testimonials.Include(x=>x.AppUser).Where(x=>x.isActive==true).ToList(),
+            Testimonials = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isDeleted == false).Where(x => x.isActive == true).ToList(),
+            
         };
         return View(aboutVM);
     }
@@ -34,6 +35,7 @@ public class AboutController : Controller
         QuoteViewModel quoteVM = new QuoteViewModel
         {
             AppUser = appUser,
+            Testimonials = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isDeleted == false).Where(x => x.isActive == true).ToList(),
         };
         return View(quoteVM);
     }

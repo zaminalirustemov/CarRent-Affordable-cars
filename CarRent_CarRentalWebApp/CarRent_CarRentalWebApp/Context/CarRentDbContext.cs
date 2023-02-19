@@ -18,4 +18,5 @@ public class CarRentDbContext:IdentityDbContext
 	public DbSet<AboutUs> AboutUs { get; set; }
 	public DbSet<DoYouWant> DoYouWants { get; set; }
 	public DbSet<Testimonial> Testimonials { get; set; }
+	public DbSet<Service> Services { get; set; }
 }

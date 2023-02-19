@@ -20,7 +20,7 @@
 					</div>
 					<div class="col-md-8 d-flex align-items-center">
 						<div class="login-box" style="width:600px">
-							<p>@Model.AppUser.Fullname olaraq fikir bildir</p>
+							<p>Quote as @Model.AppUser.Fullname</p>
 							<form method="post">
 								<div class="user-box">
 									<input asp-for="Quote" required="" >
@@ -40,3 +40,6 @@
 			</div>
 		</div>
 </section>
+
+<!-- ======= Testimonial Section ======= -->
+@await Component.InvokeAsync("Testimonial",Model.Testimonials)
