@@ -1,6 +1,14 @@
-﻿@model Car
+﻿@model CarDetailViewModel
 
-
+@{
+    int star5Review = Model.CarComments.Where(x => x.Rating == 5).Count();
+    int star4Review = Model.CarComments.Where(x => x.Rating == 4).Count();
+    int star3Review = Model.CarComments.Where(x => x.Rating == 3).Count();
+    int star2Review = Model.CarComments.Where(x => x.Rating == 2).Count();
+    int star1Review = Model.CarComments.Where(x => x.Rating == 1).Count();
+    int totalReview = Model.CarComments.Count();
+    if (totalReview == 0) totalReview = 1;
+}
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -22,7 +30,7 @@
 
                     <div class="carousel-car owl-carousel">
 
-                        @foreach (var image in Model.CarImages)
+                        @foreach (var image in Model.Car.CarImages)
                         {
                             <div class="img rounded " style="height:300px">
                                 <img style="height: 300px;width: 1100px;" src="~/uploads/car/@image.ImageName" class="img-fluid" alt="">
@@ -30,9 +38,9 @@
                         }
                     </div>
                     <div class="text text-center">
-                        <span class="subheading">@Model.Category.Name</span>
-                        <span class="subheading">@Model.Brand.Name</span>
-                        <h2>@Model.Model</h2>
+                        <span class="subheading">@Model.Car.Category.Name</span>
+                        <span class="subheading">@Model.Car.Brand.Name</span>
+                        <h2>@Model.Car.Model</h2>
                     </div>
                 </div>
             </div>
@@ -46,7 +54,7 @@
                             <div class="text">
                                 <h3 class="heading mb-0 pl-3">
                                     Mileage
-                                    <span>@Model.Millage</span>
+                                    <span>@Model.Car.Millage</span>
                                 </h3>
                             </div>
                         </div>
@@ -61,7 +69,7 @@
                             <div class="text">
                                 <h3 class="heading mb-0 pl-3">
                                     Transmission
-                                    <span>@Model.Transmission</span>
+                                    <span>@Model.Car.Transmission</span>
                                 </h3>
                             </div>
                         </div>
@@ -76,7 +84,7 @@
                             <div class="text">
                                 <h3 class="heading mb-0 pl-3">
                                     Seats
-                                    <span>@Model.Seats Adults</span>
+                                    <span>@Model.Car.Seats Adults</span>
                                 </h3>
                             </div>
                         </div>
@@ -91,7 +99,7 @@
                             <div class="text">
                                 <h3 class="heading mb-0 pl-3">
                                     Luggage
-                                    <span>@Model.Luggage</span>
+                                    <span>@Model.Car.Luggage</span>
                                 </h3>
                             </div>
                         </div>
@@ -106,7 +114,7 @@
                             <div class="text">
                                 <h3 class="heading mb-0 pl-3">
                                     Fuel
-                                    <span>@Model.Fuel</span>
+                                    <span>@Model.Car.Fuel</span>
                                 </h3>
                             </div>
                         </div>
@@ -137,99 +145,90 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <ul class="features">
-                                        <li class="@(Model.Airconditions? "check" : "remove")"><span class="ion-ios-@(Model.Airconditions? "checkmark" : "close")"></span>Airconditions</li>
-                                        <li class="@(Model.ChildSeat? "check" : "remove")"><span class="ion-ios-@(Model.ChildSeat? "checkmark" : "close")"></span>Child Seat</li>
-                                        <li class="@(Model.GPS? "check" : "remove")"><span class="ion-ios-@(Model.GPS? "checkmark" : "close")"></span>GPS</li>
-                                        <li class="@(Model.Music? "check" : "remove")"><span class="ion-ios-@(Model.Music? "checkmark" : "close")"></span>Music</li>
+                                        <li class="@(Model.Car.Airconditions? "check" : "remove")"><span class="ion-ios-@(Model.Car.Airconditions? "checkmark" : "close")"></span>Airconditions</li>
+                                        <li class="@(Model.Car.ChildSeat? "check" : "remove")"><span class="ion-ios-@(Model.Car.ChildSeat? "checkmark" : "close")"></span>Child Seat</li>
+                                        <li class="@(Model.Car.GPS? "check" : "remove")"><span class="ion-ios-@(Model.Car.GPS? "checkmark" : "close")"></span>GPS</li>
+                                        <li class="@(Model.Car.Music? "check" : "remove")"><span class="ion-ios-@(Model.Car.Music? "checkmark" : "close")"></span>Music</li>
                                     </ul>
                                 </div>
                                 <div class="col-md-4">
                                     <ul class="features">
-                                        <li class="@(Model.SeatBelt? "check" : "remove")"><span class="ion-ios-@(Model.SeatBelt? "checkmark" : "close")"></span>Seat Belt</li>
-                                        <li class="@(Model.SleepingBed? "check" : "remove")"><span class="ion-ios-@(Model.SleepingBed? "checkmark" : "close")"></span>Sleeping Bed</li>
-                                        <li class="@(Model.Bluetooth? "check" : "remove")"><span class="ion-ios-@(Model.Bluetooth? "checkmark" : "close")"></span>Bluetooth</li>
-                                        <li class="@(Model.OnboardComputer? "check" : "remove")"><span class="ion-ios-@(Model.OnboardComputer? "checkmark" : "close")"></span>Onboard computer</li>
+                                        <li class="@(Model.Car.SeatBelt? "check" : "remove")"><span class="ion-ios-@(Model.Car.SeatBelt? "checkmark" : "close")"></span>Seat Belt</li>
+                                        <li class="@(Model.Car.SleepingBed? "check" : "remove")"><span class="ion-ios-@(Model.Car.SleepingBed? "checkmark" : "close")"></span>Sleeping Bed</li>
+                                        <li class="@(Model.Car.Bluetooth? "check" : "remove")"><span class="ion-ios-@(Model.Car.Bluetooth? "checkmark" : "close")"></span>Bluetooth</li>
+                                        <li class="@(Model.Car.OnboardComputer? "check" : "remove")"><span class="ion-ios-@(Model.Car.OnboardComputer? "checkmark" : "close")"></span>Onboard computer</li>
                                     </ul>
                                 </div>
                                 <div class="col-md-4">
                                     <ul class="features">
-                                        <li class="@(Model.LongTermTrips? "check" : "remove")"><span class="ion-ios-@(Model.LongTermTrips? "checkmark" : "close")"></span>Long Term Trips</li>
-                                        <li class="@(Model.CarKit? "check" : "remove")"><span class="ion-ios-@(Model.CarKit? "checkmark" : "close")"></span>Car Kit</li>
-                                        <li class="@(Model.RemoteCentralLocking? "check" : "remove")"><span class="ion-ios-@(Model.RemoteCentralLocking? "checkmark" : "close")"></span>Remote central locking</li>
-                                        <li class="@(Model.ClimateControl? "check" : "remove")"><span class="ion-ios-@(Model.ClimateControl? "checkmark" : "close")"></span>Climate control</li>
+                                        <li class="@(Model.Car.LongTermTrips? "check" : "remove")"><span class="ion-ios-@(Model.Car.LongTermTrips? "checkmark" : "close")"></span>Long Term Trips</li>
+                                        <li class="@(Model.Car.CarKit? "check" : "remove")"><span class="ion-ios-@(Model.Car.CarKit? "checkmark" : "close")"></span>Car Kit</li>
+                                        <li class="@(Model.Car.RemoteCentralLocking? "check" : "remove")"><span class="ion-ios-@(Model.Car.RemoteCentralLocking? "checkmark" : "close")"></span>Remote central locking</li>
+                                        <li class="@(Model.Car.ClimateControl? "check" : "remove")"><span class="ion-ios-@(Model.Car.ClimateControl? "checkmark" : "close")"></span>Climate control</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-                            <p>@Model.Description</p>
+                            <p>@Model.Car.Description</p>
                         </div>
 
                         <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <h3 class="head">23 Reviews</h3>
-                                    <div class="review d-flex">
-                                        <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                                        <div class="desc">
-                                            <h4>
-                                                <span class="text-left">Jacob Webb</span>
-                                                <span class="text-right">14 March 2018</span>
-                                            </h4>
-                                            <p class="star">
-                                                <span>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                </span>
-                                                <span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-                                            </p>
-                                            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+                                    <h3 class="head">@Model.CarComments.Count() Reviews</h3>
+
+                                    @foreach (CarComment comment in Model.CarComments)
+                                    {
+
+                                        <div class="review d-flex">
+                                            <div class="user-img"><img style="max-width:100%" src="~/uploads/user/@comment.AppUser.ImageName" alt="" /></div>
+                                            <div class="desc">
+                                                <h4>
+                                                    <span class="text-left">@comment.AppUser.Fullname</span>
+                                                    <span class="text-right">@String.Format("{0:g}", comment.SendedDate)</span>
+                                                </h4>
+                                                <p class="star">
+                                                    <span>
+                                                        @if (comment.Rating == 5)
+                                                        {
+                                                            <i class="ion-ios-star"></i>
+                                                            <i class="ion-ios-star"></i>
+                                                            <i class="ion-ios-star"></i>
+                                                            <i class="ion-ios-star"></i>
+                                                            <i class="ion-ios-star"></i>
+                                                        }
+                                                        else if (comment.Rating == 4)
+                                                        {
+                                                            <i class="ion-ios-star"></i>
+                                                            <i class="ion-ios-star"></i>
+                                                            <i class="ion-ios-star"></i>
+                                                            <i class="ion-ios-star"></i>
+                                                        }
+                                                        else if (comment.Rating == 3)
+                                                        {
+                                                            <i class="ion-ios-star"></i>
+                                                            <i class="ion-ios-star"></i>
+                                                            <i class="ion-ios-star"></i>
+                                                        }
+                                                        else if (comment.Rating == 2)
+                                                        {
+                                                            <i class="ion-ios-star"></i>
+                                                            <i class="ion-ios-star"></i>
+                                                        }
+                                                        else if (comment.Rating == 1)
+                                                        {
+                                                            <i class="ion-ios-star"></i>
+                                                        }
+                                                    </span>
+                                                </p>
+                                                <p>@comment.Comment</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="review d-flex">
-                                        <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                                        <div class="desc">
-                                            <h4>
-                                                <span class="text-left">Jacob Webb</span>
-                                                <span class="text-right">14 March 2018</span>
-                                            </h4>
-                                            <p class="star">
-                                                <span>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                </span>
-                                                <span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-                                            </p>
-                                            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-                                        </div>
-                                    </div>
-                                    <div class="review d-flex">
-                                        <div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-                                        <div class="desc">
-                                            <h4>
-                                                <span class="text-left">Jacob Webb</span>
-                                                <span class="text-right">14 March 2018</span>
-                                            </h4>
-                                            <p class="star">
-                                                <span>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                </span>
-                                                <span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-                                            </p>
-                                            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-                                        </div>
-                                    </div>
+                                    }
+
+
                                 </div>
                                 <div class="col-md-5">
                                     <div class="rating-wrap">
@@ -242,9 +241,9 @@
                                                     <i class="ion-ios-star"></i>
                                                     <i class="ion-ios-star"></i>
                                                     <i class="ion-ios-star"></i>
-                                                    (98%)
+                                                    (@(star5Review * 100 / totalReview)%)
                                                 </span>
-                                                <span>20 Reviews</span>
+                                                <span>@star5Review Reviews</span>
                                             </p>
                                             <p class="star">
                                                 <span>
@@ -252,46 +251,76 @@
                                                     <i class="ion-ios-star"></i>
                                                     <i class="ion-ios-star"></i>
                                                     <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    (85%)
+                                                    (@(star4Review * 100 / totalReview)%)
                                                 </span>
-                                                <span>10 Reviews</span>
+                                                <span>@star4Review Reviews</span>
                                             </p>
                                             <p class="star">
                                                 <span>
                                                     <i class="ion-ios-star"></i>
                                                     <i class="ion-ios-star"></i>
                                                     <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    (70%)
+                                                    (@(star3Review * 100 / totalReview)%)
                                                 </span>
-                                                <span>5 Reviews</span>
+                                                <span>@star3Review Reviews</span>
                                             </p>
                                             <p class="star">
                                                 <span>
                                                     <i class="ion-ios-star"></i>
                                                     <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    (10%)
+                                                    (@(star2Review * 100 / totalReview)%)
                                                 </span>
-                                                <span>0 Reviews</span>
+                                                <span>@star2Review Reviews</span>
                                             </p>
                                             <p class="star">
                                                 <span>
                                                     <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    (0%)
+                                                    (@(star1Review * 100 / totalReview)%)
                                                 </span>
-                                                <span>0 Reviews</span>
+                                                <span>@star1Review Reviews</span>
                                             </p>
                                         </div>
                                     </div>
+
+                                    <div class="comment-form-wrap pt-5">
+                                        <h3 class="mb-5">Leave a comment</h3>
+                                        <form asp-action="carcomment" asp-controller="car" method="post" class="p-5 bg-light">
+                                            <div class="form-group">
+                                                <label asp-for="CarComment.Comment">Comment</label>
+                                                <textarea asp-for="CarComment.Comment" cols="30" rows="6" class="form-control"></textarea>
+                                                <span asp-validation-for="CarComment.Comment" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="CarComment.Rating">Your rating:</label>
+                                                <select asp-for="CarComment.Rating">
+                                                    <option value="5">5/5</option>
+                                                    <option value="4">4/5</option>
+                                                    <option value="3">3/5</option>
+                                                    <option value="2">2/5</option>
+                                                    <option value="1">1/5</option>
+                                                </select>
+                                                <span asp-validation-for="CarComment.Rating" class="text-danger"></span>
+                                            </div>
+                                            <input type="hidden" asp-for="CarComment.CarId" value="@Model.Car.Id" />
+                                            <input type="hidden" asp-for="CarComment.AppUserId" value="@Model.Car.Id" />
+
+                                            <div class="form-group">
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+
+                                                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                                                }
+                                                else
+                                                {
+                                                    <a asp-action="login" asp-controller="account" class="btn py-3 px-4 btn-primary send-comment">Login to write a comment</a>
+                                                }
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+
+
                                 </div>
                             </div>
                         </div>

@@ -56,6 +56,7 @@ public class Car
     public Brand? Brand { get; set; }
     public Category? Category { get; set; }
     public List<OrderItem>? OrderItems { get; set; }
+    public List<CarComment>? CarComments { get; set; }
     public List<CarImage>? CarImages { get; set; }
     [NotMapped]
     public IFormFile? PosterImageFile { get; set; }

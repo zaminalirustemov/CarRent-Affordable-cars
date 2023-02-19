@@ -197,6 +197,47 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.ToTable("Cars");
                 });
 
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.CarComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<byte>("Rating")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime?>("SendedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("isActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("CarComments");
+                });
+
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.CarImage", b =>
                 {
                     b.Property<int>("Id")
@@ -765,6 +806,25 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.CarComment", b =>
+                {
+                    b.HasOne("CarRent_CarRentalWebApp.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarRent_CarRentalWebApp.Models.Car", "Car")
+                        .WithMany("CarComments")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Car");
+                });
+
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.CarImage", b =>
                 {
                     b.HasOne("CarRent_CarRentalWebApp.Models.Car", "Car")
@@ -873,6 +933,8 @@ namespace CarRent_CarRentalWebApp.Migrations
 
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Car", b =>
                 {
+                    b.Navigation("CarComments");
+
                     b.Navigation("CarImages");
 
                     b.Navigation("OrderItems");
