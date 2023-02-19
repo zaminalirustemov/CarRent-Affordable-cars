@@ -65,7 +65,16 @@
                     <li class="nav-item"><a asp-action="index" asp-controller="pricing" class="nav-link">Pricing</a></li>
                     <li class="nav-item"><a asp-action="index" asp-controller="car" class="nav-link">Cars</a></li>
                     <li class="nav-item"><a asp-action="index" asp-controller="blog" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a asp-action="quote" asp-controller="about" class="nav-link">Quote</a></li>
+                    <li class="nav-item">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-action="quote" asp-controller="about" class="nav-link">Quote</a>
+                        }
+                        else
+                        {
+                            <a asp-action="login" asp-controller="account" class="nav-link">Quote</a>
+                        }
+                    </li>
                     <li class="nav-item"><a asp-action="index" asp-controller="contact" class="nav-link">Contact</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {

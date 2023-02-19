@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CarRent_CarRentalWebApp.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CarRent_CarRentalWebApp.ViewComponents;
 public class InfoViewComponent: ViewComponent
 {
-    public IViewComponentResult Invoke()
+    public IViewComponentResult Invoke(List<InfoBar> InfoBars)
     {
-        return View();
+        return View(InfoBars);
     }
 }

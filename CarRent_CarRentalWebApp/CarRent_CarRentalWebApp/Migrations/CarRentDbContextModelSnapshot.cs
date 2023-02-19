@@ -314,6 +314,30 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.ToTable("Heroes");
                 });
 
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.InfoBar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Value")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InfoBars");
+                });
+
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Order", b =>
                 {
                     b.Property<int>("Id")

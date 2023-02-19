@@ -1,4 +1,4 @@
-﻿
+﻿@model List<InfoBar>
 <section class="ftco-counter ftco-section img bg-light" id="section-counter">
     <div class="overlay"></div>
     <div class="container">
@@ -6,32 +6,32 @@
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text text-border d-flex align-items-center">
-                        <strong class="number" data-number="60">0</strong>
-                        <span>Year <br>Experienced</span>
+                        <strong class="number" data-number="@Model.FirstOrDefault(x=>x.Id==1).Value">0</strong>
+                        <span>@Model.FirstOrDefault(x=>x.Id==1).Key</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text text-border d-flex align-items-center">
-                        <strong class="number" data-number="1090">0</strong>
-                        <span>Total <br>Cars</span>
+                        <strong class="number" data-number="@Model.FirstOrDefault(x=>x.Id==2).Value">0</strong>
+                        <span>@Model.FirstOrDefault(x=>x.Id==2).Key</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text text-border d-flex align-items-center">
-                        <strong class="number" data-number="2590">0</strong>
-                        <span>Happy <br>Customers</span>
+                        <strong class="number" data-number="@Model.FirstOrDefault(x=>x.Id==3).Value">0</strong>
+                        <span>@Model.FirstOrDefault(x=>x.Id==3).Key</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text d-flex align-items-center">
-                        <strong class="number" data-number="67">0</strong>
-                        <span>Total <br>Branches</span>
+                        <strong class="number" data-number="@Model.FirstOrDefault(x=>x.Id==4).Value">0</strong>
+                        <span>@Model.FirstOrDefault(x=>x.Id==4).Key</span>
                     </div>
                 </div>
             </div>
