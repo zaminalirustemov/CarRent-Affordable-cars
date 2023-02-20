@@ -1,0 +1,114 @@
+﻿@model CarComment
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Comment Detail </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Comment</li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="item">
+                <div class="testimony-wrap rounded text-center py-4 pb-5">
+                    <div class="row">
+                        <div class="user-img mb-2 col-sm-6">
+                            <img src ="~/uploads/car/@Model.Car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" alt="Avatar" class="img-fluid my-5 " style="widht:300px" />
+                            
+                        </div>
+                        <div class="text pt-4 col-sm-6">
+                            @if (Model.AppUser.ImageName is null)
+                            {
+                                <img src="~/assets/images/memperphoto.jpg" alt="Avatar" class="img-fluid my-5 " style="widht:200px;width: 200px;" />
+                            }
+                            else
+                            {
+                                <img src="~/uploads/user/@Model.AppUser.ImageName" alt="Avatar" class="img-fluid my-5 " style="widht:200px;width: 200px;" />
+                            }
+                            <p class="mb-4"><b>Comment:</b><br />@Model.Comment</p>
+                            <p class="mb-4">
+                                <b>Rating:</b><br />@if (Model.Rating == 5)
+                                {
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star"></i>
+                                }
+                                else if (Model.Rating == 4)
+                                {
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star-outline"></i>
+                                }
+                                else if (Model.Rating == 3)
+                                {
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star-outline"></i>
+                                    <i class="mdi mdi-star-outline"></i>
+                                }
+                                else if (Model.Rating == 2)
+                                {
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star-outline"></i>
+                                    <i class="mdi mdi-star-outline"></i>
+                                    <i class="mdi mdi-star-outline"></i>
+                                }
+                                else if (Model.Rating == 1)
+                                {
+                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-star-outline"></i>
+                                    <i class="mdi mdi-star-outline"></i>
+                                    <i class="mdi mdi-star-outline"></i>
+                                    <i class="mdi mdi-star-outline"></i>
+                                }
+                            </p>
+                            <p class="name"><b>Fullname:</b><br />@Model.AppUser.Fullname</p>
+                            <span class="position"><b>UserName:</b><br />@Model.AppUser.UserName</span>
+                            <div class="form-group">
+                                <p class="name"><b>Status:</b></p>
+                                <div style="text-align-last: center">
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-@(Model.isActive==null? "warning" :
+                                                    (Model.isActive==true? "success" : "danger")) dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            @(Model.isActive == null ? "New" : (Model.isActive == true ? "Active" : "Passive"))
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2" style="">
+
+                                            @if (Model.isActive != null)
+                                            {
+                                                <a class="dropdown-item btn btn-warning" asp-action="new" asp-controller="comment" asp-route-id="@Model.Id">New</a>
+                                                <div class="dropdown-divider"></div>
+                                            }
+                                            @if (Model.isActive != true)
+                                            {
+                                                <a class="dropdown-item btn btn-success" asp-action="active" asp-controller="comment" asp-route-id="@Model.Id">Active</a>
+                                                <div class="dropdown-divider"></div>
+                                            }
+                                            @if (Model.isActive != false)
+                                            {
+                                                <a class="dropdown-item btn btn-danger" asp-action="passive" asp-controller="comment" asp-route-id="@Model.Id">Passive</a>
+
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

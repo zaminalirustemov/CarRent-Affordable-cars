@@ -226,6 +226,26 @@
                         <span class="menu-title">Order</span>
                     </a>
                 </li>
+
+
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#comment" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-comment-text-outline"></i>
+                        </span>
+                        <span class="menu-title">Comment</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="comment">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="comment">New</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="activeIndex" asp-controller="comment">Active</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="passiveIndex" asp-controller="comment">Passive</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+
                 <li class="nav-item menu-items">
                     <a class="nav-link" asp-action="index" asp-controller="infobar">
                         <span class="menu-icon">

@@ -183,7 +183,16 @@
                                     {
 
                                         <div class="review d-flex">
-                                            <div class="user-img"><img style="max-width:100%" src="~/uploads/user/@comment.AppUser.ImageName" alt="" /></div>
+                                            <div class="user-img">
+                                                @if (comment.AppUser.ImageName is null)
+                                                {
+                                                    <img style="max-width:100%" src="~/assets/images/memperphoto.jpg" alt="" />
+                                                }
+                                                else
+                                                {
+                                                    <img style="max-width:100%" src="~/uploads/user/@comment.AppUser.ImageName" alt="" />
+                                                }
+                                            </div>
                                             <div class="desc">
                                                 <h4>
                                                     <span class="text-left">@comment.AppUser.Fullname</span>
