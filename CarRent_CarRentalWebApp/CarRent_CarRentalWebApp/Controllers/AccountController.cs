@@ -164,9 +164,11 @@ public class AccountController : Controller
             }
             existAppUser.ImageName = FileManager.SaveFile(_environment.WebRootPath, "uploads/user", newAppUser.ImageFile);
         }
+
         existAppUser.Fullname = newAppUser.Fullname;
         existAppUser.Email = newAppUser.Email;
         existAppUser.PhoneNumber = newAppUser.PhoneNumber;
+        
         _carRentDbContext.SaveChanges();
         return RedirectToAction(nameof(Profile));
     }

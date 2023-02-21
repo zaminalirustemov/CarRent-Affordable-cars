@@ -18,72 +18,72 @@
         <div class="row no-gutters">
             <div class="col-md-12 featured-top">
                 <div class="row no-gutters">
-                    
-                        <form asp-action="ConfirmOrder" asp-controller="checkout" method="post" class="request-form ftco-animate bg-danger" style="width:370px">
-                            <h2>Make your trip</h2>
-                            <div>
-                                <div class="form-group">
-                                    <label asp-for="Fullname" class="label">Fullname</label>
-                                    <input asp-for="Fullname" value="@Model.Fullname" class="form-control" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="Day" class="label">day</label>
-                                    <input asp-for="Day" value="@Model.Day" class="form-control" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="TotalPrice" class="label">Tprice</label>
-                                    <input asp-for="TotalPrice" value="@Model.TotalPrice" class="form-control" readonly>
-                                </div>
 
-                                @*//*@
-                                <h2>Make your trip</h2>
-                                <div class="form-group">
-                                    <label asp-for="Phonenumber" class="label">Phone number</label>
-                                    <input asp-for="Phonenumber" class="form-control" value="@Model.Phonenumber" readonly>
-                                    <span asp-validation-for="Phonenumber" style="color:yellow"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="Email" class="label">Email adress</label>
-                                    <input asp-for="Email" class="form-control" value="@Model.Email" readonly>
-                                    <span asp-validation-for="Email" style="color:yellow"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="DropOffLocation" class="label">Drop-off location</label>
-                                    <input asp-for="DropOffLocation" class="form-control" value="@Model.DropOffLocation" readonly>
-                                    <span asp-validation-for="DropOffLocation" style="color:yellow"></span>
-                                </div>
-                            </div>
-
-                            <div>
-
-                                <div class="form-group">
-                                    <label asp-for="CardNumber" class="label">Card number</label>
-                                    <input asp-for="CardNumber" class="form-control" placeholder="**** **** **** ****">
-                                    <span asp-validation-for="CardNumber" style="color:yellow"></span>
-                                </div>
-                                <div class="d-flex">
-                                    <div class="form-group mr-2">
-                                        <label asp-for="EndTime" class="label">End time</label>
-                                        <input asp-for="EndTime" class="form-control" placeholder="MM/YY">
-                                        <span asp-validation-for="EndTime" style="color:yellow"></span>
-                                    </div>
-                                    <div class="form-group mr-2">
-                                        <label asp-for="CVC" class="label">CVC</label>
-                                        <input asp-for="CVC" class="form-control" placeholder="***">
-                                        <span asp-validation-for="CVC" style="color:yellow"></span>
-                                    </div>
-                                </div>
-                                <input type="hidden" asp-for="CarId" value="@Model.CarId" />
-                                <input type="hidden" asp-for="PickUp" value="@Model.PickUp" />
-                                <input type="hidden" asp-for="DropOff" value="@Model.DropOff" />
-                                <input type="hidden" asp-for="PickUpTime" value="@Model.PickUpTime" />
-
+                    <form asp-action="ConfirmOrder" asp-controller="checkout" method="post" class="request-form ftco-animate bg-danger" style="width:370px">
+                        <h2>Make your trip</h2>
+                        <div>
+                            <div class="form-group">
+                                <label asp-for="Fullname" class="label">Fullname</label>
+                                <input asp-for="Fullname" value="@Model.Fullname" class="form-control" readonly>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">add</button>
+                                <label asp-for="Day" class="label">day</label>
+                                <input asp-for="Day" value="@Model.Day" class="form-control" readonly>
                             </div>
-                        </form>
-                    
+                            <div class="form-group">
+                                <label asp-for="TotalPrice" class="label">Tprice</label>
+                                <input asp-for="TotalPrice" value="@Model.TotalPrice" class="form-control" readonly>
+                            </div>
+
+                            @*//*@
+                            <h2>Make your trip</h2>
+                            <div class="form-group">
+                                <label asp-for="Phonenumber" class="label">Phone number</label>
+                                <input asp-for="Phonenumber" class="form-control" value="@Model.Phonenumber" readonly>
+                                <span asp-validation-for="Phonenumber" style="color:yellow"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email" class="label">Email adress</label>
+                                <input asp-for="Email" class="form-control" value="@Model.Email" readonly>
+                                <span asp-validation-for="Email" style="color:yellow"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DropOffLocation" class="label">Drop-off location</label>
+                                <input asp-for="DropOffLocation" class="form-control" value="@Model.DropOffLocation" readonly>
+                                <span asp-validation-for="DropOffLocation" style="color:yellow"></span>
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <div class="form-group">
+                                <label asp-for="CardNumber" class="label">Card number</label>
+                                <input asp-for="CardNumber" class="form-control" placeholder="**** **** **** ****">
+                                <span asp-validation-for="CardNumber" style="color:yellow"></span>
+                            </div>
+                            <div class="d-flex">
+                                <div class="form-group mr-2">
+                                    <label asp-for="EndTime" class="label">End time</label>
+                                    <input asp-for="EndTime" id="cvv" class="form-control" placeholder="MM/YY">
+                                    <span asp-validation-for="EndTime" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group mr-2">
+                                    <label asp-for="CVC" class="label">CVC</label>
+                                    <input asp-for="CVC"  class="form-control" placeholder="***">
+                                    <span asp-validation-for="CVC" style="color:yellow"></span>
+                                </div>
+                            </div>
+                            <input type="hidden" asp-for="CarId" value="@Model.CarId" />
+                            <input type="hidden" asp-for="PickUp" value="@Model.PickUp" />
+                            <input type="hidden" asp-for="DropOff" value="@Model.DropOff" />
+                            <input type="hidden" asp-for="PickUpTime" value="@Model.PickUpTime" />
+
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">add</button>
+                        </div>
+                    </form>
+
                     <div class="col-md-8 d-flex align-items-center">
                         <div class="services-wrap rounded-right w-100">
                             <div class="item">

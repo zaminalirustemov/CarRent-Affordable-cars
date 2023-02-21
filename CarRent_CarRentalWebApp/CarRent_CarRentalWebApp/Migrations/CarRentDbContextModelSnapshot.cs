@@ -87,26 +87,11 @@ namespace CarRent_CarRentalWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("Airconditions")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Bluetooth")
-                        .HasColumnType("bit");
-
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("CarKit")
-                        .HasColumnType("bit");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("ChildSeat")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("ClimateControl")
-                        .HasColumnType("bit");
 
                     b.Property<double>("ConsumptionPer100KM")
                         .HasColumnType("float");
@@ -124,12 +109,6 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("GPS")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LongTermTrips")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Luggage")
                         .HasColumnType("int");
 
@@ -141,12 +120,6 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<bool>("Music")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("OnboardComputer")
-                        .HasColumnType("bit");
-
                     b.Property<double>("PricePerDay")
                         .HasColumnType("float");
 
@@ -156,17 +129,8 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Property<double>("PricePerMonth")
                         .HasColumnType("float");
 
-                    b.Property<bool>("RemoteCentralLocking")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("SeatBelt")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Seats")
                         .HasColumnType("int");
-
-                    b.Property<bool>("SleepingBed")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Transmission")
                         .IsRequired()
@@ -261,6 +225,29 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.HasIndex("CarId");
 
                     b.ToTable("CarImages");
+                });
+
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.CarPeculiarity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PeculiarityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("PeculiarityId");
+
+                    b.ToTable("CarPeculiarities");
                 });
 
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Category", b =>
@@ -495,6 +482,27 @@ namespace CarRent_CarRentalWebApp.Migrations
                         .IsUnique();
 
                     b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Peculiarity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Peculiarities");
                 });
 
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Service", b =>
@@ -836,6 +844,25 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Navigation("Car");
                 });
 
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.CarPeculiarity", b =>
+                {
+                    b.HasOne("CarRent_CarRentalWebApp.Models.Car", "Car")
+                        .WithMany("CarPeculiarities")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarRent_CarRentalWebApp.Models.Peculiarity", "Peculiarity")
+                        .WithMany("CarPeculiarities")
+                        .HasForeignKey("PeculiarityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+
+                    b.Navigation("Peculiarity");
+                });
+
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Order", b =>
                 {
                     b.HasOne("CarRent_CarRentalWebApp.Models.AppUser", "AppUser")
@@ -937,6 +964,8 @@ namespace CarRent_CarRentalWebApp.Migrations
 
                     b.Navigation("CarImages");
 
+                    b.Navigation("CarPeculiarities");
+
                     b.Navigation("OrderItems");
                 });
 
@@ -948,6 +977,11 @@ namespace CarRent_CarRentalWebApp.Migrations
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Order", b =>
                 {
                     b.Navigation("OrderItem");
+                });
+
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Peculiarity", b =>
+                {
+                    b.Navigation("CarPeculiarities");
                 });
 #pragma warning restore 612, 618
         }

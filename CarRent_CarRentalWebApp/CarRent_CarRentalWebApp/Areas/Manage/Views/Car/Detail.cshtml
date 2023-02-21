@@ -116,66 +116,18 @@
                                 </div>
                             </div>
                         </div>
-                        <h3 style="text-align-last:center">--- Features ---</h3>
+
+                        <h3 style="text-align-last:center">--- Peculiarity ---</h3>
+
                         <div class="form-group row">
-                            <div class="col-sm-4">
-                                <ul class="features">
-                                    @if (Model.Airconditions)
-                                    {
-                                        <li><span class="ion-ios-checkmark"></span>Airconditions</li>
-                                    }
-                                    @if (Model.ChildSeat)
-                                    {
-                                        <li><span class="ion-ios-checkmark"></span>ChildSeat</li>
-                                    }
-                                    @if (Model.GPS)
-                                    {
-                                        <li><span class="ion-ios-checkmark"></span>GPS</li>
-                                    }
-                                    @if (Model.Music)
-                                    {
-                                        <li><span class="ion-ios-checkmark"></span>Music</li>
-                                    }
-                                </ul>
-                            </div>
-                            <div class="col-sm-4">
-                                @if (Model.SeatBelt)
-                                {
-                                    <li><span class="ion-ios-checkmark"></span>SeatBelt</li>
-                                }
-                                @if (Model.SleepingBed)
-                                {
-                                    <li><span class="ion-ios-checkmark"></span>SleepingBed</li>
-                                }
-                                @if (Model.Bluetooth)
-                                {
-                                    <li><span class="ion-ios-checkmark"></span>Bluetooth</li>
-                                }
-                                @if (Model.OnboardComputer)
-                                {
-                                    <li><span class="ion-ios-checkmark"></span>OnboardComputer</li>
-                                }
-                            </div>
-                            <div class="col-sm-4">
-
-                                @if (Model.LongTermTrips)
-                                {
-                                    <li><span class="ion-ios-checkmark"></span>LongTermTrips</li>
-                                }
-                                @if (Model.CarKit)
-                                {
-                                    <li><span class="ion-ios-checkmark"></span>CarKit</li>
-                                }
-                                @if (Model.RemoteCentralLocking)
-                                {
-                                    <li><span class="ion-ios-checkmark"></span>RemoteCentralLocking</li>
-                                }
-                                @if (Model.ClimateControl)
-                                {
-                                    <li><span class="ion-ios-checkmark"></span>ClimateControl</li>
-                                }
-                            </div>
-
+                            @foreach (CarPeculiarity peculiarity in Model.CarPeculiarities)
+                            {
+                                <div class="col-md-4">
+                                    <ul class="features">
+                                        <li class="check"><span class="ion-ios-checkmark"></span>@peculiarity.Peculiarity.Name</li>
+                                    </ul>
+                                </div>
+                            }
                         </div>
 
                         <div class="form-group row">

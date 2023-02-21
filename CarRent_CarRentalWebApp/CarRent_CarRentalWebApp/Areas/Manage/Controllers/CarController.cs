@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Drawing.Drawing2D;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CarRent_CarRentalWebApp.Areas.Manage.Controllers;
 [Area("Manage")]
@@ -39,7 +40,11 @@ public class CarController : Controller
     //Detail----------------------------------------------------------------------------------------
     public IActionResult Detail(int id)
     {
-        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x=>x.CarPeculiarities).Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
+        foreach (CarPeculiarity carPeculiarity in car.CarPeculiarities)
+        {
+            carPeculiarity.Peculiarity = _carRentDbContext.Peculiarities.Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == carPeculiarity.PeculiarityId);
+        }
         if (car == null) return View("Error-404");
 
         return View(car);
@@ -49,6 +54,7 @@ public class CarController : Controller
     {
         ViewBag.Brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
         ViewBag.Categories = _carRentDbContext.Categories.Where(x => x.isDeleted == false).ToList();
+        ViewBag.Pecularities = _carRentDbContext.Peculiarities.Where(x => x.isDeleted == false).ToList();
 
         return View();
     }
@@ -57,6 +63,7 @@ public class CarController : Controller
     {
         List<Brand> brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
         List<Category> categories = _carRentDbContext.Categories.Where(x => x.isDeleted == false).ToList();
+        ViewBag.Pecularities = _carRentDbContext.Peculiarities.Where(x => x.isDeleted == false).ToList();
 
         ViewBag.Brands = brands;
         ViewBag.Categories = categories;
@@ -119,6 +126,21 @@ public class CarController : Controller
             }
         }
 
+        //Pecularites-----------------------------
+        if(car.PecularitiesIds is not null)
+        {
+            foreach (int pecularityId in car.PecularitiesIds)
+            {
+                CarPeculiarity carPeculiarity = new CarPeculiarity
+                {
+                    CarId = car.Id,
+                    Car = car,
+                    PeculiarityId = pecularityId
+                };
+                _carRentDbContext.CarPeculiarities.Add(carPeculiarity);
+            }
+        }
+
         car.CreatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.Cars.Add(car);
         _carRentDbContext.SaveChanges();
@@ -130,7 +152,9 @@ public class CarController : Controller
     {
         ViewBag.Brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
         ViewBag.Categories = _carRentDbContext.Categories.Where(x => x.isDeleted == false).ToList();
-        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).FirstOrDefault(x => x.Id == id);
+        ViewBag.Pecularities = _carRentDbContext.Peculiarities.Where(x => x.isDeleted == false).ToList();
+        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).Include(x=>x.CarPeculiarities).FirstOrDefault(x => x.Id == id);
+        
         if (car == null) return View("Error-404");
 
         return View(car);
@@ -138,12 +162,15 @@ public class CarController : Controller
     [HttpPost]
     public IActionResult Update(Car newCar)
     {
+        List<CarPeculiarity> carPeculiarities = new List<CarPeculiarity>();
+
         ViewBag.Brands = _carRentDbContext.Brands.Where(x => x.isDeleted == false).ToList();
         ViewBag.Categories = _carRentDbContext.Categories.Where(x => x.isDeleted == false).ToList();
+        ViewBag.Pecularities = _carRentDbContext.Peculiarities.Where(x => x.isDeleted == false).ToList();
         Car existCar = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).FirstOrDefault(x => x.Id == newCar.Id);
         if (existCar == null) return View("Error-404");
         if (!ModelState.IsValid) return View(existCar);
-        //Poster Image--------------------------
+        //Poster Image-------------------------------------------------------
         if (newCar.PosterImageFile is not null)
         {
             if (newCar.PosterImageFile.ContentType != "image/jpeg" && newCar.PosterImageFile.ContentType != "image/png")
@@ -210,6 +237,30 @@ public class CarController : Controller
             }
         }
 
+        //Pecularites-----------------------------
+        if (newCar.PecularitiesIds is not null)
+        {
+            foreach (int pecularityId in newCar.PecularitiesIds)
+            {
+                CarPeculiarity carPeculiarity = new CarPeculiarity
+                {
+                    CarId = existCar.Id,
+                    Car = existCar,
+                    PeculiarityId = pecularityId
+                };
+                List<CarPeculiarity> deletedcarPeculiarities= _carRentDbContext.CarPeculiarities.Where(x => x.CarId == existCar.Id).ToList();
+                _carRentDbContext.CarPeculiarities.RemoveRange(deletedcarPeculiarities);
+
+                _carRentDbContext.CarPeculiarities.Add(carPeculiarity);
+            }
+        }
+        else
+        {
+            List<CarPeculiarity> deletedcarPeculiarities = _carRentDbContext.CarPeculiarities.Where(x => x.CarId == existCar.Id).ToList();
+            _carRentDbContext.CarPeculiarities.RemoveRange(deletedcarPeculiarities);
+
+        }
+
         existCar.BrandId = newCar.BrandId;
         existCar.CategoryId = newCar.CategoryId;
         existCar.Model = newCar.Model;
@@ -222,22 +273,8 @@ public class CarController : Controller
         existCar.Seats = newCar.Seats;
         existCar.Luggage = newCar.Luggage;
         existCar.Fuel = newCar.Fuel;
-        //---Features---
-        existCar.Airconditions = newCar.Airconditions;
-        existCar.ChildSeat = newCar.ChildSeat;
-        existCar.GPS = newCar.GPS;
-        existCar.Music = newCar.Music;
-        existCar.SeatBelt = newCar.SeatBelt;
-        existCar.SleepingBed = newCar.SleepingBed;
-        existCar.Bluetooth = newCar.Bluetooth;
-        existCar.OnboardComputer = newCar.OnboardComputer;
-        existCar.LongTermTrips = newCar.LongTermTrips;
-        existCar.CarKit = newCar.CarKit;
-        existCar.RemoteCentralLocking = newCar.RemoteCentralLocking;
-        existCar.ClimateControl = newCar.ClimateControl;
         existCar.isNew = newCar.isNew;
         existCar.isFeatured = newCar.isFeatured;
-        //--------------
         existCar.Description = newCar.Description;
         existCar.UpdatedDate =DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();

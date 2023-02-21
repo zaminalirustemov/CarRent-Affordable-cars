@@ -21,4 +21,6 @@ public class CarRentDbContext:IdentityDbContext
 	public DbSet<Service> Services { get; set; }
 	public DbSet<InfoBar> InfoBars { get; set; }
 	public DbSet<CarComment> CarComments { get; set; }
+	public DbSet<Peculiarity> Peculiarities { get; set; }
+	public DbSet<CarPeculiarity> CarPeculiarities { get; set; }
 }

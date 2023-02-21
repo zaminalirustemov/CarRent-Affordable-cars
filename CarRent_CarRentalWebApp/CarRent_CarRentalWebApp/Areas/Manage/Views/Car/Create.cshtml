@@ -1,4 +1,12 @@
 ﻿@model Car
+
+<link rel="stylesheet" href="~/manage/assets/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="~/manage/assets/vendors/css/vendor.bundle.base.css">
+<!-- endinject -->
+<!-- Plugin css for this page -->
+<link rel="stylesheet" href="~/manage/assets/vendors/select2/select2.min.css">
+<link rel="stylesheet" href="~/manage/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">Create Car</h3>
@@ -15,7 +23,6 @@
             <div class="card">
                 <div class="card-body">
                     <form class="forms-sample" method="post" enctype="multipart/form-data">
-
 
                         <div class="form-group row">
                             <label asp-for="CategoryId" class="col-sm-3 col-form-label">Category</label>
@@ -133,75 +140,22 @@
                                 </div>
                             </div>
                         </div>
-                        <h3 style="text-align-last:center">--- Features ---</h3>
+                        <h3 style="text-align-last:center">--- Peculiarity ---</h3>
+
                         <div class="form-group row">
-                            <div class="col-sm-4">
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input asp-for="Airconditions" type="checkbox" class="form-check-input" checked=""> Airconditions <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input asp-for="ChildSeat" type="checkbox" class="form-check-input" checked=""> Child Seat <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input asp-for="GPS" type="checkbox" class="form-check-input" checked=""> GPS <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input asp-for="Music" type="checkbox" class="form-check-input" checked=""> Music <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check form-check-danger">
-                                    <label class="form-check-label">
-                                        <input asp-for="SeatBelt" type="checkbox" class="form-check-input" checked=""> Seat Belt <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-danger">
-                                    <label class="form-check-label">
-                                        <input asp-for="SleepingBed" type="checkbox" class="form-check-input" checked=""> Sleeping Bed <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-danger">
-                                    <label class="form-check-label">
-                                        <input asp-for="Bluetooth" type="checkbox" class="form-check-input" checked=""> Bluetooth <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-danger">
-                                    <label class="form-check-label">
-                                        <input asp-for="OnboardComputer" type="checkbox" class="form-check-input" checked=""> On Board Computer <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check form-check-success">
-                                    <label class="form-check-label">
-                                        <input asp-for="LongTermTrips" type="checkbox" class="form-check-input" checked=""> Long Term Trips <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-success">
-                                    <label class="form-check-label">
-                                        <input asp-for="CarKit" type="checkbox" class="form-check-input" checked=""> Car Kit <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-success">
-                                    <label class="form-check-label">
-                                        <input asp-for="RemoteCentralLocking" type="checkbox" class="form-check-input" checked=""> Remote Central Locking <i class="input-helper"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-success">
-                                    <label class="form-check-label">
-                                        <input asp-for="ClimateControl" type="checkbox" class="form-check-input" checked=""> Climate Control <i class="input-helper"></i>
-                                    </label>
-                                </div>
+                            <div class="col-sm-9">
+
+                                <select asp-for="PecularitiesIds" class="js-example-basic-multiple" multiple="multiple" style="width:100%">
+                                    @foreach (Peculiarity peculiarity in ViewBag.Pecularities)
+                                    {
+
+                                            <option value="@peculiarity.Id">@peculiarity.Name</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="PecularitiesIds" class="text-danger"></span>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <div class="form-check form-check-info">
@@ -248,3 +202,23 @@
         </div>
     </div>
 </div>
+
+
+
+<script src="~/manage/assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="~/manage/assets/vendors/select2/select2.min.js"></script>
+<script src="~/manage/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="~/manage/assets/js/off-canvas.js"></script>
+<script src="~/manage/assets/js/hoverable-collapse.js"></script>
+<script src="~/manage/assets/js/misc.js"></script>
+<script src="~/manage/assets/js/settings.js"></script>
+<script src="~/manage/assets/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script src="~/manage/assets/js/file-upload.js"></script>
+<script src="~/manage/assets/js/typeahead.js"></script>
+<script src="~/manage/assets/js/select2.js"></script>

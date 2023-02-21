@@ -25,16 +25,25 @@ public class CarController : Controller
 
     public IActionResult Detail(int id)
     {
+        List<Peculiarity> peculiarities = new List<Peculiarity>();
         ViewBag.NewCars = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages)
                                                 .Where(x => x.isDeleted == false).Where(x => x.isNew == true).Where(x => x.Brand.isDeleted == false).Where(x => x.Category.isDeleted == false)
                                                 .ToList();
-        Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).Include(x => x.CarComments).FirstOrDefault(x => x.Id == id);
+        Car car = _carRentDbContext.Cars.Include(x=>x.CarPeculiarities).Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).Include(x => x.CarComments).FirstOrDefault(x => x.Id == id);
         if (car == null) return View("Error");
         CarDetailViewModel carDetailVM = new CarDetailViewModel
         {
             Car = car,
             CarComments = _carRentDbContext.CarComments.Include(x => x.AppUser).Where(x=>x.isActive==true).Where(x=>x.isDeleted==false).Where(x => x.CarId == id).ToList(),
         };
+
+        foreach (var item in car.CarPeculiarities)
+        {
+            Peculiarity peculiarity = _carRentDbContext.Peculiarities.Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == item.PeculiarityId);
+            if (peculiarity is not null) peculiarities.Add(peculiarity);
+        }
+        ViewBag.Pecularities=peculiarities;
+
         return View(carDetailVM);
     }
     //CarComment--------------------------------------------------------

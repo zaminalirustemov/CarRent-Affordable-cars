@@ -31,24 +31,6 @@ public class Car
     public bool isNew { get; set; }
     public bool isDeleted { get; set; }
     public bool isRent { get; set; }
-
-    //Featured******
-    public bool Airconditions { get; set; }
-    public bool ChildSeat { get; set; }
-    public bool GPS { get; set; }
-    public bool Music { get; set; }
-
-    public bool SeatBelt { get; set; }
-    public bool SleepingBed { get; set; }
-    public bool Bluetooth { get; set; }
-    public bool OnboardComputer{ get; set; }
-
-    public bool LongTermTrips { get; set; }
-    public bool CarKit{ get; set; }
-    public bool RemoteCentralLocking { get; set; }
-    public bool ClimateControl{ get; set; }
-    //Featured End*****
-
     public DateTime? CreatedDate { get; set; }
     public DateTime? UpdatedDate { get; set; }
 
@@ -56,6 +38,7 @@ public class Car
     public Brand? Brand { get; set; }
     public Category? Category { get; set; }
     public List<OrderItem>? OrderItems { get; set; }
+    public List<CarPeculiarity>? CarPeculiarities { get; set; }
     public List<CarComment>? CarComments { get; set; }
     public List<CarImage>? CarImages { get; set; }
     [NotMapped]
@@ -64,5 +47,7 @@ public class Car
     public List<IFormFile>? ImageFiles { get; set; }
     [NotMapped]
     public List<int>? CarImagesIds { get; set; }
+    [NotMapped]
+    public List<int>? PecularitiesIds { get; set; }
 
 }

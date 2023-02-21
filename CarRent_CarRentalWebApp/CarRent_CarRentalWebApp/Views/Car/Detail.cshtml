@@ -142,32 +142,14 @@
 
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-                            <div class="row">
+                            @foreach (Peculiarity peculiarity in ViewBag.Pecularities)
+                            {
                                 <div class="col-md-4">
                                     <ul class="features">
-                                        <li class="@(Model.Car.Airconditions? "check" : "remove")"><span class="ion-ios-@(Model.Car.Airconditions? "checkmark" : "close")"></span>Airconditions</li>
-                                        <li class="@(Model.Car.ChildSeat? "check" : "remove")"><span class="ion-ios-@(Model.Car.ChildSeat? "checkmark" : "close")"></span>Child Seat</li>
-                                        <li class="@(Model.Car.GPS? "check" : "remove")"><span class="ion-ios-@(Model.Car.GPS? "checkmark" : "close")"></span>GPS</li>
-                                        <li class="@(Model.Car.Music? "check" : "remove")"><span class="ion-ios-@(Model.Car.Music? "checkmark" : "close")"></span>Music</li>
+                                        <li class="check"><span class="ion-ios-checkmark"></span>@peculiarity.Name</li>
                                     </ul>
                                 </div>
-                                <div class="col-md-4">
-                                    <ul class="features">
-                                        <li class="@(Model.Car.SeatBelt? "check" : "remove")"><span class="ion-ios-@(Model.Car.SeatBelt? "checkmark" : "close")"></span>Seat Belt</li>
-                                        <li class="@(Model.Car.SleepingBed? "check" : "remove")"><span class="ion-ios-@(Model.Car.SleepingBed? "checkmark" : "close")"></span>Sleeping Bed</li>
-                                        <li class="@(Model.Car.Bluetooth? "check" : "remove")"><span class="ion-ios-@(Model.Car.Bluetooth? "checkmark" : "close")"></span>Bluetooth</li>
-                                        <li class="@(Model.Car.OnboardComputer? "check" : "remove")"><span class="ion-ios-@(Model.Car.OnboardComputer? "checkmark" : "close")"></span>Onboard computer</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="features">
-                                        <li class="@(Model.Car.LongTermTrips? "check" : "remove")"><span class="ion-ios-@(Model.Car.LongTermTrips? "checkmark" : "close")"></span>Long Term Trips</li>
-                                        <li class="@(Model.Car.CarKit? "check" : "remove")"><span class="ion-ios-@(Model.Car.CarKit? "checkmark" : "close")"></span>Car Kit</li>
-                                        <li class="@(Model.Car.RemoteCentralLocking? "check" : "remove")"><span class="ion-ios-@(Model.Car.RemoteCentralLocking? "checkmark" : "close")"></span>Remote central locking</li>
-                                        <li class="@(Model.Car.ClimateControl? "check" : "remove")"><span class="ion-ios-@(Model.Car.ClimateControl? "checkmark" : "close")"></span>Climate control</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            }
                         </div>
 
                         <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
