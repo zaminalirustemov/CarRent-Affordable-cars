@@ -39,4 +39,89 @@ public class CommentController : Controller
         if (comment is null) return View("Error-404");
         return View(comment);
     }
+    //Status---------------------------------------------------------------------------------------------------------------------
+    public IActionResult New(int id)
+    {
+        CarComment comment = _carRentDbContext.CarComments.FirstOrDefault(x => x.Id == id);
+        if (comment is null) return View("Error-404");
+
+        comment.isActive = null;
+        _carRentDbContext.SaveChanges();
+        return RedirectToAction("Detail", new {id=comment.Id});
+    }
+    public IActionResult Active(int id)
+    {
+        CarComment comment = _carRentDbContext.CarComments.FirstOrDefault(x => x.Id == id);
+        if (comment is null) return View("Error-404");
+
+        comment.isActive = true;
+        _carRentDbContext.SaveChanges();
+        return RedirectToAction("Detail", new { id = comment.Id });
+    }
+    public IActionResult Passive(int id)
+    {
+        CarComment comment = _carRentDbContext.CarComments.FirstOrDefault(x => x.Id == id);
+        if (comment is null) return View("Error-404");
+
+        comment.isActive = false;
+        _carRentDbContext.SaveChanges();
+        return RedirectToAction("Detail", new { id = comment.Id });
+    }
+    //Soft Delete--------------------------------------------------------------------------
+    public IActionResult SoftDelete(int id)
+    {
+        CarComment comment = _carRentDbContext.CarComments.FirstOrDefault(x => x.Id == id);
+        if (comment is null) return View("Error-404");
+
+        comment.isDeleted = true;
+        _carRentDbContext.SaveChanges();
+
+        return Ok();
+    }
+
+
+    //*************************************************************************************
+    //*************************************Recycle Bin*************************************
+    //*************************************************************************************
+    //Deleted Index------------------------------------------------------------------------
+    public IActionResult DeletedIndex(int page = 1)
+    {
+        var query = _carRentDbContext.CarComments.Include(x => x.Car.CarImages).Include(x => x.AppUser).Where(x => x.isDeleted == true).OrderByDescending(x => x.SendedDate).AsQueryable();
+        var paginatedList = PaginatedList<CarComment>.Create(query, 5, page);
+        return View(paginatedList);
+    }
+    //Restore------------------------------------------------------------------------------
+    public IActionResult Restore(int id)
+    {
+        CarComment comment = _carRentDbContext.CarComments.FirstOrDefault(x => x.Id == id);
+        if (comment is null) return View("Error-404");
+
+        comment.isDeleted = false;
+        _carRentDbContext.SaveChanges();
+
+        return RedirectToAction(nameof(DeletedIndex));
+    }
+    //Hard Delete--------------------------------------------------------------------------
+    public IActionResult HardDelete(int id)
+    {
+        CarComment comment = _carRentDbContext.CarComments.FirstOrDefault(x => x.Id == id);
+        if (comment is null) return View("Error-404");
+
+        _carRentDbContext.CarComments.Remove(comment);
+        _carRentDbContext.SaveChanges();
+
+        return Ok();
+    }
+    //All Delete-----------------------------------------------------------------------
+    public IActionResult AllDelete()
+    {
+        List<CarComment> carComments = _carRentDbContext.CarComments.Where(x => x.isDeleted == true).ToList();
+        if(carComments.Count==0) return BadRequest();
+
+        _carRentDbContext.CarComments.RemoveRange(carComments);
+        _carRentDbContext.SaveChanges();
+
+        return Ok();
+    }
+
 }

@@ -1,0 +1,145 @@
+﻿@model PaginatedList<CarComment>
+@{
+    int count = (Model.ActivePage - 1) * 5;
+}
+@section css{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Deleted Comment Table </h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Recycle Bin</li>
+                    <li class="breadcrumb-item">Comment</li>
+                    <li class="breadcrumb-item active" aria-current="page">Table</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <a asp-action="AllDelete" asp-controller="comment" class="btn btn-danger all-delete-button">All Delete</a>
+                                <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>Car Image</th>
+                                        <th>Username</th>
+                                        <th>Fullname</th>
+                                        <th>Comment</th>
+                                        <th>Rating</th>
+                                        <th>Sended Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (CarComment comment in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <td>@count</td>
+                                        <td>
+                                            <img style="border: outset;width: 100px;height: 100px;" src="~/uploads/car/@comment.Car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="">
+
+                                        </td>
+                                        <td>@comment.AppUser.UserName</td>
+                                        <td>@comment.AppUser.Fullname</td>
+                                        <td>
+
+                                            @if (comment.Comment.Length > 25)
+                                            {
+                                                @comment.Comment.Substring(0,25)
+
+                                                <p>.....</p>
+                                            }
+                                            else
+                                            {
+                                                @comment.Comment
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (comment.Rating == 5)
+                                            {
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star"></i>
+                                            }
+                                            else if (comment.Rating == 4)
+                                            {
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star-outline"></i>
+                                            }
+                                            else if (comment.Rating == 3)
+                                            {
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star-outline"></i>
+                                                <i class="mdi mdi-star-outline"></i>
+                                            }
+                                            else if (comment.Rating == 2)
+                                            {
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star-outline"></i>
+                                                <i class="mdi mdi-star-outline"></i>
+                                                <i class="mdi mdi-star-outline"></i>
+                                            }
+                                            else if (comment.Rating == 1)
+                                            {
+                                                <i class="mdi mdi-star"></i>
+                                                <i class="mdi mdi-star-outline"></i>
+                                                <i class="mdi mdi-star-outline"></i>
+                                                <i class="mdi mdi-star-outline"></i>
+                                                <i class="mdi mdi-star-outline"></i>
+                                            }
+                                        </td>
+                                        <td>@String.Format("{0:d/M/yyyy HH:mm:ss}", comment.SendedDate).Replace(" ","-")</td>
+                                        <td>
+                                            <a class="btn btn-outline-info" asp-action="detail" asp-controller="comment" asp-route-id="@comment.Id">Detail</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-outline-primary" asp-action="restore" asp-controller="comment" asp-route-id="@comment.Id"><i style="margin:0px" class="mdi mdi-file-restore"></i></a>
+                                            <a class="btn btn-outline-danger harddelete-btn" asp-action="harddelete" asp-controller="comment" asp-route-id="@comment.Id"><i style="margin:0px" class="mdi mdi-delete"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            @if (Model.PreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="index" asp-route-page="@(Model.ActivePage-1)">&laquo;</a>
+                </li>
+            }
+            @for (int i = 1; i <= Model.TotalPageCount; i++)
+            {
+                <li class="page-item @(Model.ActivePage==i? "active" :"")"><a class="page-link" asp-action="index" asp-route-page="@i">@i</a></li>
+            }
+            @if (Model.NextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="index" asp-route-page="@(Model.ActivePage+1)">&raquo;</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}

@@ -1,4 +1,9 @@
-﻿
+﻿@model List<Car>
+@{
+    int count;
+    int totalRating;
+    int averageRating = 0;
+}
 <section class="ftco-section ftco-cart">
     <div class="container">
         <div class="row">
@@ -15,102 +20,69 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="">
-                                <td class="car-image"><div class="img" style="background-image:url(../assets/images/car-1.jpg);"></div></td>
-                                <td class="product-name">
-                                    <h3>Cheverolet SUV Car</h3>
-                                    <p class="mb-0 rated">
-                                        <span>rated:</span>
-                                        <span class="ion-ios-star"></span>
-                                        <span class="ion-ios-star"></span>
-                                        <span class="ion-ios-star"></span>
-                                        <span class="ion-ios-star"></span>
-                                        <span class="ion-ios-star"></span>
-                                    </p>
-                                </td>
+                            @foreach (Car car in Model)
+                            {
 
-                                <td class="price">
-                                    <p class="btn-custom"><a href="#">Rent a car</a></p>
-                                    <div class="price-rate">
-                                        <h3>
-                                            <span class="num"><small class="currency">$</small> 10.99</span>
-                                            <span class="per">/per hour</span>
-                                        </h3>
-                                        <span class="subheading">$3/hour fuel surcharges</span>
-                                    </div>
-                                </td>
+                                totalRating = 0;
+                                count = 0;
 
-                                <td class="price">
-                                    <p class="btn-custom"><a href="#">Rent a car</a></p>
-                                    <div class="price-rate">
-                                        <h3>
-                                            <span class="num"><small class="currency">$</small> 60.99</span>
-                                            <span class="per">/per day</span>
-                                        </h3>
-                                        <span class="subheading">$3/hour fuel surcharges</span>
-                                    </div>
-                                </td>
+                                <tr class="">
+                                    <td class="car-image"><div class="img"><img style="max-width:100%" src="~/uploads/car/@car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" /></div></td>
+                                    <td class="product-name">
+                                        <h3>@car.Brand.Name @car.Category.Name @car.Model</h3>
+                                        <p class="mb-0 rated">
+                                            <span>rated:</span>
+                                            @foreach (CarComment comment in car.CarComments.Where(x => x.isActive == true).Where(x => x.isDeleted == false))
+                                            {
+                                                totalRating += comment.Rating;
+                                                count++;
+                                            }
 
-                                <td class="price">
-                                    <p class="btn-custom"><a href="#">Rent a car</a></p>
-                                    <div class="price-rate">
-                                        <h3>
-                                            <span class="num"><small class="currency">$</small> 995.99</span>
-                                            <span class="per">/per month</span>
-                                        </h3>
-                                        <span class="subheading">$3/hour fuel surcharges</span>
-                                    </div>
-                                </td>
-                            </tr><!-- END TR-->
+                                            <input type="hidden"@(averageRating = (int)Math.Ceiling((double)totalRating / count))>
 
-                            <tr class="">
-                                <td class="car-image"><div class="img" style="background-image:url(../assets/images/car-2.jpg);"></div></td>
-                                <td class="product-name">
-                                    <h3>Cheverolet SUV Car</h3>
-                                    <p class="mb-0 rated">
-                                        <span>rated:</span>
-                                        <span class="ion-ios-star"></span>
-                                        <span class="ion-ios-star"></span>
-                                        <span class="ion-ios-star"></span>
-                                        <span class="ion-ios-star"></span>
-                                        <span class="ion-ios-star"></span>
-                                    </p>
-                                </td>
+                                            @for (int i = 0; i < averageRating; i++)
+                                            {
+                                                <span class="ion-ios-star"></span>
 
-                                <td class="price">
-                                    <p class="btn-custom"><a href="#">Rent a car</a></p>
-                                    <div class="price-rate">
-                                        <h3>
-                                            <span class="num"><small class="currency">$</small> 10.99</span>
-                                            <span class="per">/per hour</span>
-                                        </h3>
-                                        <span class="subheading">$3/hour fuel surcharges</span>
-                                    </div>
-                                </td>
+                                            }
+                                        </p>
+                                    </td>
 
-                                <td class="price">
-                                    <p class="btn-custom"><a href="#">Rent a car</a></p>
-                                    <div class="price-rate">
-                                        <h3>
-                                            <span class="num"><small class="currency">$</small> 60.99</span>
-                                            <span class="per">/per day</span>
-                                        </h3>
-                                        <span class="subheading">$3/hour fuel surcharges</span>
-                                    </div>
-                                </td>
+                                    <td class="price">
+                                        <p class="btn-custom"><a href="#">Rent a car</a></p>
+                                        <div class="price-rate">
+                                            <h3>
+                                                <span class="num"><small class="currency">$</small> @car.PricePerHour</span>
+                                                <span class="per">/per hour</span>
+                                            </h3>
+                                            <span class="subheading">$@(car.ConsumptionPer100KM)/hour fuel surcharges</span>
+                                        </div>
+                                    </td>
 
-                                <td class="price">
-                                    <p class="btn-custom"><a href="#">Rent a car</a></p>
-                                    <div class="price-rate">
-                                        <h3>
-                                            <span class="num"><small class="currency">$</small> 995.99</span>
-                                            <span class="per">/per month</span>
-                                        </h3>
-                                        <span class="subheading">$3/hour fuel surcharges</span>
-                                    </div>
-                                </td>
-                            </tr><!-- END TR-->
+                                    <td class="price">
+                                        <p class="btn-custom"><a href="#">Rent a car</a></p>
+                                        <div class="price-rate">
+                                            <h3>
+                                                <span class="num"><small class="currency">$</small> @car.PricePerDay</span>
+                                                <span class="per">/per day</span>
+                                            </h3>
+                                            <span class="subheading">$@(car.ConsumptionPer100KM)/hour fuel surcharges</span>
+                                        </div>
+                                    </td>
 
+                                    <td class="price">
+                                        <p class="btn-custom"><a href="#">Rent a car</a></p>
+                                        <div class="price-rate">
+                                            <h3>
+                                                <span class="num"><small class="currency">$</small> @car.PricePerMonth</span>
+                                                <span class="per">/per month</span>
+                                            </h3>
+                                            <span class="subheading">$@(car.ConsumptionPer100KM)/hour fuel surcharges</span>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
                         </tbody>
                     </table>
                 </div>
