@@ -1,0 +1,31 @@
+﻿@model Peculiarity
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">Detail Peculiarity</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Peculiarity</li>
+                <li class="breadcrumb-item">Table</li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form class="forms-sample">
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-9" style="border:outset;padding-top: 5px;padding-bottom: 5px;">
+                                <span>@Model.Name</span>
+                            </div>
+                        </div>
+                        <button asp-action="index" asp-controller="peculiarity" class="btn btn-dark">Go Back</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

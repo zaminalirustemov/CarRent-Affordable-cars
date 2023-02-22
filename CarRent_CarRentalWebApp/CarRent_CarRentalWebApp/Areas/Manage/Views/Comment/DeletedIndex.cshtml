@@ -60,44 +60,12 @@
                                             }
                                         </td>
                                         <td>
-                                            @if (comment.Rating == 5)
+                                            @for (int i = 0; i < comment.Rating; i++)
                                             {
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star"></i>
                                                 <i class="mdi mdi-star"></i>
                                             }
-                                            else if (comment.Rating == 4)
+                                            @for (int j = 0; j < (5 - comment.Rating); j++)
                                             {
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star-outline"></i>
-                                            }
-                                            else if (comment.Rating == 3)
-                                            {
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star-outline"></i>
-                                                <i class="mdi mdi-star-outline"></i>
-                                            }
-                                            else if (comment.Rating == 2)
-                                            {
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star-outline"></i>
-                                                <i class="mdi mdi-star-outline"></i>
-                                                <i class="mdi mdi-star-outline"></i>
-                                            }
-                                            else if (comment.Rating == 1)
-                                            {
-                                                <i class="mdi mdi-star"></i>
-                                                <i class="mdi mdi-star-outline"></i>
-                                                <i class="mdi mdi-star-outline"></i>
-                                                <i class="mdi mdi-star-outline"></i>
                                                 <i class="mdi mdi-star-outline"></i>
                                             }
                                         </td>
@@ -123,17 +91,17 @@
             @if (Model.PreviousPage)
             {
                 <li class="page-item">
-                    <a class="page-link" asp-action="index" asp-route-page="@(Model.ActivePage-1)">&laquo;</a>
+                    <a class="page-link" asp-action="deletedindex" asp-route-page="@(Model.ActivePage-1)">&laquo;</a>
                 </li>
             }
             @for (int i = 1; i <= Model.TotalPageCount; i++)
             {
-                <li class="page-item @(Model.ActivePage==i? "active" :"")"><a class="page-link" asp-action="index" asp-route-page="@i">@i</a></li>
+                <li class="page-item @(Model.ActivePage==i? "active" :"")"><a class="page-link" asp-action="deletedindex" asp-route-page="@i">@i</a></li>
             }
             @if (Model.NextPage)
             {
                 <li class="page-item">
-                    <a class="page-link" asp-action="index" asp-route-page="@(Model.ActivePage+1)">&raquo;</a>
+                    <a class="page-link" asp-action="deletedindex" asp-route-page="@(Model.ActivePage+1)">&raquo;</a>
                 </li>
             }
         </ul>

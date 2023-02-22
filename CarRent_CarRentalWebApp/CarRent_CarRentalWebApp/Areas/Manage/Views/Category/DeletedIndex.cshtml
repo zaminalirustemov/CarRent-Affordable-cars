@@ -66,17 +66,17 @@
             @if (Model.PreviousPage)
             {
                 <li class="page-item">
-                    <a class="page-link" asp-action="index" asp-route-page="@(Model.ActivePage-1)">&laquo;</a>
+                    <a class="page-link" asp-action="deletedindex" asp-route-page="@(Model.ActivePage-1)">&laquo;</a>
                 </li>
             }
             @for (int i = 1; i <= Model.TotalPageCount; i++)
             {
-                <li class="page-item @(Model.ActivePage==i? "active" :"")"><a class="page-link" asp-action="index" asp-route-page="@i">@i</a></li>
+                <li class="page-item @(Model.ActivePage==i? "active" :"")"><a class="page-link" asp-action="deletedindex" asp-route-page="@i">@i</a></li>
             }
             @if (Model.NextPage)
             {
                 <li class="page-item">
-                    <a class="page-link" asp-action="index" asp-route-page="@(Model.ActivePage+1)">&raquo;</a>
+                    <a class="page-link" asp-action="deletedindex" asp-route-page="@(Model.ActivePage+1)">&raquo;</a>
                 </li>
             }
         </ul>

@@ -182,44 +182,17 @@
                                                 </h4>
                                                 <p class="star">
                                                     <span>
-                                                        @if (comment.Rating == 5)
-                                                        {
-                                                            <i class="ion-ios-star"></i>
-                                                            <i class="ion-ios-star"></i>
-                                                            <i class="ion-ios-star"></i>
-                                                            <i class="ion-ios-star"></i>
-                                                            <i class="ion-ios-star"></i>
-                                                        }
-                                                        else if (comment.Rating == 4)
-                                                        {
-                                                            <i class="ion-ios-star"></i>
-                                                            <i class="ion-ios-star"></i>
-                                                            <i class="ion-ios-star"></i>
-                                                            <i class="ion-ios-star"></i>
-                                                        }
-                                                        else if (comment.Rating == 3)
-                                                        {
-                                                            <i class="ion-ios-star"></i>
-                                                            <i class="ion-ios-star"></i>
-                                                            <i class="ion-ios-star"></i>
-                                                        }
-                                                        else if (comment.Rating == 2)
-                                                        {
-                                                            <i class="ion-ios-star"></i>
-                                                            <i class="ion-ios-star"></i>
-                                                        }
-                                                        else if (comment.Rating == 1)
+                                                        @for (int i = 0; i < comment.Rating; i++)
                                                         {
                                                             <i class="ion-ios-star"></i>
                                                         }
+                                                        
                                                     </span>
                                                 </p>
                                                 <p>@comment.Comment</p>
                                             </div>
                                         </div>
                                     }
-
-
                                 </div>
                                 <div class="col-md-5">
                                     <div class="rating-wrap">
@@ -227,38 +200,40 @@
                                         <div class="wrap">
                                             <p class="star">
                                                 <span>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
+                                                    @for (int i = 0; i < 5; i++)
+                                                    {
+                                                        <i class="ion-ios-star"></i>
+                                                    }
                                                     (@(star5Review * 100 / totalReview)%)
                                                 </span>
                                                 <span>@star5Review Reviews</span>
                                             </p>
                                             <p class="star">
                                                 <span>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
+                                                    @for (int i = 0; i < 4; i++)
+                                                    {
+                                                            <i class="ion-ios-star"></i>
+                                                    }
                                                     (@(star4Review * 100 / totalReview)%)
                                                 </span>
                                                 <span>@star4Review Reviews</span>
                                             </p>
                                             <p class="star">
                                                 <span>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
+                                                    @for (int i = 0; i < 3; i++)
+                                                    {
+                                                        <i class="ion-ios-star"></i>
+                                                    }
                                                     (@(star3Review * 100 / totalReview)%)
                                                 </span>
                                                 <span>@star3Review Reviews</span>
                                             </p>
                                             <p class="star">
                                                 <span>
-                                                    <i class="ion-ios-star"></i>
-                                                    <i class="ion-ios-star"></i>
+                                                    @for (int i = 0; i < 2; i++)
+                                                    {
+                                                        <i class="ion-ios-star"></i>
+                                                    }
                                                     (@(star2Review * 100 / totalReview)%)
                                                 </span>
                                                 <span>@star2Review Reviews</span>

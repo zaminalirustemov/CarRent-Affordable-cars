@@ -30,44 +30,13 @@
                             }
                             <p class="mb-4"><b>Comment:</b><br />@Model.Comment</p>
                             <p class="mb-4">
-                                <b>Rating:</b><br />@if (Model.Rating == 5)
+                                <b>Rating:</b><br />
+                                @for (int i = 0; i < Model.Rating; i++)
                                 {
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star"></i>
                                     <i class="mdi mdi-star"></i>
                                 }
-                                else if (Model.Rating == 4)
+                                @for (int j = 0; j < (5 - Model.Rating); j++)
                                 {
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star-outline"></i>
-                                }
-                                else if (Model.Rating == 3)
-                                {
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star-outline"></i>
-                                    <i class="mdi mdi-star-outline"></i>
-                                }
-                                else if (Model.Rating == 2)
-                                {
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star-outline"></i>
-                                    <i class="mdi mdi-star-outline"></i>
-                                    <i class="mdi mdi-star-outline"></i>
-                                }
-                                else if (Model.Rating == 1)
-                                {
-                                    <i class="mdi mdi-star"></i>
-                                    <i class="mdi mdi-star-outline"></i>
-                                    <i class="mdi mdi-star-outline"></i>
-                                    <i class="mdi mdi-star-outline"></i>
                                     <i class="mdi mdi-star-outline"></i>
                                 }
                             </p>

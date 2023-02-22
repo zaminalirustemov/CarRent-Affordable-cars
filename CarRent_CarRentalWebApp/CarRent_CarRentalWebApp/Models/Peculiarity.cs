@@ -7,6 +7,8 @@ public class Peculiarity
     [StringLength(maximumLength: 50)]
     public string Name { get; set; }
     public bool isDeleted { get; set; }
+    public DateTime? CreatedDate { get; set; }
+    public DateTime? UpdatedDate { get; set; }
 
     public List<CarPeculiarity>? CarPeculiarities { get; set; }
 }
