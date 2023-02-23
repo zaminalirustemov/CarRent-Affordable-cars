@@ -1,0 +1,54 @@
+﻿@model Blog
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">Create Blog</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Blog</li>
+                <li class="breadcrumb-item">Table</li>
+                <li class="breadcrumb-item active" aria-current="page">Create</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form class="forms-sample" method="post" enctype="multipart/form-data">
+                        
+                        <div class="form-group row">
+                            <label asp-for="ImageFile" class="col-sm-3 col-form-label">Image</label>
+                            <div class="col-sm-9">
+                                <input asp-for="ImageFile" class="form-control">
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Title" class="col-sm-3 col-form-label">Title</label>
+                            <div class="col-sm-9">
+                                <input asp-for="Title" class="form-control" placeholder="Title">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Paragraph" class="col-sm-3 col-form-label">Paragraph</label>
+                            <div class="col-sm-9">
+                                <input asp-for="Paragraph" class="form-control" placeholder="Paragraph">
+                                <span asp-validation-for="Paragraph" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Description" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea asp-for="Description" class="form-control" id="exampleTextarea1" rows="10"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-inverse-success mr-2">Create</button>
+                        <button asp-action="index" asp-controller="Blog" class="btn btn-dark">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

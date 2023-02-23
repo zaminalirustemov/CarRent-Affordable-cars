@@ -22,6 +22,7 @@
     <Folder Include="wwwroot\uploads\hero\" />
     <Folder Include="wwwroot\uploads\aboutus\" />
     <Folder Include="wwwroot\uploads\doyouwant\" />
+    <Folder Include="wwwroot\uploads\blog\" />
     <Folder Include="wwwroot\uploads\user\" />
   </ItemGroup>
 

@@ -1,0 +1,107 @@
+﻿@model PaginatedList<Blog>
+@{
+    int count = (Model.ActivePage - 1) * 5;
+}
+@section css{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Deleted Blog Table </h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+
+                    <li class="breadcrumb-item">Recycle Bin</li>
+                    <li class="breadcrumb-item">Blog</li>
+                    <li class="breadcrumb-item active" aria-current="page">Table</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <a asp-action="AllDelete" asp-controller="Blog" class="btn btn-danger all-delete-button">All Delete</a>
+                                <thead>
+                                    <tr>
+                                        <th> </th>
+                                        <th>№</th>
+                                        <th>Image</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Paragraph</th>
+                                        <th>Created Date<br />Updated Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (Blog blog in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <td>
+                                            <a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id" class="btn btn-info"><i style="margin:0px" class="mdi mdi-eye"></i></a>
+                                        </td>
+                                        <td>@count</td>
+                                        <td>
+                                            <img style="border: outset;width: 100px;height: 100px;" src="~/uploads/blog/@blog.ImageName" class="img-fluid" alt="">
+                                        </td>
+                                        <td>@blog.Title</td>
+                                        <td>
+                                            @if (blog.Description.Length > 25)
+                                            {
+                                                @blog.Description.Substring(0,25)
+
+                                                <p>.....</p>
+                                            }
+                                            else
+                                            {
+                                                @blog.Description
+                                            }
+
+                                        <td>@blog.Paragraph</td>
+                                        <td>@String.Format("{0:d/M/yyyy HH:mm:ss}", blog.CreatedDate).Replace(" ","-")<br />@String.Format("{0:d/M/yyyy HH:mm:ss}", blog.UpdatedDate).Replace(" ","-")</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Actions </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2" style="">
+                                                    <a class="dropdown-item btn btn-primary" asp-action="restore" asp-controller="blog" asp-route-id="@blog.Id">Restore</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item btn btn-danger harddelete-btn" asp-action="harddelete" asp-controller="blog" asp-route-id="@blog.Id">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            @if (Model.PreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="deletedindex" asp-route-page="@(Model.ActivePage-1)">&laquo;</a>
+                </li>
+            }
+            @for (int i = 1; i <= Model.TotalPageCount; i++)
+            {
+                <li class="page-item @(Model.ActivePage==i? "active" :"")"><a class="page-link" asp-action="deletedindex" asp-route-page="@i">@i</a></li>
+            }
+            @if (Model.NextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="deletedindex" asp-route-page="@(Model.ActivePage+1)">&raquo;</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
