@@ -47,10 +47,6 @@ public class CarController : Controller
         return View(carDetailVM);
     }
     //CarComment--------------------------------------------------------
-    public async Task<IActionResult> CarComment()
-    {
-        return View();
-    }
     [HttpPost]
     public async Task<IActionResult> CarComment(CarComment carComment)
     {
