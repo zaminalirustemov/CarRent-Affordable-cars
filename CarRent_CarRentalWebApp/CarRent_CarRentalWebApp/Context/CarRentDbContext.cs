@@ -26,4 +26,5 @@ public class CarRentDbContext:IdentityDbContext
 	public DbSet<Blog> Blogs { get; set; }
 	public DbSet<BlogComment> BlogComments { get; set; }
 	public DbSet<Contact> Contacts { get; set; }
+	public DbSet<Settings> Settings { get; set; }
 }

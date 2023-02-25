@@ -1,4 +1,5 @@
 ﻿using CarRent_CarRentalWebApp.Context;
+using CarRent_CarRentalWebApp.Helpers;
 using CarRent_CarRentalWebApp.Models;
 using CarRent_CarRentalWebApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -16,10 +17,12 @@ public class BlogController : Controller
         _carRentDbContext = carRentDbContext;
         _userManager = userManager;
     }
-    public IActionResult Index() 
+    public IActionResult Index(int page=1) 
     {
-        List<Blog> blogs = _carRentDbContext.Blogs.Include(x=>x.BlogComments).Where(x => x.isDeleted == false).ToList();
-        return View(blogs);
+        var query = _carRentDbContext.Blogs.Include(x=>x.BlogComments).Where(x => x.isDeleted == false).AsQueryable();
+        var paginatedList = PaginatedList<Blog>.Create(query, 3, page);
+
+        return View(paginatedList);
     }
     //Detail----------------------------------------------------------------------------------------
     public IActionResult Detail(int id)

@@ -665,6 +665,29 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.ToTable("Services");
                 });
 
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Settings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Settings");
+                });
+
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Testimonial", b =>
                 {
                     b.Property<int>("Id")

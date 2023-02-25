@@ -1,4 +1,4 @@
-﻿@model List<Car>
+﻿@model PaginatedList<Car>
 @{
     int count;
     int totalRating;
@@ -86,6 +86,31 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col text-center">
+            <div class="block-27">
+                <ul>
+                    @if (Model.PreviousPage)
+                    {
+                        <li>
+                            <a asp-action="index" asp-route-page="@(Model.ActivePage-1)">&lt;</a>
+                        </li>
+                    }
+                    @for (int i = 1; i <= Model.TotalPageCount; i++)
+                    {
+                        <li class="@(Model.ActivePage==i? "active" :"")"><a asp-action="index" asp-route-page="@i">@i</a></li>
+                    }
+                    @if (Model.NextPage)
+                    {
+                        <li>
+                            <a asp-action="index" asp-route-page="@(Model.ActivePage+1)">&gt;</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
     </div>

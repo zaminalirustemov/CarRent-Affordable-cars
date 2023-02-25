@@ -1,4 +1,5 @@
 ﻿using CarRent_CarRentalWebApp.Context;
+using CarRent_CarRentalWebApp.Helpers;
 using CarRent_CarRentalWebApp.Models;
 using CarRent_CarRentalWebApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -16,11 +17,12 @@ public class CarController : Controller
         _carRentDbContext = carRentDbContext;
         _userManager = userManager;
     }
-    public IActionResult Index()
+    public IActionResult Index(int page=1)
     {
-        List<Car> cars = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages)
-                                               .Where(x => x.isDeleted == false).Where(x => x.Brand.isDeleted == false).Where(x => x.Category.isDeleted == false).ToList();
-        return View(cars);
+        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).Where(x => x.isDeleted == false).Where(x => x.Brand.isDeleted == false).Where(x => x.Category.isDeleted == false).AsQueryable();
+        var paginatedList = PaginatedList<Car>.Create(query, 9, page);
+
+        return View(paginatedList);
     }
 
     public IActionResult Detail(int id)

@@ -1,4 +1,9 @@
-﻿@model ContactViewModel
+﻿@inject CarRent_CarRentalWebApp.Services.MemberLayoutService memberservice
+@{
+    List<Settings> settings = await memberservice.GetSettingsAsync();
+}
+
+@model ContactViewModel
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -21,7 +26,7 @@
                             <div class="icon mr-3">
                                 <span class="icon-map-o"></span>
                             </div>
-                            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                            <p><span>Address:</span> @settings.FirstOrDefault(x=>x.Key=="ContactAddress").Value</p>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -29,7 +34,7 @@
                             <div class="icon mr-3">
                                 <span class="icon-mobile-phone"></span>
                             </div>
-                            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                            <p><span>Phone:</span> <a href="#">@settings.FirstOrDefault(x=>x.Key=="ContactPhone").Value</a></p>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -37,7 +42,7 @@
                             <div class="icon mr-3">
                                 <span class="icon-envelope-o"></span>
                             </div>
-                            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                            <p><span>Email:</span> <a href="#">@settings.FirstOrDefault(x=>x.Key=="ContactEmail").Value</a></p>
                         </div>
                     </div>
                 </div>
@@ -67,7 +72,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12 bg-white" style="text-align-last:center">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48935.154995847435!2d49.335097993023176!3d39.95375352914793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403ae7a85745153f%3A0x4be6a74caef4b8e6!2sAlat!5e0!3m2!1str!2saz!4v1677328708582!5m2!1str!2saz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48935.142938062454!2d49.3718378594131!3d39.953770381774454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403ae7a85745153f%3A0x4be6a74caef4b8e6!2sAlat!5e0!3m2!1str!2saz!4v1677331317573!5m2!1str!2saz" width="1110" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>

@@ -1,0 +1,47 @@
+﻿@model List<Settings>
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Settings Table </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Settings</li>
+                <li class="breadcrumb-item active" aria-current="page">Table</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body" >
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th> </th>
+                                    <th>Key</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Settings settings in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-action="detail" asp-controller="settings" asp-route-id="@settings.Id" class="btn btn-info"><i style="margin:0px" class="mdi mdi-eye"></i></a>
+                                        </td>
+                                        <td>@settings.Key</td>
+                                        <td>@settings.Value</td>
+                                        <td>
+                                            <a asp-action="update" asp-controller="settings" asp-route-id="@settings.Id" class="btn btn-outline-primary">Update</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
