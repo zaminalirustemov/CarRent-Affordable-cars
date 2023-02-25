@@ -28,11 +28,18 @@
                         {
                             <li class="comment">
                                 <div class="vcard bio">
-                                    <img src="~/uploads/user/@comment.AppUser.ImageName" alt="Image placeholder">
-                                </div>
+                                    @if (comment.AppUser.ImageName is null)
+                                    {
+                                        <img src="~/assets/images/memperphoto.jpg" alt="Image placeholder" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/uploads/user/@comment.AppUser.ImageName" alt="Image placeholder" />
+                                    }
+                               </div>
                                 <div class="comment-body">
                                     <h3>@comment.AppUser.Fullname</h3>
-                                    <div class="meta">Oct. 29, 2019 at 1:21pm</div>
+                                    <div class="meta">@String.Format("{0:f}", comment.SendedDate);</div>
                                     <p>
                                         @comment.Comment
                                     </p>
@@ -46,17 +53,14 @@
 
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
-                        <form asp-action="blogcomment" asp-controller="blog" method="post" class="p-5 bg-light">
-                            <input type="hidden" asp-for="BlogComment.AppUserId" value="@Model.Blog.Id" />
-                            <input type="hidden" asp-for="BlogComment.BlogId" value="@Model.Blog.Id" />
+                        <form asp-action="BlogComment" asp-controller="Blog" method="post" class="p-5 bg-light">
                             <div class="form-group">
-                                <label asp-for="BlogComment.Comment">Comment</label>
-                                <textarea asp-for="BlogComment.Comment" cols="30" rows="6" class="form-control" ></textarea>
+                                <label name="Comment">Comment</label>
+                                <textarea name="Comment" cols="30" rows="6" class="form-control"></textarea>
                                 <span asp-validation-for="BlogComment.Comment" class="text-danger"></span>
                             </div>
-                            
-                            
-
+                            <input type="hidden" name="AppUserId" value="@Model.Blog.Id" />
+                            <input type="hidden" name="BlogId"  value="@Model.Blog.Id"/>
                             <div class="form-group">
                                 @if (User.Identity.IsAuthenticated)
                                 {
@@ -86,7 +90,7 @@
                                 <h3 class="heading"><a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id">@blog.Title</a></h3>
                                 <div class="meta">
                                     <div><a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id"><span class="icon-calendar"></span>@blog.CreatedDate</a></div>
-                                    <div><a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id"><span class="icon-chat"></span> @blog.BlogComments.Count</a></div>
+                                    <div><a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id"><span class="icon-chat"></span> @blog.BlogComments.Where(x=>x.isDeleted==false).Where(x=>x.isActive==true).Count()</a></div>
                                 </div>
                             </div>
                         </div>

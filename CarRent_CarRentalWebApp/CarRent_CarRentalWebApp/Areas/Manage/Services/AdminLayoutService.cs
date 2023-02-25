@@ -30,10 +30,22 @@ public class AdminLayoutService
         
         return testimonials;
     }
-    public bool NewComment()
+    public bool NewCarComment()
     {
         List<CarComment> comments = _carRentDbContext.CarComments.Where(x => x.isDeleted == false).Where(x => x.isActive == null).ToList();
         if (comments.Count > 0) return true;
+        return false;
+    }
+    public bool NewBlogComment()
+    {
+        List<BlogComment> comments = _carRentDbContext.BlogComments.Where(x => x.isDeleted == false).Where(x => x.isActive == null).ToList();
+        if (comments.Count > 0) return true;
+        return false;
+    }
+    public bool NewContact()
+    {
+        List<Contact> contacts = _carRentDbContext.Contacts.Where(x => x.isDeleted == false).Where(x => x.isActive == null).ToList();
+        if (contacts.Count > 0) return true;
         return false;
     }
 

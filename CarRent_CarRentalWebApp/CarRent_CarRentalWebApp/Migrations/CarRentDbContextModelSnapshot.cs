@@ -356,6 +356,44 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime?>("SendedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool?>("isActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Contacts");
+                });
+
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.DoYouWant", b =>
                 {
                     b.Property<int>("Id")
@@ -965,6 +1003,17 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Navigation("Car");
 
                     b.Navigation("Peculiarity");
+                });
+
+            modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Contact", b =>
+                {
+                    b.HasOne("CarRent_CarRentalWebApp.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("CarRent_CarRentalWebApp.Models.Order", b =>

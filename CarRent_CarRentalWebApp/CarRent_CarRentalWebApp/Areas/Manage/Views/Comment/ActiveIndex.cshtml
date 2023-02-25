@@ -7,11 +7,11 @@
 }
     <div class="content-wrapper">
         <div class="page-header">
-            <h3 class="page-title">New Comment Table </h3>
+            <h3 class="page-title">Active Comment Table </h3>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Comment</li>
-                    <li class="breadcrumb-item">New Comment</li>
+                    <li class="breadcrumb-item">Active Comment</li>
                     <li class="breadcrumb-item active" aria-current="page">Table</li>
                 </ol>
             </nav>
@@ -89,17 +89,17 @@
             @if (Model.PreviousPage)
             {
                 <li class="page-item">
-                    <a class="page-link" asp-action="index" asp-route-page="@(Model.ActivePage-1)">&laquo;</a>
+                    <a class="page-link" asp-action="activeindex" asp-route-page="@(Model.ActivePage-1)">&laquo;</a>
                 </li>
             }
             @for (int i = 1; i <= Model.TotalPageCount; i++)
             {
-                <li class="page-item @(Model.ActivePage==i? "active" :"")"><a class="page-link" asp-action="index" asp-route-page="@i">@i</a></li>
+                <li class="page-item @(Model.ActivePage==i? "active" :"")"><a class="page-link" asp-action="activeindex" asp-route-page="@i">@i</a></li>
             }
             @if (Model.NextPage)
             {
                 <li class="page-item">
-                    <a class="page-link" asp-action="index" asp-route-page="@(Model.ActivePage+1)">&raquo;</a>
+                    <a class="page-link" asp-action="activeindex" asp-route-page="@(Model.ActivePage+1)">&raquo;</a>
                 </li>
             }
         </ul>

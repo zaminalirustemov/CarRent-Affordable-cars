@@ -36,10 +36,10 @@ public class BlogController : Controller
     }
     //BlogComment--------------------------------------------------------
     [HttpPost]
-    public async Task<IActionResult> BlogComment(BlogComment comment)
+    public async Task<IActionResult> BlogComment(BlogComment getComment)
     {
-        Blog blog = _carRentDbContext.Blogs.FirstOrDefault(x => x.Id == comment.BlogId);
-        if (blog ==null) return View("Error");
+        Blog blog = _carRentDbContext.Blogs.FirstOrDefault(x => x.Id == getComment.BlogId);
+        if (blog == null) return View("Error");
 
         if (!ModelState.IsValid) return RedirectToAction("Detail", new { id = blog.Id });
         AppUser appUser = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -50,7 +50,7 @@ public class BlogController : Controller
             AppUserId = appUser.Id,
             Blog = blog,
             BlogId = blog.Id,
-            Comment = comment.Comment,
+            Comment = getComment.Comment,
             SendedDate = DateTime.UtcNow.AddHours(4),
             isActive = null,
         };

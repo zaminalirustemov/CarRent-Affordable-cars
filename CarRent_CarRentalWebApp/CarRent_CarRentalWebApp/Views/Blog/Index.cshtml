@@ -27,7 +27,7 @@
                         <div class="text px-md-5 pt-4">
                             <div class="meta mb-3">
                                 <div><a href="#">@blogItem.CreatedDate</a></div>
-                                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> @blogItem.BlogComments.Count</a></div>
+                                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> @blogItem.BlogComments.Where(x=>x.isDeleted==false).Where(x=>x.isActive==true).Count()</a></div>
                             </div>
                             <h3 class="heading mt-2"><a href="#">@blogItem.Title</a></h3>
                             <p>@blogItem.Description</p>

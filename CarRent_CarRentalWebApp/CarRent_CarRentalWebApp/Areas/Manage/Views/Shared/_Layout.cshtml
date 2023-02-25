@@ -2,7 +2,9 @@
 @{
     AppUser appUser = await service.GetUser();
     List<Testimonial> testimonials = service.NewQuote();
-    bool newComment = service.NewComment();
+    bool newCarComment = service.NewCarComment();
+    bool newBlogComment = service.NewBlogComment();
+    bool newContact = service.NewContact();
 }
 
 <!DOCTYPE html>
@@ -240,18 +242,34 @@
 
 
                 <li class="nav-item menu-items">
-                    <a class="nav-link" data-toggle="collapse" href="#comment" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="#carcomment" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-icon">
                             <i class="mdi mdi-comment-text-outline"></i>
                         </span>
-                        <span class="menu-title">Comment</span>
+                        <span class="menu-title">Car Comment</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="comment">
+                    <div class="collapse" id="carcomment">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="comment">New</a></li>
                             <li class="nav-item"> <a class="nav-link" asp-action="activeIndex" asp-controller="comment">Active</a></li>
                             <li class="nav-item"> <a class="nav-link" asp-action="passiveIndex" asp-controller="comment">Passive</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#blogcomment" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-comment-text"></i>
+                        </span>
+                        <span class="menu-title">Blog Comment</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="blogcomment">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="blogcomment">New</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="activeIndex" asp-controller="blogcomment">Active</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="passiveIndex" asp-controller="blogcomment">Passive</a></li>
                         </ul>
                     </div>
                 </li>
@@ -264,6 +282,22 @@
                         </span>
                         <span class="menu-title">Information Bar</span>
                     </a>
+                </li>
+
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#contact" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-phone"></i>
+                        </span>
+                        <span class="menu-title">Contact</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="contact">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" asp-action="index" asp-controller="contact">New</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="oldindex" asp-controller="contact">Was Read</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#recycle-bin" aria-expanded="false" aria-controls="ui-basic">
@@ -283,7 +317,9 @@
                             <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="car">Car[Deleted]</a></li>
                             <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="order">Order[Deleted]</a></li>
                             <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="blog">Blog[Deleted]</a></li>
-                            <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="comment">Comment[Deleted]</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="comment">Car Comment[Deleted]</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="blogcomment">Blog Comment[Deleted]</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-action="deletedindex" asp-controller="contact">Contact[Deleted]</a></li>
                         </ul>
                     </div>
                 </li>
@@ -351,12 +387,38 @@
                                 <p class="p-3 mb-0 text-center">See all projects</p>
                             </div>
                         </li>
-                        <li class="nav-item nav-settings d-none d-lg-block">
-                            <a class="nav-link" href="#">
-                                <i class="mdi mdi-view-grid"></i>
+
+                        <li class="nav-item dropdown border-left">
+                            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                                <i class="mdi mdi-phone-plus"></i>
+                                @if (newContact)
+                                {
+
+                                    <span class="count bg-danger"></span>
+                                }
+
                             </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                                <h6 class="p-3 mb-0">Notifications</h6>
+                                <div class="dropdown-divider"></div>
+                                @if (newContact)
+                                {
+                                    <a asp-action="index" asp-controller="contact" class="dropdown-item preview-item">
+                                        <div class="preview-thumbnail">
+                                            <div class="preview-icon bg-dark rounded-circle">
+                                                <i class="mdi mdi-phone-classic"></i>
+                                            </div>
+                                        </div>
+                                        <div class="preview-item-content">
+                                            <p class="preview-subject mb-1">You have a new contact</p>
+                                            <p class="text-muted ellipsis mb-0">You can click and see</p>
+                                        </div>
+                                    </a>
+                                }
+                            </div>
                         </li>
 
+                        @*////*@
                         <li class="nav-item dropdown border-left">
                             <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-lightbulb"></i>
@@ -368,18 +430,21 @@
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
                                 <h6 class="p-3 mb-0">New Testimonial</h6>
                                 <div class="dropdown-divider"></div>
-                                @if (testimonials.Count>0)
+                                @if (testimonials.Count > 0)
                                 {
                                     @foreach (Testimonial testimonial in testimonials)
                                     {
                                         <a asp-action="detail" asp-controller="testimonial" asp-route-id="@testimonial.Id" class="dropdown-item preview-item">
                                             <div class="preview-thumbnail">
-                                                @if(testimonial.AppUser.ImageName == null){
+                                                @if (testimonial.AppUser.ImageName == null)
+                                                {
 
                                                     <img src="~/assets/images/memperphoto.jpg" alt="image" class="rounded-circle profile-pic">
-                                                }else{
+                                                }
+                                                else
+                                                {
 
-                                                <img src="~/uploads/user/@testimonial.AppUser.ImageName" alt="image" class="rounded-circle profile-pic">
+                                                    <img src="~/uploads/user/@testimonial.AppUser.ImageName" alt="image" class="rounded-circle profile-pic">
                                                 }
                                             </div>
                                             <div class="preview-item-content">
@@ -407,7 +472,7 @@
                         <li class="nav-item dropdown border-left">
                             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
                                 <i class="mdi mdi-comment-alert-outline"></i>
-                                @if (newComment)
+                                @if (newBlogComment == true || newCarComment == true)
                                 {
 
                                     <span class="count bg-danger"></span>
@@ -417,17 +482,35 @@
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                                 <h6 class="p-3 mb-0">Notifications</h6>
                                 <div class="dropdown-divider"></div>
-                                <a asp-action="index" asp-controller="comment" class="dropdown-item preview-item">
-                                    <div class="preview-thumbnail">
-                                        <div class="preview-icon bg-dark rounded-circle">
-                                            <i class="mdi mdi-comment-plus-outline"></i>
+                                @if (newCarComment)
+                                {
+                                    <a asp-action="index" asp-controller="comment" class="dropdown-item preview-item">
+                                        <div class="preview-thumbnail">
+                                            <div class="preview-icon bg-dark rounded-circle">
+                                                <i class="mdi mdi-comment-plus-outline"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="preview-item-content">
-                                        <p class="preview-subject mb-1">You have a new comment</p>
-                                        <p class="text-muted ellipsis mb-0">You can click and see</p>
-                                    </div>
-                                </a>
+                                        <div class="preview-item-content">
+                                            <p class="preview-subject mb-1"><i class="mdi mdi-car-connected"></i>You have a new car comment</p>
+                                            <p class="text-muted ellipsis mb-0">You can click and see</p>
+                                        </div>
+                                    </a>
+                                }
+                                @if (newBlogComment)
+                                {
+                                    <a asp-action="index" asp-controller="blogcomment" class="dropdown-item preview-item">
+                                        <div class="preview-thumbnail">
+                                            <div class="preview-icon bg-dark rounded-circle">
+                                                <i class="mdi mdi-comment-plus-outline"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="preview-item-content">
+                                            <p class="preview-subject mb-1"><i class="mdi mdi-cards-playing-outline"></i>You have a new blog comment</p>
+                                            <p class="text-muted ellipsis mb-0">You can click and see</p>
+                                        </div>
+                                    </a>
+                                }
                             </div>
                         </li>
 

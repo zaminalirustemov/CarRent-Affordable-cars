@@ -1,0 +1,63 @@
+﻿@model Contact
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Contact Detail </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Contact</li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="item">
+                <div class="testimony-wrap rounded text-center py-4 pb-5">
+                    <div class="row">
+                        <div class="user-img mb-2 col-sm-6">
+                            @if (Model.AppUser.ImageName is null)
+                            {
+                                <img src="~/assets/images/memperphoto.jpg" alt="Avatar" class="img-fluid my-5 " style="widht:300px" />
+                            }
+                            else
+                            {
+                                <img src="~/uploads/user/@Model.AppUser.ImageName" alt="Avatar" class="img-fluid my-5 " style="widht:300px" />
+                            }
+                        </div>
+                        <div class="text pt-4 col-sm-6">
+                            <p class="name"><b>Fullname:</b><br />@Model.AppUser.Fullname</p>
+                            <p class="name"><b>UserName:</b><br />@Model.AppUser.UserName</p>
+                            <p class="name"><b>Phone Number:</b><br />@Model.AppUser.PhoneNumber</p>
+                            <p class="mb-4"><b>Subject:</b><br />@Model.Subject</p>
+                            <p class="mb-4"><b>Message:</b><br />@Model.Message</p>
+                            <div class="form-group">
+                                <p class="name"><b>Status:</b></p>
+                                <div style="text-align-last: center">
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-@(Model.isActive==null? "warning" :"success") dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            @(Model.isActive == null ? "New" : "Was Read")
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2" style="">
+
+                                            @if (Model.isActive != null)
+                                            {
+                                                <a class="dropdown-item btn btn-warning" asp-action="new" asp-controller="contact" asp-route-id="@Model.Id">New</a>
+                                            }
+                                            @if (Model.isActive != true)
+                                            {
+                                                <a class="dropdown-item btn btn-success" asp-action="wasread" asp-controller="contact" asp-route-id="@Model.Id">Was Read</a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
