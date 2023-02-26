@@ -202,10 +202,10 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Property<double>("PricePerDay")
                         .HasColumnType("float");
 
-                    b.Property<double>("PricePerHour")
+                    b.Property<double>("PricePerMonth")
                         .HasColumnType("float");
 
-                    b.Property<double>("PricePerMonth")
+                    b.Property<double>("PricePerWeek")
                         .HasColumnType("float");
 
                     b.Property<int>("Seats")
@@ -494,11 +494,13 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("CVC")
-                        .HasColumnType("int");
+                    b.Property<string>("CVC")
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
-                    b.Property<int?>("CardNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("CardNumber")
+                        .HasMaxLength(19)
+                        .HasColumnType("nvarchar(19)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -539,8 +541,8 @@ namespace CarRent_CarRentalWebApp.Migrations
                     b.Property<DateTime>("PickUp")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("PickUpTime")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("PickUpTime")
+                        .HasColumnType("time");
 
                     b.Property<double?>("TotalPrice")
                         .HasColumnType("float");

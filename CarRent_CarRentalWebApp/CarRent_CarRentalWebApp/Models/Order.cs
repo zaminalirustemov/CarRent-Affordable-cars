@@ -20,11 +20,15 @@ public class Order
     public string DropOffLocation { get; set; }
     public DateTime PickUp { get; set; }
     public DateTime DropOff { get; set; }
-    public DateTime PickUpTime { get; set; }
-    public int? CardNumber { get; set; }
-    [StringLength(maximumLength: 5)]
+    public TimeSpan PickUpTime { get; set; }
+
+    [StringLength(maximumLength: 19,MinimumLength =19)]
+    public string? CardNumber { get; set; }
+    [StringLength(maximumLength: 5,MinimumLength =5)]
     public string? EndTime { get; set; }
-    public int? CVC { get; set; }
+
+    [StringLength(maximumLength: 3, MinimumLength = 3)]
+    public string? CVC { get; set; }
     public int? Day { get; set; }
     public double? TotalPrice { get; set; }
     public bool isDeleted { get; set; }

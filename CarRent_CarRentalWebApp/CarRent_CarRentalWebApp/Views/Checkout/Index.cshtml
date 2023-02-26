@@ -1,50 +1,103 @@
 ﻿@model OrderViewModel
 
+@section css{
+    <style>
+        .cta {
+            border: none;
+            background: none;
+        }
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
-            <div class="col-md-9 ftco-animate pb-5" style="margin-bottom: 250px;">
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Checkout <i class="ion-ios-arrow-forward"></i></span></p>
-                <h1 class="mb-3 bread">Checkout</h1>
+            .cta span {
+                padding-bottom: 7px;
+                letter-spacing: 4px;
+                font-size: 14px;
+                padding-right: 15px;
+                text-transform: uppercase;
+            }
+
+            .cta svg {
+                transform: translateX(-8px);
+                transition: all 0.3s ease;
+            }
+
+            .cta:hover svg {
+                transform: translateX(0);
+            }
+
+            .cta:active svg {
+                transform: scale(0.9);
+            }
+
+        .hover-underline-animation {
+            position: relative;
+            color: white;
+            padding-bottom: 20px;
+        }
+
+            .hover-underline-animation:after {
+                content: "";
+                position: absolute;
+                width: 100%;
+                transform: scaleX(0);
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: #ffffff;
+                transform-origin: bottom right;
+                transition: transform 0.25s ease-out;
+            }
+
+        .cta:hover .hover-underline-animation:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
+}
+
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+                <div class="col-md-9 ftco-animate pb-5" style="margin-bottom: 250px;">
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Checkout <i class="ion-ios-arrow-forward"></i></span></p>
+                    <h1 class="mb-3 bread">Checkout</h1>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ======= MakeYouTrip Section ======= -->
-<section class="ftco-section ftco-no-pt bg-light">
-    <div class="container">
-        <div class="row no-gutters">
-            <div class="col-md-12 featured-top">
-                <div class="row no-gutters">
-                    <div class="col-md-4 d-flex align-items-center">
-                        <form asp-action="index" asp-controller="checkout" method="post" class="request-form ftco-animate bg-info" style="width:370px">
-                            <h2>Make your trip</h2>
-                            <div class="form-group">
-                                <label asp-for="Fullname" class="label">Fullname</label>
-                                <input asp-for="Fullname" class="form-control" placeholder="Fulname">
-                                <span asp-validation-for="Fullname" style="color:yellow"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Phonenumber" class="label">Phone number</label>
-                                <input asp-for="Phonenumber" class="form-control" placeholder="Phone number">
-                                <span asp-validation-for="Phonenumber" style="color:yellow"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Email" class="label">Email adress</label>
-                                <input asp-for="Email" class="form-control" placeholder="Email">
-                                <span asp-validation-for="Email" style="color:yellow"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="DropOffLocation" class="label">Drop-off location</label>
-                                <input asp-for="DropOffLocation" class="form-control" placeholder="City, Airport, Station, etc">
-                                <span asp-validation-for="DropOffLocation" style="color:yellow"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="label">Leasing dates</label>
-                                <select class="form-control" >
+    <!-- ======= MakeYouTrip Section ======= -->
+    <section class="ftco-section ftco-no-pt bg-light">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-12 featured-top">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 d-flex align-items-center">
+                            <form asp-action="index" asp-controller="checkout" method="post" class="request-form ftco-animate bg-primary" style="width:370px">
+                                <h2>Make your trip</h2>
+                                <div class="form-group">
+                                    <label asp-for="Fullname" class="label">Fullname</label>
+                                    <input asp-for="Fullname" class="form-control" placeholder="Fulname">
+                                    <span asp-validation-for="Fullname" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Phonenumber" class="label">Phone number</label>
+                                    <input asp-for="Phonenumber" class="form-control" placeholder="Phone number">
+                                    <span asp-validation-for="Phonenumber" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Email" class="label">Email adress</label>
+                                    <input asp-for="Email" class="form-control" placeholder="Email">
+                                    <span asp-validation-for="Email" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="DropOffLocation" class="label">Drop-off location</label>
+                                    <input asp-for="DropOffLocation" class="form-control" placeholder="City, Airport, Station, etc">
+                                    <span asp-validation-for="DropOffLocation" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label">Leasing dates</label>
+                                    <select class="form-control">
 
                                     @foreach (Order order in ViewBag.RelatedOrders)
                                     {
@@ -55,25 +108,31 @@
                             <div class="d-flex" style="width:152px">
                                 <div class="form-group mr-1">
                                     <label asp-for="PickUp" class="label">Pick-up</label>
-                                    <input asp-for="PickUp" class="form-control" placeholder="Date">
+                                    <input asp-for="PickUp" class="form-control" type="date" value="@DateTime.Now">
                                     <span asp-validation-for="PickUp" style="color:yellow"></span>
                                 </div>
                                 <div class="form-group mr-1">
                                     <label asp-for="DropOff" class="label">Drop-off</label>
-                                    <input asp-for="DropOff" class="form-control" placeholder="Date">
+                                    <input asp-for="DropOff" class="form-control" type="date" value="@DateTime.Now">
                                     <span asp-validation-for="DropOff" style="color:yellow"></span>
                                 </div>
                             </div>
-                                <div asp-validation-summary="ModelOnly" style="color:yellow"></div>
+                            <div asp-validation-summary="ModelOnly" style="color:yellow"></div>
 
                             <div class="form-group">
                                 <label asp-for="PickUpTime" class="label">Pick-up time</label>
-                                <input asp-for="PickUpTime" class="form-control" placeholder="Time">
+                                <input asp-for="PickUpTime" class="form-control" type="time">
                                 <span asp-validation-for="PickUpTime" style="color:yellow"></span>
                             </div>
                             <input type="hidden" asp-for="CarId" value="@Model.CarId" />
-                            <div class="form-group">
-                                <button  type="submit" class="btn btn-primary" >add</button>
+
+                            <div class="form-group" style="text-align-last:center">
+                                <button class="cta" type="submit">
+                                    <span class="hover-underline-animation">Confirm the order </span>
+                                    <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg" id="arrow-horizontal">
+                                        <path transform="translate(30)" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" data-name="Path 10" id="Path_10"></path>
+                                    </svg>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -82,7 +141,7 @@
                             <div class="item">
                                 <div class="car-wrap rounded ftco-animate">
                                     <div class="img rounded d-flex align-items-end">
-                                        <img src="~/uploads/car/@Model.Car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="" style="width: 644px;height: 270px;border-radius: 30px;border-style: outset;">
+                                        <img src="~/uploads/car/@Model.Car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="" style="border-radius: 30px;border-style: outset;">
                                     </div>
                                     <div class="text">
                                         <h2 class="mb-0"><a href="car-single.html">@Model.Car.Model</a></h2>

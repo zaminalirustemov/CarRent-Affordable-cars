@@ -28,16 +28,10 @@ public class CheckoutController : Controller
         AppUser member = null;
         if (HttpContext.User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
 
-
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == id);
         if (car == null) return View("Error");
 
-        ViewBag.RelatedOrders = _carRentDbContext.Orders.Include(x => x.OrderItem)
-                                                        .Where(x => x.isDeleted == false)
-                                                        .Where(x=>x.OrderItem.CarId==id)
-                                                        .Where(x=>x.OrderStatus==OrderStatus.Accepted || x.OrderStatus==OrderStatus.Pending)
-                                                        .ToList();
-        
+        ViewBag.RelatedOrders = _carRentDbContext.Orders.Include(x => x.OrderItem).Where(x => x.isDeleted == false).Where(x => x.OrderItem.CarId == id).Where(x => x.OrderStatus == OrderStatus.Accepted || x.OrderStatus == OrderStatus.Pending).ToList();
 
         orderViewModel = new OrderViewModel
         {
@@ -53,30 +47,28 @@ public class CheckoutController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Index(OrderViewModel orderVM)
     {
-        ViewBag.RelatedOrders = _carRentDbContext.Orders.Include(x => x.OrderItem)
-                                                       .Where(x => x.isDeleted == false)
-                                                       .Where(x => x.OrderItem.CarId == orderVM.CarId)
-                                                       .Where(x => x.OrderStatus == OrderStatus.Accepted || x.OrderStatus == OrderStatus.Pending)
-                                                       .ToList();
+        ViewBag.RelatedOrders = _carRentDbContext.Orders.Include(x => x.OrderItem).Where(x => x.isDeleted == false).Where(x => x.OrderItem.CarId == orderVM.CarId).Where(x => x.OrderStatus == OrderStatus.Accepted || x.OrderStatus == OrderStatus.Pending).ToList();
 
         Car car = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Where(x => x.isDeleted == false).FirstOrDefault(x => x.Id == orderVM.CarId);
         if (car == null) return View("Error");
         orderVM.Car = car;
         if (!ModelState.IsValid) return View(orderVM);
 
+        if ((orderVM.PickUp - DateTime.Now).TotalDays < 1)
+        {
+            ModelState.AddModelError("", "The car must be reserved at least 2 day in advance");
+            return View(orderVM);
+        }
         if (!DateManager.DateLogical(orderVM.PickUp, orderVM.DropOff))
         {
             ModelState.AddModelError("", "This time interval does not match the current time");
             return View(orderVM);
         }
 
-        List<Order> orders = _carRentDbContext.Orders.Include(x => x.OrderItem)
-                                                     .Where(x => x.OrderItem.CarId == car.Id)
-                                                     .Where(x => x.OrderStatus == OrderStatus.Accepted || x.OrderStatus == OrderStatus.Pending)
-                                                     .ToList();
+        List<Order> orders = _carRentDbContext.Orders.Include(x => x.OrderItem).Where(x => x.OrderItem.CarId == car.Id).Where(x => x.OrderStatus == OrderStatus.Accepted || x.OrderStatus == OrderStatus.Pending).ToList();
         foreach (Order o in orders)
         {
-            if (DateManager.IntersectionTimeIntervals(orderVM.PickUp, orderVM.DropOff,o.PickUp,o.DropOff))
+            if (DateManager.IntersectionTimeIntervals(orderVM.PickUp, orderVM.DropOff, o.PickUp, o.DropOff))
             {
                 ModelState.AddModelError("", "Car was rented between the selected dates");
                 return View(orderVM);
@@ -128,7 +120,34 @@ public class CheckoutController : Controller
         if (car == null) return View("Error");
 
         int day = order.DropOff.Subtract(order.PickUp).Days;
-        var totalPrice = car.PricePerDay * day;
+        double totalPrice = 0;
+        
+        if (day >= 30)
+        {
+            var month = Math.Floor((double)day / 30);
+            var restDay = day - (month * 30);
+            if (restDay >= 7)
+            {
+                var week = Math.Floor((double)restDay / 7);
+                restDay = restDay - (week * 7);
+                totalPrice = (car.PricePerMonth * month) +(car.PricePerWeek * week) + (car.PricePerDay * restDay);
+            }
+            else
+            {
+                totalPrice= (car.PricePerMonth * month) + (car.PricePerDay * restDay);
+            }
+        }
+        else if (day >= 7)
+        {
+            var week = Math.Floor((double)day / 7);
+            var restDay = day - (week * 7);
+
+            totalPrice = (car.PricePerWeek * week) + (car.PricePerDay * restDay);
+        }
+        else
+        {
+            totalPrice = car.PricePerDay * day;
+        }
 
         confirmOrderVM = new ConfirmOrderViewModel
         {
@@ -160,6 +179,48 @@ public class CheckoutController : Controller
         if (car == null) return View("Error");
         confirmOrderVM.Car = car;
         if (!ModelState.IsValid) return View(confirmOrderVM);
+        if (confirmOrderVM.DropOff.Subtract(confirmOrderVM.PickUp).Days != confirmOrderVM.Day)
+        {
+            ModelState.AddModelError("Day", "Error");
+            return View(confirmOrderVM);
+        }
+        double totalPrice = 0;
+        if (confirmOrderVM.Day >= 30)
+        {
+            var month = Math.Floor((double)confirmOrderVM.Day / 30);
+            var restDay = confirmOrderVM.Day - (month * 30);
+            if (restDay >= 7)
+            {
+                var week = Math.Floor((double)restDay / 7);
+                restDay = restDay - (week * 7);
+                totalPrice = (car.PricePerMonth * month) + (car.PricePerWeek * week) + (car.PricePerDay * restDay);
+            }
+            else
+            {
+                totalPrice = (car.PricePerMonth * month) + (car.PricePerDay * restDay);
+            }
+        }
+        else if (confirmOrderVM.Day >= 7)
+        {
+            var week = Math.Floor((double)confirmOrderVM.Day / 7);
+            var restDay = confirmOrderVM.Day - (week * 7);
+
+            totalPrice = (car.PricePerWeek * week) + (car.PricePerDay * restDay);
+        }
+        else
+        {
+            totalPrice = car.PricePerDay * confirmOrderVM.Day;
+        }
+        if (totalPrice != confirmOrderVM.TotalPrice)
+        {
+            ModelState.AddModelError("TotalPrice", "Error");
+            return View(confirmOrderVM);
+        }
+        if (!CardInformation.IsCreditCardInfoValid(confirmOrderVM.CardNumber, confirmOrderVM.EndTime, confirmOrderVM.CVC))
+        {
+            ModelState.AddModelError("", "Card information is incorrect");
+            return View(confirmOrderVM);
+        }
 
         Order order = new Order
         {

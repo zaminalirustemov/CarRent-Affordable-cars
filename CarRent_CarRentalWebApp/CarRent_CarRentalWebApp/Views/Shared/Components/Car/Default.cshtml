@@ -11,9 +11,9 @@
             <div class="text">
                 <h2 class="mb-0"><a href="car-single.html">@car.Model</a></h2>
                 <div class="d-flex mb-3">
-                    <span class="cat">@car.Brand.Name</span><br>
-                    <p class="cat" style="margin-left: 20px;">@car.Category.Name</p>
+                    <span class="cat">@car.Brand.Name</span>
                     <p class="price ml-auto">$@(car.PricePerDay) <span>/day</span></p>
+                    <p class="price ml-auto">$@(car.PricePerMonth) <span>/month</span></p>
                 </div>
                 <p class="d-flex mb-0 d-block">
                     <a asp-action="index" asp-controller="checkout" asp-route-id="@car.Id" class="btn btn-primary py-2 mr-1">Book now</a>

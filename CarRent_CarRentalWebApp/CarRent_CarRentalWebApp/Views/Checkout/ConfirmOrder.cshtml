@@ -1,101 +1,207 @@
 ﻿@model ConfirmOrderViewModel
+@section css{
+    <style>
+        button {
+            width: 140px;
+            height: 56px;
+            overflow: hidden;
+            border: none;
+            color: #fff;
+            background: none;
+            position: relative;
+            padding-bottom: 2em;
+        }
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
-            <div class="col-md-9 ftco-animate pb-5" style="margin-bottom: 250px;">
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Checkout <i class="ion-ios-arrow-forward"></i></span></p>
-                <h1 class="mb-3 bread">Checkout</h1>
+            button > div, button > svg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: flex;
+            }
+
+            button:before {
+                content: "";
+                position: absolute;
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                transform: scaleX(0);
+                transform-origin: bottom right;
+                background: currentColor;
+                transition: transform 0.25s ease-out;
+            }
+
+            button:hover:before {
+                transform: scaleX(1);
+                transform-origin: bottom left;
+            }
+
+            button .clone > *, button .text > * {
+                opacity: 1;
+                font-size: 1.3rem;
+                transition: 0.2s;
+                margin-left: 4px;
+            }
+
+            button .clone > * {
+                transform: translateY(60px);
+            }
+
+            button:hover .clone > * {
+                opacity: 1;
+                transform: translateY(0px);
+                transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+            }
+
+            button:hover .text > * {
+                opacity: 1;
+                transform: translateY(-60px);
+                transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+            }
+
+            button:hover .clone > :nth-child(1) {
+                transition-delay: 0.15s;
+            }
+
+            button:hover .clone > :nth-child(2) {
+                transition-delay: 0.2s;
+            }
+
+            button:hover .clone > :nth-child(3) {
+                transition-delay: 0.25s;
+            }
+
+            button:hover .clone > :nth-child(4) {
+                transition-delay: 0.3s;
+            }
+            /* icon style and hover */
+            button svg {
+                width: 20px;
+                right: 0;
+                top: 20%;
+                transform: translateY(-50%) rotate(135deg);
+                transition: 0.2s ease-out;
+            }
+
+            button:hover svg {
+                transform: translateY(-50%) rotate(-90deg);
+            }
+    </style>
+}
+
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+                <div class="col-md-9 ftco-animate pb-5" style="margin-bottom: 250px;">
+                    <p class="breadcrumbs"><span class="mr-2"><a asp-action="index" asp-controller="home">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Checkout <i class="ion-ios-arrow-forward"></i></span> <span>Confirm <i class="ion-ios-arrow-forward"></i></span></p>
+                    <h1 class="mb-3 bread">Confirm Order</h1>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ======= MakeYouTrip Section ======= -->
-<section class="ftco-section ftco-no-pt bg-light">
-    <div class="container">
-        <div class="row no-gutters">
-            <div class="col-md-12 featured-top">
-                <div class="row no-gutters">
+    <!-- ======= MakeYouTrip Section ======= -->
+    <section class="ftco-section ftco-no-pt bg-light">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-12 featured-top">
+                    <div class="row no-gutters">
 
-                    <form asp-action="ConfirmOrder" asp-controller="checkout" method="post" class="request-form ftco-animate bg-danger" style="width:370px">
-                        <h2>Make your trip</h2>
-                        <div>
-                            <div class="form-group">
-                                <label asp-for="Fullname" class="label">Fullname</label>
-                                <input asp-for="Fullname" value="@Model.Fullname" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Day" class="label">day</label>
-                                <input asp-for="Day" value="@Model.Day" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="TotalPrice" class="label">Tprice</label>
-                                <input asp-for="TotalPrice" value="@Model.TotalPrice" class="form-control" readonly>
-                            </div>
-
-                            @*//*@
-                            <h2>Make your trip</h2>
-                            <div class="form-group">
-                                <label asp-for="Phonenumber" class="label">Phone number</label>
-                                <input asp-for="Phonenumber" class="form-control" value="@Model.Phonenumber" readonly>
-                                <span asp-validation-for="Phonenumber" style="color:yellow"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Email" class="label">Email adress</label>
-                                <input asp-for="Email" class="form-control" value="@Model.Email" readonly>
-                                <span asp-validation-for="Email" style="color:yellow"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="DropOffLocation" class="label">Drop-off location</label>
-                                <input asp-for="DropOffLocation" class="form-control" value="@Model.DropOffLocation" readonly>
-                                <span asp-validation-for="DropOffLocation" style="color:yellow"></span>
-                            </div>
-                        </div>
-
-                        <div>
-
-                            <div class="form-group">
-                                <label asp-for="CardNumber" class="label">Card number</label>
-                                <input asp-for="CardNumber" class="form-control" placeholder="**** **** **** ****">
-                                <span asp-validation-for="CardNumber" style="color:yellow"></span>
-                            </div>
-                            <div class="d-flex">
-                                <div class="form-group mr-2">
-                                    <label asp-for="EndTime" class="label">End time</label>
-                                    <input asp-for="EndTime" id="cvv" class="form-control" placeholder="MM/YY">
-                                    <span asp-validation-for="EndTime" style="color:yellow"></span>
+                        <form asp-action="ConfirmOrder" asp-controller="checkout" method="post" class="request-form ftco-animate bg-info" style="width:370px">
+                            <h2>Your Information</h2>
+                            <div>
+                                <div class="form-group">
+                                    <label asp-for="Fullname" class="label">Fullname</label>
+                                    <input asp-for="Fullname" value="@Model.Fullname" class="form-control" readonly>
                                 </div>
-                                <div class="form-group mr-2">
-                                    <label asp-for="CVC" class="label">CVC</label>
-                                    <input asp-for="CVC"  class="form-control" placeholder="***">
-                                    <span asp-validation-for="CVC" style="color:yellow"></span>
+                                <div class="form-group">
+                                    <label asp-for="Phonenumber" class="label">Phone number</label>
+                                    <input asp-for="Phonenumber" class="form-control" value="@Model.Phonenumber" readonly>
+                                    <span asp-validation-for="Phonenumber" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Email" class="label">Email adress</label>
+                                    <input asp-for="Email" class="form-control" value="@Model.Email" readonly>
+                                    <span asp-validation-for="Email" style="color:yellow"></span>
+                                </div>
+                                <h2>Order Information</h2>
+                                <div class="form-group">
+                                    <label asp-for="DropOffLocation" class="label">Drop-off location</label>
+                                    <input asp-for="DropOffLocation" class="form-control" value="@Model.DropOffLocation" readonly>
+                                    <span asp-validation-for="DropOffLocation" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Day" class="label">day</label>
+                                    <input asp-for="Day" value="@Model.Day" class="form-control" readonly>
+                                    <span asp-validation-for="Day" style="color:yellow"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="TotalPrice" class="label">Total Price</label>
+                                    <input asp-for="TotalPrice" value="@Model.TotalPrice" class="form-control" readonly>
+                                    <span asp-validation-for="TotalPrice" style="color:yellow"></span>
+                                </div>
+
+                            </div>
+                            <div style="margin-bottom:15px ;width:310px;height:150px;background: #00a2ff;background: linear-gradient(137deg,#00a2ff 0%, rgba(255,0,229,0.53) 80%);border-radius: 15px 15px 15px 15px;box-shadow: -20px 20px 34px 5px rgba(0,0,0,0.67);">
+                                <div class="form-group" style="padding:10px 18px 10px 10px;margin-bottom: 0px;">
+                                    <div style="text-align-last:center">
+                                        <label class="label" style="margin-bottom:0px">Card Information</label>
+                                    </div>
+                                    <input asp-for="CardNumber" class="form-control" maxlength="19" id="cardnumber" inputmode="numeric" placeholder="**** **** **** ****">
+                                </div>
+                                <div class="d-flex" style="padding: 0px 10px;margin-bottom: 0px;">
+                                    <div class="form-group mr-2">
+                                        <input asp-for="EndTime" class="form-control" maxlength="5" id="EndTime" inputmode="numeric" placeholder="MM/YY">
+                                    </div>
+                                    <div class="form-group mr-2">
+                                        <input asp-for="CVC" class="form-control" maxlength="3" id="cvc" inputmode="numeric" placeholder="***">
+                                    </div>
                                 </div>
                             </div>
+                            <div asp-validation-summary="ModelOnly" style="color:yellow"></div>
+                            <span asp-validation-for="CardNumber" style="color:yellow"></span>
+                            <span asp-validation-for="EndTime" style="color:yellow"></span>
+                            <span asp-validation-for="CVC" style="color:yellow"></span>
+
+
                             <input type="hidden" asp-for="CarId" value="@Model.CarId" />
                             <input type="hidden" asp-for="PickUp" value="@Model.PickUp" />
                             <input type="hidden" asp-for="DropOff" value="@Model.DropOff" />
                             <input type="hidden" asp-for="PickUpTime" value="@Model.PickUpTime" />
 
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">add</button>
-                        </div>
-                    </form>
-
-                    <div class="col-md-8 d-flex align-items-center">
-                        <div class="services-wrap rounded-right w-100">
-                            <div class="item">
-                                <div class="car-wrap rounded ftco-animate">
-                                    <div class="img rounded d-flex align-items-end">
-                                        <img src="~/uploads/car/@Model.Car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="" style="width: 644px;height: 270px;border-radius: 30px;border-style: outset;">
-                                    </div>
+                            <div class="form-group" style="margin-top: 16px; text-align-last:center">
+                                <button type="submit">
                                     <div class="text">
-                                        <h2 class="mb-0"><a href="car-single.html">@Model.Car.Model</a></h2>
-                                        <div class="d-flex mb-3">
-                                            <span class="cat">@Model.Car.Brand.Name</span>
-                                            <p class="price ml-auto">$@(Model.Car.PricePerDay) <span>/day</span></p>
+                                        <span>Order</span>
+                                        <span></span>
+                                        <span>now</span>
+                                    </div>
+                                    <div class="clone">
+                                        <span>Order</span>
+                                        <span></span>
+                                        <span>now</span>
+                                    </div>
+                                    <svg width="20px" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="col-md-8 d-flex align-items-center">
+                            <div class="services-wrap rounded-right w-100">
+                                <div class="item">
+                                    <div class="car-wrap rounded ftco-animate">
+                                        <div class="img rounded d-flex align-items-end">
+                                            <img src="~/uploads/car/@Model.Car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="" style="border-radius: 30px;border-style: outset;">
+                                        </div>
+                                        <div class="text">
+                                            <h2 class="mb-0"><a href="car-single.html">@Model.Car.Model</a></h2>
+                                            <div class="d-flex mb-3">
+                                                <span class="cat">@Model.Car.Brand.Name</span>
+                                                <p class="price ml-auto">$@(Model.Car.PricePerDay) <span>/day</span></p>
                                             <p class="price ml-auto">$@(Model.Car.PricePerMonth) <span>/Month</span></p>
                                         </div>
                                         <div>
@@ -105,11 +211,46 @@
                                         </div>
 
                                     </div>
+
+                                </div>
+                            </div>
+                            <div style="border-radius:10px;box-shadow: -17px -17px 79px -5px rgba(0,0,0,0.75);background: linear-gradient(136deg,rgba(255,246,0,0.32) 0%, rgba(240,255,0,0) 80%);">
+                                <div style="padding:10px">
+                                    You will be contacted within 1 hour after the order is confirmed
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
 </section>
+
+@section scripts{
+    <script>
+        const cardNumber = document.getElementById("cardnumber")
+        const endTime = document.getElementById("EndTime")
+
+        cardNumber.addEventListener("keyup", function () {
+            console.log(cardNumber.value.length)
+            if (cardNumber.value.trim().length == 4) {
+                cardNumber.value += " "
+            }
+            if (cardNumber.value.trim().length == 9) {
+                cardNumber.value += " "
+            }
+            if (cardNumber.value.trim().length == 14) {
+                cardNumber.value += " "
+            }
+        })
+
+        endTime.addEventListener("keyup", function () {
+            console.log(endTime.value.length)
+            if (endTime.value.trim().length == 2) {
+                endTime.value += "/"
+            }
+        })
+
+    </script>
+}

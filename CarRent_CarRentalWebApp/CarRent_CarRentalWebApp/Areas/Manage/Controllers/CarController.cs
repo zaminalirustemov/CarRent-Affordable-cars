@@ -263,7 +263,7 @@ public class CarController : Controller
         existCar.BrandId = newCar.BrandId;
         existCar.CategoryId = newCar.CategoryId;
         existCar.Model = newCar.Model;
-        existCar.PricePerHour = newCar.PricePerHour;
+        existCar.PricePerWeek = newCar.PricePerWeek;
         existCar.PricePerDay = newCar.PricePerDay;
         existCar.PricePerMonth = newCar.PricePerMonth;
         existCar.Millage = newCar.Millage;

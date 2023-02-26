@@ -1,10 +1,8 @@
 ﻿@model Car
-<link rel="stylesheet" href="~/manage/assets/vendors/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="~/manage/assets/vendors/css/vendor.bundle.base.css">
-<!-- endinject -->
-<!-- Plugin css for this page -->
-<link rel="stylesheet" href="~/manage/assets/vendors/select2/select2.min.css">
-<link rel="stylesheet" href="~/manage/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+@section css{
+    <link rel="stylesheet" href="~/manage/assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/manage/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+}
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">Update Car</h3>
@@ -54,17 +52,17 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-4">
-                                <label asp-for="PricePerHour" class=" col-form-label">PricePerHour</label>
-                                <div>
-                                    <input asp-for="PricePerHour" class="form-control" placeholder="PricePerHour">
-                                    <span asp-validation-for="PricePerHour" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
                                 <label asp-for="PricePerDay" class=" col-form-label">PricePerDay</label>
                                 <div>
                                     <input asp-for="PricePerDay" class="form-control" placeholder="PricePerDay">
                                     <span asp-validation-for="PricePerDay" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label asp-for="PricePerWeek" class=" col-form-label">PricePerWeek</label>
+                                <div>
+                                    <input asp-for="PricePerWeek" class="form-control" placeholder="PricePerWeek">
+                                    <span asp-validation-for="PricePerWeek" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -139,7 +137,7 @@
                         <h3 style="text-align-last:center">--- Peculiarity ---</h3>
 
                         <div class="form-group row">
-                            <div class="col-sm-9">
+                            <div class="col-sm-12">
 
                                 <select asp-for="PecularitiesIds" class="js-example-basic-multiple" multiple="multiple" style="width:100%">
                                     @foreach (Peculiarity peculiarity in ViewBag.Pecularities)
@@ -226,21 +224,10 @@
     </div>
 </div>
 
-
-<script src="~/manage/assets/vendors/js/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="~/manage/assets/vendors/select2/select2.min.js"></script>
-<script src="~/manage/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="~/manage/assets/js/off-canvas.js"></script>
-<script src="~/manage/assets/js/hoverable-collapse.js"></script>
-<script src="~/manage/assets/js/misc.js"></script>
-<script src="~/manage/assets/js/settings.js"></script>
-<script src="~/manage/assets/js/todolist.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page -->
-<script src="~/manage/assets/js/file-upload.js"></script>
-<script src="~/manage/assets/js/typeahead.js"></script>
-<script src="~/manage/assets/js/select2.js"></script>
+@section scripts{
+    <script src="~/manage/assets/vendors/select2/select2.min.js"></script>
+    <script src="~/manage/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <script src="~/manage/assets/js/file-upload.js"></script>
+    <script src="~/manage/assets/js/typeahead.js"></script>
+    <script src="~/manage/assets/js/select2.js"></script>
+}

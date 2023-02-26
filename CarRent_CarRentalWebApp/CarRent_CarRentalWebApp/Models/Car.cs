@@ -14,8 +14,8 @@ public class Car
     
     [StringLength(maximumLength: 200)]
     public string Model { get; set; }
-    public double PricePerHour { get; set; }
     public double PricePerDay { get; set; }
+    public double PricePerWeek { get; set; }
     public double PricePerMonth { get; set; }
     public double ConsumptionPer100KM { get; set; }
     public int Millage { get; set; }

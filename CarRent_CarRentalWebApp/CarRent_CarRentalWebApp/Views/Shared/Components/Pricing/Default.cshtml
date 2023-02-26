@@ -29,7 +29,8 @@
                                 <tr class="">
                                     <td class="car-image"><div class="img"><img style="max-width:100%" src="~/uploads/car/@car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" /></div></td>
                                     <td class="product-name">
-                                        <h3>@car.Brand.Name @car.Category.Name @car.Model</h3>
+                                        <h6> @car.Category.Name</h6>
+                                        <h3>@car.Brand.Name @car.Model</h3>
                                         <p class="mb-0 rated">
                                             <span>rated:</span>
                                             @foreach (CarComment comment in car.CarComments.Where(x => x.isActive == true).Where(x => x.isDeleted == false))
@@ -52,7 +53,7 @@
                                         <p class="btn-custom"><a href="#">Rent a car</a></p>
                                         <div class="price-rate">
                                             <h3>
-                                                <span class="num"><small class="currency">$</small> @car.PricePerHour</span>
+                                                <span class="num"><small class="currency">$</small> @car.PricePerWeek</span>
                                                 <span class="per">/per hour</span>
                                             </h3>
                                             <span class="subheading">$@(car.ConsumptionPer100KM)/hour fuel surcharges</span>
