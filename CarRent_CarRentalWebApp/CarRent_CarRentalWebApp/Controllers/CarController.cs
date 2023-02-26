@@ -5,6 +5,7 @@ using CarRent_CarRentalWebApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CarRent_CarRentalWebApp.Controllers;
 public class CarController : Controller
@@ -17,9 +18,30 @@ public class CarController : Controller
         _carRentDbContext = carRentDbContext;
         _userManager = userManager;
     }
-    public IActionResult Index(int page=1)
+    public IActionResult Index(string filter,DateTime? oldDateTime = null, DateTime? newDateTime = null,double? fromLowToHighDayPrice= 0,double? fromHighToLowDayPrice = 0,
+                               double? fromLowToHighWeekPrice = 0, double? fromHighToLowWeekPrice = 0, double? fromLowToHighMonthPrice = 0, double? fromHighToLowMonthPrice = 0,
+                               string? popular=null,int page=1)
     {
         var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).Where(x => x.isDeleted == false).Where(x => x.Brand.isDeleted == false).Where(x => x.Category.isDeleted == false).AsQueryable();
+        
+        if (filter == "popular") query = query.OrderByDescending(x => x.CarComments.Where(x=>x.isDeleted==false).Where(x=>x.isActive==true).Count());
+
+        if (filter== "oldDateTime") query = query.OrderBy(x => x.CreatedDate);
+        
+        if (filter == "newDateTime") query = query.OrderByDescending(x => x.CreatedDate);
+        
+        if (filter == "fromLowToHighDayPrice") query = query.OrderBy(x => x.PricePerDay);
+        
+        if (filter == "fromHighToLowDayPrice") query = query.OrderByDescending(x => x.PricePerDay);
+        
+        if (filter == "fromLowToHighWeekPrice") query = query.OrderBy(x => x.PricePerWeek);
+        
+        if (filter == "fromHighToLowWeekPrice") query = query.OrderByDescending(x => x.PricePerWeek);
+        
+        if (filter == "fromLowToHighMonthPrice") query = query.OrderBy(x => x.PricePerMonth);
+        
+        if (filter == "fromHighToLowMonthPrice") query = query.OrderByDescending(x => x.PricePerMonth);
+
         var paginatedList = PaginatedList<Car>.Create(query, 9, page);
 
         return View(paginatedList);

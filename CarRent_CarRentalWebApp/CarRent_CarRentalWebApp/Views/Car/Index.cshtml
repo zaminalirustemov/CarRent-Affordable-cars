@@ -19,13 +19,38 @@
 
             <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
                 <div class="categories">
-                    <h3>Categories</h3>
-                    <li><a href="#">Ferrari <span>(12)</span></a></li>
-                    <li><a href="#">Cheverolet <span>(22)</span></a></li>
-                    <li><a href="#">Ford <span>(37)</span></a></li>
-                    <li><a href="#">Subaru <span>(42)</span></a></li>
-                    <li><a href="#">Toyota <span>(14)</span></a></li>
-                    <li><a href="#">Mistsubishi <span>(140)</span></a></li>
+                    <h3 style="text-align-last: center;">Filters</h3>
+                    <li style="text-align-last: center">
+                        <a style="margin:0px 10px" asp-action="index" asp-controller="car" asp-route-filter="popular">Popular Cars</a>
+                    </li>
+                    <li style="text-align-last: center">
+                            <h6>Created Date</h6>
+                        <div style="display:flex;justify-content: space-around">
+                            <a style="margin:0px 10px" asp-action="index" asp-controller="car" asp-route-filter="oldDateTime">Old</a>
+                            <a style="margin:0px 10px" asp-action="index" asp-controller="car" asp-route-filter="newDateTime">New</a>
+                        </div>
+                    </li>
+                    <li style ="text-align-last: center">
+                            <h6>Price Per Day</h6>
+                        <div style="display:flex;justify-content: space-around">
+                            <a style="margin:0px 10px" asp-action="index" asp-controller="car" asp-route-filter="fromLowToHighDayPrice">Low to high</a>
+                            <a style="margin:0px 10px" asp-action="index" asp-controller="car" asp-route-filter="fromHighToLowDayPrice">High to low</a>
+                        </div>
+                    </li>
+                    <li style="text-align-last: center">
+                        <h6>Price Per Week</h6>
+                        <div style="display:flex;justify-content: space-around">
+                            <a style="margin:0px 10px" asp-action="index" asp-controller="car" asp-route-filter="fromLowToHighWeekPrice">Low to high</a>
+                            <a style="margin:0px 10px" asp-action="index" asp-controller="car" asp-route-filter="fromHighToLowWeekPrice">High to low</a>
+                        </div>
+                    </li>
+                    <li style="text-align-last: center">
+                        <h6>Price Per Month</h6>
+                        <div style="display:flex;justify-content: space-around">
+                            <a style="margin:0px 10px" asp-action="index" asp-controller="car" asp-route-filter="fromLowToHighMonthPrice">Low to high</a>
+                            <a style="margin:0px 10px" asp-action="index" asp-controller="car" asp-route-filter="fromHighToLowMonthPrice">High to low</a>
+                        </div>
+                    </li>
                 </div>
             </div>
         </div>
@@ -49,8 +74,8 @@
                                         <p class="price ml-auto">$@(car.PricePerMonth) <span>/month</span></p>
                                     </div>
                                     <p class="d-flex mb-0 d-block">
-                                        <a asp-action="index" asp-controller="checkout" asp-route-id="@car.Id" class="btn btn-primary py-2 mr-1">Book now</a>
-                                        <a asp-action="detail" asp-controller="car" asp-route-id="@car.Id" class="btn btn-secondary py-2 ml-1">Details</a>
+                                        <a asp-action="index" asp-controller="checkout" asp-route-id="@car.Id" class="btn btn-primary py-2 mr-1" style="border-top-right-radius: 50px;border-bottom-left-radius: 50px">Book now</a>
+                                        <a asp-action="detail" asp-controller="car" asp-route-id="@car.Id" class="btn btn-secondary py-2 ml-1" style="border-bottom-right-radius: 50px;border-top-left-radius: 50px">Details</a>
                                     </p>
                                 </div>
                             </div>
