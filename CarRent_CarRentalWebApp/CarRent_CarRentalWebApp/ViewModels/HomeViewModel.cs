@@ -9,5 +9,6 @@ public class HomeViewModel
     public List<DoYouWant> DoYouWants { get; set; }
     public List<Testimonial> Testimonials { get; set; }
     public List<Service> Services { get; set; }
+    public List<Blog> RecentBlog { get; set; }
     public List<InfoBar> InfoBars { get; set; }
 }

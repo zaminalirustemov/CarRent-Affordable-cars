@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Blog>
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center mb-5">
@@ -8,54 +8,25 @@
             </div>
         </div>
         <div class="row d-flex">
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry justify-content-end">
-                    <a href="blog-single.html" class="block-20" @* style="background-image: url('../assets/images/image_1.jpg');"*@>
-                        <img src="~/assets/images/image_1.jpg" class="img-fluid" alt="">
-                    </a>
-                    <div class="text pt-4">
-                        <div class="meta mb-3">
-                            <div><a href="#">Oct. 29, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+            @foreach (Blog blog in Model)
+            {
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry justify-content-end">
+                        <a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id" class="block-20">
+                            <img src="~/uploads/blog/@blog.ImageName" class="img-fluid" alt="">
+                        </a>
+                        <div class="text pt-4">
+                            <div class="meta mb-3">
+                                <div><a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id">@blog.CreatedDate</a></div>
+                                <div><a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id" class="meta-chat"><span class="icon-chat"></span>@blog.BlogComments.Where(x=>x.isDeleted==false).Where(x=>x.isActive==true).Count()</a></div>
+                            </div>
+                            <h3 class="heading mt-2"><a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id">@blog.Title</a></h3>
+                            <p><a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id" class="btn btn-primary">Read more</a></p>
                         </div>
-                        <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
                     </div>
                 </div>
-            </div>
 
-            @*
-            <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry justify-content-end">
-            <a href="blog-single.html" class="block-20" style="background-image: url('../assets/images/image_2.jpg');">
-            </a>
-            <div class="text pt-4">
-            <div class="meta mb-3">
-            <div><a href="#">Oct. 29, 2019</a></div>
-            <div><a href="#">Admin</a></div>
-            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-            </div>
-            <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-            <p><a href="#" class="btn btn-primary">Read more</a></p>
-            </div>
-            </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry">
-            <a href="blog-single.html" class="block-20" style="background-image: url('../assets/images/image_3.jpg');">
-            </a>
-            <div class="text pt-4">
-            <div class="meta mb-3">
-            <div><a href="#">Oct. 29, 2019</a></div>
-            <div><a href="#">Admin</a></div>
-            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-            </div>
-            <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-            <p><a href="#" class="btn btn-primary">Read more</a></p>
-            </div>
-            </div>
-            </div>*@
+            }
         </div>
     </div>
 </section>

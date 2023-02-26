@@ -23,15 +23,14 @@ public class CarController : Controller
     }
     public IActionResult Index(int page = 1)
     {
-        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).Where(x => x.isDeleted == false).Where(x => x.isRent == false).AsQueryable();
+        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarImages).Where(x => x.isDeleted == false).Where(x => x.isRent == false).OrderByDescending(x => x.CreatedDate).AsQueryable();
         var paginatedList = PaginatedList<Car>.Create(query, 5, page);
 
         return View(paginatedList);
     }
     public IActionResult RenatlIndex(int page = 1)
     {
-        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Include(x => x.Category)
-                                          .Where(x => x.isDeleted == false).Where(x=>x.isRent==true).AsQueryable();
+        var query = _carRentDbContext.Cars.Include(x => x.Brand).Include(x => x.CarImages).Include(x => x.Category).Where(x => x.isDeleted == false).Where(x=>x.isRent==true).OrderByDescending(x => x.CreatedDate).AsQueryable();
         var paginatedList = PaginatedList<Car>.Create(query, 5, page);
 
         return View(paginatedList);

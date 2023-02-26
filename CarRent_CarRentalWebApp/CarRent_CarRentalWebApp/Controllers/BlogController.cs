@@ -19,7 +19,7 @@ public class BlogController : Controller
     }
     public IActionResult Index(int page=1) 
     {
-        var query = _carRentDbContext.Blogs.Include(x=>x.BlogComments).Where(x => x.isDeleted == false).AsQueryable();
+        var query = _carRentDbContext.Blogs.Include(x=>x.BlogComments).Where(x => x.isDeleted == false).OrderByDescending(x => x.CreatedDate).AsQueryable();
         var paginatedList = PaginatedList<Blog>.Create(query, 3, page);
 
         return View(paginatedList);

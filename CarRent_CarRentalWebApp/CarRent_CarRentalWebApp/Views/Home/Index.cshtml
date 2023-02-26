@@ -1,7 +1,141 @@
 ﻿@model HomeViewModel
+@section css{
+	<style>
+				.zodiaclogin {
+  cursor: pointer;
+  font-weight: 700;
+  font-family: Helvetica,"sans-serif";
+  transition: all .2s;
+  padding: 10px 20px;
+  border-radius: 100px;
+		  background: #ffffff52;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
 
+		.zodiaclogin:hover {
+		  background: #ffffff52;
+}
+
+		.zodiaclogin > svg {
+  width: 34px;
+  margin-left: 10px;
+  transition: transform .3s ease-in-out;
+}
+
+		.zodiaclogin:hover svg {
+  transform: translateX(5px);
+}
+
+		.zodiaclogin:active {
+  transform: scale(0.95);
+}
+		.centerzrzr {
+		  margin: 0;
+		  position: absolute;
+		  top: 90%;
+		  left: 50%;
+		  -ms-transform: translate(-50%, -50%);
+		  transform: translate(-50%, -50%);
+		}
+
+	</style>
+}
 <!-- ======= Hero Section ======= -->
 @await Component.InvokeAsync("Hero",Model.Heroes)
+<!-- ======= Reklam Section ======= -->
+<section class="ftco-section ftco-no-pt bg-light">
+	<div class="container">
+		<div class="row no-gutters">
+			<div class="col-md-12	featured-top">
+				<div class="row no-gutters">
+					<div class="col-md-12 d-flex align-items-center">
+						<div style="background: linear-gradient(39deg,#9f8ced 0%, #b5ffb7 60%);    border-radius: 60px;" class="services-wrap rounded-right w-100">
+							<h3 style="text-align-last:center" class="heading-section mb-4">We are interested, if your zodiac sign were a car, what kind of car would it be?</h3>
+							<div class="row d-flex mb-4">
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9810;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9811;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9800;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9801;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+                                        <div class="icon d-flex align-items-center justify-content-center"><span>&#9802;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9803;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9804;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9805;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9806;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9807;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9808;</span></div>
+									</div>
+								</div>
+								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+									<div class="services w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center"><span>&#9809;</span></div>
+									</div>
+								</div>
+								
+							</div>
+							<h3 style="text-align-last:center" class="heading-section mb-4">If you are interested, log in and let's see the answer to this question together</h3>
+								<div class="centerzrzr">
+										<a asp-action="login" asp-controller="account">
+									<button class="zodiaclogin">
+											<span>Log In</span>
+											<svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+												<path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+											</svg>
+									</button>
+										</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <!-- ======= Featured Vehicle Section ======= -->
 <section class="ftco-section ftco-no-pt bg-light">
     <div class="container">
@@ -29,6 +163,6 @@
 <!-- ======= Testimonial Section ======= -->
 @await Component.InvokeAsync("Testimonial",Model.Testimonials)
 <!-- ======= Blog Section ======= -->
-@await Component.InvokeAsync("Blog")
+@await Component.InvokeAsync("Blog",Model.RecentBlog)
 <!-- ======= Info Section ======= -->
 @await Component.InvokeAsync("Info",Model.InfoBars)

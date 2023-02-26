@@ -10,7 +10,7 @@ public class Blog
     public string? ImageName { get; set; }
     [StringLength(maximumLength: 30)]
     public string Title { get; set; }
-    [StringLength(maximumLength: 750)]
+    [StringLength(maximumLength: 2000)]
     public string Description { get; set; }
     [StringLength(maximumLength: 50)]
     public string Paragraph { get; set; }

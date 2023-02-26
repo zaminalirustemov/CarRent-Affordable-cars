@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E+lDi4xjJF65POHZUsRICXmBJkSdkLIErjbDGKHxwB0=",
+  "Hash": "XtQ495LiL+NJx7PNo4+6iirNEvdhb5mUBoLdAH+WhP4=",
   "Source": "CarRent_CarRentalWebApp",
   "BasePath": "_content/CarRent_CarRentalWebApp",
   "Mode": "Default",
@@ -20823,6 +20823,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\blog\\0b2d9241-b8f3-4264-a60e-13eafbccf36fcar-8.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\uploads\\blog\\26dab92f-7a09-445e-b5e7-857f056bbceecar-11.jpg",
+      "SourceId": "CarRent_CarRentalWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\",
+      "BasePath": "_content/CarRent_CarRentalWebApp",
+      "RelativePath": "uploads/blog/26dab92f-7a09-445e-b5e7-857f056bbceecar-11.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\blog\\26dab92f-7a09-445e-b5e7-857f056bbceecar-11.jpg"
     },
     {
       "Identity": "C:\\Users\\HP\\Desktop\\CarRent-R.Zaminali\\CarRent_CarRentalWebApp\\CarRent_CarRentalWebApp\\wwwroot\\uploads\\blog\\3b98aea3-bca2-4777-9788-ae9a93805fb9car-11.jpg",

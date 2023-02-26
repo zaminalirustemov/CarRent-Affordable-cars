@@ -17,7 +17,7 @@ public class ServicesController : Controller
         ServicesViewModel servicesViewModel = new ServicesViewModel
         {
             DoYouWants = _carRentDbContext.DoYouWants.ToList(),
-            Services=_carRentDbContext.Services.Where(x=>x.isDeleted==false).ToList(),
+            Services=_carRentDbContext.Services.Where(x=>x.isDeleted==false).OrderByDescending(x => x.CreatedDate).ToList(),
         };
         return View(servicesViewModel);
     }

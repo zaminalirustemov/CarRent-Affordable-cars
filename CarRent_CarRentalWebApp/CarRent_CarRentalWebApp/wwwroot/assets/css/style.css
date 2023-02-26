@@ -5485,10 +5485,6 @@ button.bg-dark:focus {
   border-top-left-radius: 0.25rem !important;
   border-top-right-radius: 0.25rem !important; }
 
-.rounded-right {
-  border-top-right-radius: 0.25rem !important;
-  border-bottom-right-radius: 0.25rem !important; }
-
 .rounded-bottom {
   border-bottom-right-radius: 0.25rem !important;
   border-bottom-left-radius: 0.25rem !important; }
@@ -9055,10 +9051,10 @@ h1, h2, h3, h4, h5,
     content: '';
     position: absolute;
     left: 0;
-    bottom: -50px;
+    bottom: -60px;
     overflow: visible;
     width: 100%;
-    height: 120px;
+    height: 130px;
     z-index: 0;
     -webkit-transform: skewY(-4deg);
     -moz-transform: skewY(-4deg);

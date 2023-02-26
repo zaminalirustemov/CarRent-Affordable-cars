@@ -16,7 +16,7 @@ public class PricingController : Controller
     }
     public IActionResult Index(int page=1)
     {
-        var query = _carRentDbContext.Cars.Include(x => x.CarImages).Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarComments).Where(x => x.isDeleted == false).AsQueryable();
+        var query = _carRentDbContext.Cars.Include(x => x.CarImages).Include(x => x.Brand).Include(x => x.Category).Include(x => x.CarComments).Where(x => x.isDeleted == false).OrderByDescending(x => x.CreatedDate).AsQueryable();
         var paginatedList = PaginatedList<Car>.Create(query, 10, page);
 
         return View(paginatedList);
