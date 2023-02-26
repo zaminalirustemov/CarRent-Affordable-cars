@@ -931,6 +931,9 @@ namespace CarRent_CarRentalWebApp.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Fullname")
                         .IsRequired()
                         .HasMaxLength(100)

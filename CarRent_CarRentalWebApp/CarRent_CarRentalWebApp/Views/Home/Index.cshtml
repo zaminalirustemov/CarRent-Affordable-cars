@@ -1,140 +1,186 @@
-﻿@model HomeViewModel
+﻿@inject CarRent_CarRentalWebApp.Services.MemberLayoutService service
+@{
+    AppUser user = await service.GetUser();
+}
+@model HomeViewModel
 @section css{
-	<style>
-				.zodiaclogin {
-  cursor: pointer;
-  font-weight: 700;
-  font-family: Helvetica,"sans-serif";
-  transition: all .2s;
-  padding: 10px 20px;
-  border-radius: 100px;
-		  background: #ffffff52;
-  border: 1px solid transparent;
-  display: flex;
-  align-items: center;
-  font-size: 15px;
-}
+    <style>
+        .zodiaclogin {
+            cursor: pointer;
+            font-weight: 700;
+            font-family: Helvetica,"sans-serif";
+            transition: all .2s;
+            padding: 10px 20px;
+            border-radius: 100px;
+            background: #ffffff52;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
 
-		.zodiaclogin:hover {
-		  background: #ffffff52;
-}
+            .zodiaclogin:hover {
+                background: #ffffff52;
+            }
 
-		.zodiaclogin > svg {
-  width: 34px;
-  margin-left: 10px;
-  transition: transform .3s ease-in-out;
-}
+            .zodiaclogin > svg {
+                width: 34px;
+                margin-left: 10px;
+                transition: transform .3s ease-in-out;
+            }
 
-		.zodiaclogin:hover svg {
-  transform: translateX(5px);
-}
+            .zodiaclogin:hover svg {
+                transform: translateX(5px);
+            }
 
-		.zodiaclogin:active {
-  transform: scale(0.95);
-}
-		.centerzrzr {
-		  margin: 0;
-		  position: absolute;
-		  top: 90%;
-		  left: 50%;
-		  -ms-transform: translate(-50%, -50%);
-		  transform: translate(-50%, -50%);
-		}
+            .zodiaclogin:active {
+                transform: scale(0.95);
+            }
 
-	</style>
+        .centerzrzr {
+            margin: 0;
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
 }
-<!-- ======= Hero Section ======= -->
-@await Component.InvokeAsync("Hero",Model.Heroes)
-<!-- ======= Reklam Section ======= -->
-<section class="ftco-section ftco-no-pt bg-light">
-	<div class="container">
-		<div class="row no-gutters">
-			<div class="col-md-12	featured-top">
-				<div class="row no-gutters">
-					<div class="col-md-12 d-flex align-items-center">
-						<div style="background: linear-gradient(39deg,#9f8ced 0%, #b5ffb7 60%);    border-radius: 60px;" class="services-wrap rounded-right w-100">
-							<h3 style="text-align-last:center" class="heading-section mb-4">We are interested, if your zodiac sign were a car, what kind of car would it be?</h3>
-							<div class="row d-flex mb-4">
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9810;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9811;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9800;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9801;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-                                        <div class="icon d-flex align-items-center justify-content-center"><span>&#9802;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9803;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9804;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9805;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9806;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9807;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9808;</span></div>
-									</div>
-								</div>
-								<div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-									<div class="services w-100 text-center">
-										<div class="icon d-flex align-items-center justify-content-center"><span>&#9809;</span></div>
-									</div>
-								</div>
-								
-							</div>
-							<h3 style="text-align-last:center" class="heading-section mb-4">If you are interested, log in and let's see the answer to this question together</h3>
-								<div class="centerzrzr">
-										<a asp-action="login" asp-controller="account">
-									<button class="zodiaclogin">
-											<span>Log In</span>
-											<svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
-												<path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
-											</svg>
-									</button>
-										</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <!-- ======= Hero Section ======= -->
+    @await Component.InvokeAsync("Hero",Model.Heroes)
+    <!-- ======= Reklam Section ======= -->
+    <section class="ftco-section ftco-no-pt bg-light">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-12	featured-top">
+                    <div class="row no-gutters">
+                        <div class="col-md-12 d-flex align-items-center">
+                            <div style="justify-content: center;background: linear-gradient(39deg,#9f8ced 0%, #b5ffb7 60%);border-radius: 60px;" class="row services-wrap rounded-right w-100">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                string zodiac = DateManager.FindingTheZodiac(user.DateOfBirth);
+
+                                <h3 style="text-align-last:center" class="heading-section mb-4">
+                                    You are a @zodiac and only such a amazing car would suit @zodiac<span>
+                                        @(zodiac == "Capricornus" ? "♑" : (zodiac == "Aquarius" ? "♒" : (zodiac == "Pisces" ? "♓" : (zodiac == "Aries" ? "♈" : (zodiac == "Taurus" ? "♉" : (zodiac == "Gemini" ? "♊" :
+                                            (zodiac == "Cancer" ? "♋" : (zodiac == "Leo" ? "♌" : (zodiac == "Virgo" ? "♍" : (zodiac == "Libra" ? "♎" : (zodiac == "Scorpion" ? "♏" : "♐")))))))))))
+                                    </span>
+                                </h3>
+                                <div class="col-md-5">
+                                    <div class="row" style="width: 300px;height: 300px;position: relative;left: 15%;">
+
+                                        <img style="max-width: 100%;border: outset;border-radius: 50%;" src="~/assets/zodiacs/@(zodiac).png" alt="zodiac" />
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-7">
+
+                                    <h4>
+                                        @(zodiac == "Capricornus" ? "Capricornus also called Capricornus and the Goat, in astrology, the 10th sign of the zodiac, considered as governing the period from about December 22 to about January 19. One explanation of the fishtail with which the goat is often represented is found in the Greek myth of Pan, who, to avoid the monster Typhon, jumped into the water just as he was changing into animal shape." :
+                                            (zodiac == "Aquarius" ? "Aquarius in astronomy, zodiacal constellation lying in the southern sky between Capricornus and Pisces, at about 22 hours right ascension and 10° south declination. It lacks striking features, the brightest star, Sadalmelik (Arabic for “the lucky stars of the king”), being of magnitude 3.0." :
+                                            (zodiac == "Pisces" ? "Pisces in astronomy, zodiacal constellation in the northern sky between Aries and Aquarius, at about 1 hour right ascension and 15° north declination. The vernal equinox, the point where the Sun’s annual apparent path takes it north of the celestial equator and from which celestial longitude and right ascension are measured, lies in Pisces. " :
+                                            (zodiac == "Aries" ? "Ariesin astronomy, zodiacal constellation in the northern sky lying between Pisces and Taurus, at about 3 hours right ascension and 20° north declination.The brightest star, Hamal, has a magnitude of 2.0. The first point of Aries, or vernal equinox, is an intersection of the celestial equator with the apparent annual pathway of the Sun and the point in the sky from which celestial longitude and right ascension are measured." :
+                                            (zodiac == "Taurus" ? "Taurus in astronomy, zodiacal constellation lying in the northern sky between Aries and Gemini, at about 4 hours 20 minutes right ascension and 16° north declination. The constellation’s brightest star, Aldebaran, is the 14th brightest star in the sky, with a magnitude of 0.85. The constellation also contains the Crab Nebula (M1) and the Pleiades and Hyades star clusters." :
+                                            (zodiac == "Gemini" ? "Gemini in astronomy, zodiacal constellation lying in the northern sky between Cancer and Taurus, at about 7 hours right ascension and 22° north declination. Pollux is the brighter of the two, with a magnitude of 1.15, and is the 17th brightest star in the sky. The summer solstice, the northernmost point reached by the Sun in its annual apparent journey among the stars, lies in Gemini." :
+                                            (zodiac == "Cancer" ? "Cancer in astronomy, zodiacal constellation lying in the northern sky between Leo and Gemini, at about 8 hours 25 minutes right ascension and 20° north declination. It contains the well-known star cluster called Praesepe, or the Beehive.In astrology, Cancer is the fourth sign of the zodiac, considered as governing the period from about June 22 to about July 22." :
+                                            (zodiac == "Leo" ? "Leo in astronomy, zodiacal constellation lying in the northern sky between Cancer and Virgo, at about 10 hours 30 minutes right ascension and 15° north declination. Regulus, the brightest star, is of magnitude 1.35. The November meteor shower called the Leonids has its radiant, or point of apparent origin, in Leo. Many of the stars in Leo form an asterism called the Sickle." :
+                                            (zodiac == "Virgo" ? "Virgo in astronomy, zodiacal constellation lying in the southern sky between Leo and Libra, at about 13 hours right ascension and 2° south declination. Virgo contains the nearest large cluster of galaxies, the Virgo cluster, in which is located the giant elliptical galaxy Virgo A and PSR 1257+12, the pulsar around which the first extrasolar planets were discovered in 1992." :
+                                            (zodiac == "Libra" ? "Libra in astronomy zodiacal constellation in the southern sky lying between Scorpius and Virgo, at about 15 hours 30 minutes right ascension and 15° south declination. Its stars are faint; the brightest star, Zubeneschamali (Arabic for “northern claw,” as it was earlier regarded as part of Scorpius; also called Beta Librae), has a magnitude of 2.6." :
+                                            (zodiac == "Scorpion" ? "Scorpio, in astronomy, zodiacal constellation lying in the southern sky between Libra and Sagittarius, at about 16 hours 30 minutes right ascension and 30° south declination. Its brightest star, Antares , the 15th brightest star in the sky, has a magnitude of 1.1. Its name comes from the Greek for “rival of Ares” and was probably given because of the star’s red colour and brightness." : 
+                                                                    "Sagittarius in astronomy, zodiacal constellation in the southern sky lying between Capricornus and Scorpius, at about 19 hours right ascension and 25° south declination. Near the western border of Sagittarius is the winter solstice, the southernmost point reached by the Sun in its apparent annual journey among the stars. This constellation also contains the Lagoon and Trifid nebulas.")))))))))))
+                                    </h4>
+                                </div>
+
+
+                            }
+                            else
+                            {
+                                <h3 style="text-align-last:center" class="heading-section mb-4">We are interested, if your zodiac sign were a car, what kind of car would it be?</h3>
+                                <div class="row d-flex mb-4">
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9810;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9811;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9800;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9801;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9802;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9803;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9804;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9805;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9806;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9807;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9808;</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span>&#9809;</span></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <h3 style="text-align-last:center" class="heading-section mb-4">If you are interested, log in and let's see the answer to this question together</h3>
+                                <div class="centerzrzr">
+                                    <a asp-action="login" asp-controller="account">
+                                        <button class="zodiaclogin">
+                                            <span>Log In</span>
+                                            <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                                                <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                                            </svg>
+                                        </button>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- ======= Featured Vehicle Section ======= -->
 <section class="ftco-section ftco-no-pt bg-light">

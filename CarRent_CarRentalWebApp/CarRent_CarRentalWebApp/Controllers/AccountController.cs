@@ -31,7 +31,11 @@ public class AccountController : Controller
     public async Task<IActionResult> Register(MemberRegisterViewModel memberRegisterVM)
     {
         if (!ModelState.IsValid) return View();
-
+        if (DateManager.GreaterThan18(memberRegisterVM.DateOfBith))
+        {
+            ModelState.AddModelError("DateOfBith", "GreaterThan18");
+            return View();
+        }
         AppUser appUser = null;
 
         appUser = await _userManager.FindByNameAsync(memberRegisterVM.Username);
@@ -52,6 +56,7 @@ public class AccountController : Controller
         {
             Fullname = memberRegisterVM.Fullname,
             UserName = memberRegisterVM.Username,
+            DateOfBirth=memberRegisterVM.DateOfBith,
             Email = memberRegisterVM.Email,
             PhoneNumber = memberRegisterVM.PhoneNumber
         };

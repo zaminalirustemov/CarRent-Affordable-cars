@@ -10,6 +10,7 @@ public class AppUser : IdentityUser
 
     [StringLength(maximumLength: 100)]
     public string? ImageName { get; set; }
+    public DateTime DateOfBirth { get; set; }
     [NotMapped]
     public IFormFile? ImageFile { get; set; }
 }
