@@ -38,7 +38,18 @@
                                             <img style="width:250px; height:250px" src="~/uploads/hero/@hero.ImageName" class="img-fluid" alt="">
                                         </td>
                                         <td>@hero.Title</td>
-                                        <td>@hero.Description</td>
+                                        <td>
+                                            @if (hero.Description.Length > 25)
+                                            {
+                                                @hero.Description.Substring(0,25)
+
+                                                <p>.....</p>
+                                            }
+                                            else
+                                            {
+                                                @hero.Description
+                                            }
+                                        </td>
                                         <td>@hero.VideoText</td>
                                         <td>
                                             <a target="_blank" href="@hero.VideoUrl" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center" style="width:44px">

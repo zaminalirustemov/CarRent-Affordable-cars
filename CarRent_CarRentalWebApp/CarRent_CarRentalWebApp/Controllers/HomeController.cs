@@ -1,4 +1,5 @@
 ﻿using CarRent_CarRentalWebApp.Context;
+using CarRent_CarRentalWebApp.Models;
 using CarRent_CarRentalWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,6 @@ public class HomeController : Controller
             Testimonials = _carRentDbContext.Testimonials.Include(x => x.AppUser).Where(x => x.isDeleted == false).Where(x => x.isActive == true).ToList(),
             Services = _carRentDbContext.Services.Where(x => x.isDeleted == false).OrderByDescending(x=>x.CreatedDate).ToList(),
             RecentBlog = _carRentDbContext.Blogs.Include(x => x.BlogComments).Where(x => x.isDeleted == false).OrderByDescending(x=>x.CreatedDate).Take(3).ToList(),
-            InfoBars = _carRentDbContext.InfoBars.ToList(),
         };
         return View(homeVM);
     }

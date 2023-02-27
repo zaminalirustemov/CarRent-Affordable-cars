@@ -23,7 +23,7 @@ public static class DateManager
 
         return false;
     }
-    public static bool GreaterThan18(DateTime dateOfBirth)
+    public static bool LittleThan18(DateTime dateOfBirth)
     {
         return (dateOfBirth.AddYears(18) >= DateTime.Now);
     }
@@ -72,5 +72,4 @@ public static class DateManager
         }
         return "";
     }
-
 }

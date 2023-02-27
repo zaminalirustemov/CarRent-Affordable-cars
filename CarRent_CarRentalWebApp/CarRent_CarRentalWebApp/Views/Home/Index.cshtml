@@ -48,10 +48,10 @@
 
     </style>
 }
-    <!-- ======= Hero Section ======= -->
-    @await Component.InvokeAsync("Hero",Model.Heroes)
-    <!-- ======= Reklam Section ======= -->
-    <section class="ftco-section ftco-no-pt bg-light">
+<!-- ======= Hero Section ======= -->
+@await Component.InvokeAsync("Hero",Model.Heroes)
+<!-- ======= Zodiac Section ======= -->
+@*<section class="ftco-section ftco-no-pt bg-light">
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-md-12	featured-top">
@@ -181,7 +181,8 @@
             </div>
         </div>
     </div>
-</section>
+</section>*@
+
 <!-- ======= Featured Vehicle Section ======= -->
 <section class="ftco-section ftco-no-pt bg-light">
     <div class="container">
@@ -211,4 +212,4 @@
 <!-- ======= Blog Section ======= -->
 @await Component.InvokeAsync("Blog",Model.RecentBlog)
 <!-- ======= Info Section ======= -->
-@await Component.InvokeAsync("Info",Model.InfoBars)
+@await Component.InvokeAsync("Info")
