@@ -23,7 +23,11 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(AdminLoginViewModel adminLoginVM)
     {
-        if (!ModelState.IsValid) return View(adminLoginVM);
+        if (!ModelState.IsValid)
+        {
+            ModelState.AddModelError("", "The size of the password cannot be smaller than 8");
+            return View(adminLoginVM);
+        }
         AppUser appUser = await _userManager.FindByNameAsync(adminLoginVM.Username);
         if (appUser == null)
         {

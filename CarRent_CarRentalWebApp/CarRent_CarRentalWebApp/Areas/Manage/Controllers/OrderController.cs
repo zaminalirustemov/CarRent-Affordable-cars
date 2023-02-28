@@ -77,6 +77,7 @@ public class OrderController : Controller
         order.OrderStatus = OrderStatus.Accepted;
         order.UpdatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
+        MailExtension.SendMessage(order.Email, "This is Accepted", "Acccepteddddddddd");
         return RedirectToAction(nameof(Index));
     }
     public IActionResult Rejected(int id)

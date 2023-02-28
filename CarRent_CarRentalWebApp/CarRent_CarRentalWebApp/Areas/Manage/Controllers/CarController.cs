@@ -77,6 +77,42 @@ public class CarController : Controller
             ModelState.AddModelError("CategoryId", "Category is required");
             return View(car);
         }
+        if (car.PricePerDay<= 0)
+        {
+            ModelState.AddModelError("PricePerDay", "The given value cannot be less than 0");
+            return View(car);
+        }
+        if (car.PricePerWeek <= 0)
+        {
+            ModelState.AddModelError("PricePerWeek", "The given value cannot be less than 0");
+            return View(car);
+        }
+        if (car.PricePerMonth <= 0)
+        {
+            ModelState.AddModelError("PricePerMonth", "The given value cannot be less than 0");
+            return View(car);
+        }
+        if (car.Millage <= 0)
+        {
+            ModelState.AddModelError("Millage", "The given value cannot be less than 0");
+            return View(car);
+        }
+        if (car.ConsumptionPer100KM <= 0)
+        {
+            ModelState.AddModelError("ConsumptionPer100KM", "The given value cannot be less than 0");
+            return View(car);
+        }
+        if (car.Seats <= 0)
+        {
+            ModelState.AddModelError("Seats", "The given value cannot be less than 0");
+            return View(car);
+        }
+        if (car.Luggage <= 0)
+        {
+            ModelState.AddModelError("Luggage", "The given value cannot be less than 0");
+            return View(car);
+        }
+
         //Poster Image--------------------------
         if (car.PosterImageFile is null)
         {
