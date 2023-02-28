@@ -41,7 +41,7 @@ public class ContactController : Controller
 
         contact.isActive = null;
         _carRentDbContext.SaveChanges();
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction("Detail", new { id = contact.Id });
     }
     public IActionResult WasRead(int id)
     {
@@ -50,7 +50,7 @@ public class ContactController : Controller
 
         contact.isActive = true;
         _carRentDbContext.SaveChanges();
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction("Detail", new { id = contact.Id });
     }
     //Soft Delete--------------------------------------------------------------------------
     public IActionResult SoftDelete(int id)

@@ -17,8 +17,8 @@ public class OrderController : Controller
     }
     public IActionResult Index(int page=1)
     {
-        var query = _carRentDbContext.Orders.Include(x=>x.OrderItem).Where(x => x.isDeleted == false).OrderByDescending(x=>x.PickUp).AsQueryable();
-        var paginatedList = PaginatedList<Order>.Create(query, 5, page);
+        var query = _carRentDbContext.Orders.Include(x=>x.OrderItem).Where(x => x.isDeleted == false).OrderByDescending(x=>x.CreatedDate).AsQueryable();
+        var paginatedList = PaginatedList<Order>.Create(query, 7, page);
         return View(paginatedList);
     }
     //Detail---------------------------------------------------------------------------
@@ -111,7 +111,7 @@ public class OrderController : Controller
     public IActionResult DeletedIndex(int page = 1)
     {
         var query = _carRentDbContext.Orders.Where(x => x.isDeleted == true).AsQueryable();
-        var paginatedList = PaginatedList<Order>.Create(query, 5, page);
+        var paginatedList = PaginatedList<Order>.Create(query, 7, page);
         return View(paginatedList);
     }
     //Restore------------------------------------------------------------------------------

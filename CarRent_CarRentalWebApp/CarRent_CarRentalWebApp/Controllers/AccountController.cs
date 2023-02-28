@@ -4,6 +4,7 @@ using CarRent_CarRentalWebApp.Models;
 using CarRent_CarRentalWebApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 
@@ -113,15 +114,14 @@ public class AccountController : Controller
         return RedirectToAction("index", "home");
     }
     //Orders-------------------------------------------------------------------------------------------------------
-    public async Task<IActionResult> Orders()
+    public async Task<IActionResult> Orders(int page=1)
     {
         AppUser member = null;
         if (User.Identity.IsAuthenticated) member = await _userManager.FindByNameAsync(User.Identity.Name);
 
-        List<Order> orders = _carRentDbContext.Orders.Where(x => x.AppUserId == member.Id).Where(x => x.isDeleted == false).ToList();
-
-
-        return View(orders);
+        var query = _carRentDbContext.Orders.Where(x => x.AppUserId == member.Id).Where(x => x.isDeleted == false).AsQueryable();
+        var paginatedList = PaginatedList<Order>.Create(query, 7, page);
+        return View(paginatedList);
     }
     public IActionResult Detail(int id)
     {

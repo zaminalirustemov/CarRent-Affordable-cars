@@ -20,11 +20,8 @@ public class BrandController : Controller
     }
     public IActionResult Index(int page = 1)
     {
-        var query = _carRentDbContext.Brands
-                                     .Where(x => x.isDeleted == false)
-                                     .AsQueryable();
-
-        var paginatedList = PaginatedList<Brand>.Create(query, 5, page);
+        var query = _carRentDbContext.Brands.Where(x => x.isDeleted == false).AsQueryable();
+        var paginatedList = PaginatedList<Brand>.Create(query, 7, page);
         return View(paginatedList);
     }
     //Detail----------------------------------------------------------------------------------------
@@ -93,7 +90,7 @@ public class BrandController : Controller
     {
         var query = _carRentDbContext.Brands.Where(x => x.isDeleted == true).AsQueryable();
 
-        var paginatedList = PaginatedList<Brand>.Create(query, 5, page);
+        var paginatedList = PaginatedList<Brand>.Create(query, 7, page);
         return View(paginatedList);
     }
     //Restore------------------------------------------------------------------------------

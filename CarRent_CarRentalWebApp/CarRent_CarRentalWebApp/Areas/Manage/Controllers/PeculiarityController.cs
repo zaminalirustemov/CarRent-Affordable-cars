@@ -18,7 +18,7 @@ public class PeculiarityController : Controller
     public IActionResult Index(int page=1)
     {
         var query = _carRentDbContext.Peculiarities.Where(x => x.isDeleted == false).AsQueryable();
-        var paginatedList = PaginatedList<Peculiarity>.Create(query, 5, page);
+        var paginatedList = PaginatedList<Peculiarity>.Create(query, 7, page);
         return View(paginatedList);
     }
     //Detail----------------------------------------------------------------------------------------
@@ -88,7 +88,7 @@ public class PeculiarityController : Controller
     public IActionResult DeletedIndex(int page = 1)
     {
         var query = _carRentDbContext.Peculiarities.Where(x => x.isDeleted == true).AsQueryable();
-        var paginatedList = PaginatedList<Peculiarity>.Create(query, 5, page);
+        var paginatedList = PaginatedList<Peculiarity>.Create(query, 7, page);
         return View(paginatedList);
     }
     //Restore------------------------------------------------------------------------------

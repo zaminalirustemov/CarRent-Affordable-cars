@@ -5,9 +5,11 @@
 {
     <div class="item">
         <div class="car-wrap rounded ftco-animate">
+            <a asp-action="detail" asp-controller="car" asp-route-id="@car.Id">
             <div class="img rounded d-flex align-items-end">
                 <img src="~/uploads/car/@car.CarImages.FirstOrDefault(x=>x.isPoster==true).ImageName" class="img-fluid" alt="">
             </div>
+            </a>
             <div class="text">
                 <h2 class="mb-0"><a href="car-single.html">@car.Model</a></h2>
                 <div class="d-flex mb-3">

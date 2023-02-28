@@ -33,7 +33,7 @@ public class DashboardController : Controller
             Services = _carRentDbContext.Services.Where(x => x.isDeleted == false).OrderByDescending(x => x.CreatedDate).ToList(),
             Blogs = _carRentDbContext.Blogs.Where(x => x.isDeleted == false).OrderByDescending(x => x.CreatedDate).ToList(),
             Orders = _carRentDbContext.Orders.Include(x=>x.AppUser).Where(x => x.isDeleted == false).Where(x => x.OrderStatus == Enums.OrderStatus.Pending).OrderByDescending(x => x.PickUp).ToList(),
-            Contacts= _carRentDbContext.Contacts.Include(x => x.AppUser).Where(x => x.isDeleted == false).Where(x => x.isActive == null).Take(4).ToList(),
+            Contacts= _carRentDbContext.Contacts.Include(x => x.AppUser).Where(x => x.isDeleted == false).Where(x => x.isActive == null).OrderByDescending(x => x.SendedDate).Take(4).ToList(),
         };
         return View(dashboardVM);
     }

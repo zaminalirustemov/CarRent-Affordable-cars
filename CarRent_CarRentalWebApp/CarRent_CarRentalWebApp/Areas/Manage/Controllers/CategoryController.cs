@@ -19,11 +19,8 @@ public class CategoryController : Controller
     }
     public IActionResult Index(int page = 1)
     {
-        var query = _carRentDbContext.Categories
-                                     .Where(x => x.isDeleted == false)
-                                     .AsQueryable();
-
-        var paginatedList = PaginatedList<Category>.Create(query, 5, page);
+        var query = _carRentDbContext.Categories.Where(x => x.isDeleted == false).AsQueryable();
+        var paginatedList = PaginatedList<Category>.Create(query, 7, page);
         return View(paginatedList);
     }
     //Detail----------------------------------------------------------------------------------------
@@ -90,11 +87,8 @@ public class CategoryController : Controller
     //Deleted Index------------------------------------------------------------------------
     public IActionResult DeletedIndex(int page = 1)
     {
-        var query = _carRentDbContext.Categories
-                                      .Where(x => x.isDeleted == true)
-                                      .AsQueryable();
-
-        var paginatedList = PaginatedList<Category>.Create(query, 5, page);
+        var query = _carRentDbContext.Categories.Where(x => x.isDeleted == true).AsQueryable();
+        var paginatedList = PaginatedList<Category>.Create(query, 7, page);
         return View(paginatedList);
     }
     //Restore------------------------------------------------------------------------------

@@ -68,8 +68,8 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-                <a class="sidebar-brand brand-logo" href="index.html"><img src="~/manage/assets/images/logo.svg" alt="logo" /></a>
-                <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="~/manage/assets/images/logo-mini.svg" alt="logo" /></a>
+                <a class="sidebar-brand brand-logo" asp-action="index" asp-controller="dashboard"><div class="text-white"><span style="font-family: Lucida Handwriting;">CarRent</span></div></a>
+                <a class="sidebar-brand brand-logo-mini" asp-action="index" asp-controller="dashboard"><div class="text-white"><span style="font-family: Lucida Handwriting;">CR</span></div></a>
             </div>
             <ul class="nav">
                 <li class="nav-item profile">
@@ -96,27 +96,7 @@
                         </div>
                         <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
                         <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-                            <a href="#" class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-settings text-primary"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-onepassword  text-info"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
-                                </div>
-                            </a>
+                            
                             <div class="dropdown-divider"></div>
                             <a asp-action="logout" asp-controller="account" class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
@@ -338,13 +318,13 @@
                     </button>
                     <ul style="justify-content:center" class="navbar-nav w-100">
                         <li class="nav-item dropdown d-none d-lg-block">
-                            <a target="_blank" class="nav-link btn btn-info create-new-button" asp-action="index" asp-controller="home" asp-area="">Go to website</a>
-
+                            <a style="background: linear-gradient(143deg,#d41459 0%, #911a6c 80%);border-radius: 30px;width: 200px;text-align-last: center;height: 35px;display: table-cell;vertical-align: middle;" target="_blank" class="nav-link create-new-button" asp-action="index" asp-controller="home" asp-area="">Go to website</a>
                         </li>
-
                     </ul>
                     <ul class="navbar-nav navbar-nav-right">
-                        
+                         <li class="nav-item border-left">
+                            <a asp-action="index" asp-controller="settings" class="nav-link"><i class="mdi mdi-settings"></i></a>
+                        </li>
                         <li class="nav-item dropdown border-left">
                             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
                                 <i class="mdi mdi-phone-plus"></i>
@@ -375,7 +355,6 @@
                             </div>
                         </li>
 
-                        @*////*@
                         <li class="nav-item dropdown border-left">
                             <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-lightbulb"></i>
@@ -493,7 +472,7 @@
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                                 <h6 class="p-3 mb-0">Profile</h6>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
+                                <a asp-action="index" asp-controller="settings" class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
                                         <div class="preview-icon bg-dark rounded-circle">
                                             <i class="mdi mdi-settings text-success"></i>
@@ -515,7 +494,6 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <p class="p-3 mb-0 text-center">Advanced settings</p>
                             </div>
                         </li>
                     </ul>
