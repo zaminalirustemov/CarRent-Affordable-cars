@@ -9,6 +9,7 @@ using System.Drawing.Drawing2D;
 
 namespace CarRent_CarRentalWebApp.Areas.Manage.Controllers;
 [Area("Manage")]
+[Authorize(Roles = "SuperAdmin,Admin,Editor")]
 
 public class HeroController : Controller
 {

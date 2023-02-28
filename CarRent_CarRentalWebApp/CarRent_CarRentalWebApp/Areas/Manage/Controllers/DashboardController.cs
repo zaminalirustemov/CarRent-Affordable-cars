@@ -9,6 +9,7 @@ using System.Data;
 
 namespace CarRent_CarRentalWebApp.Areas.Manage.Controllers;
 [Area("Manage")]
+[Authorize(Roles = "SuperAdmin,Admin,Editor")]
 public class DashboardController : Controller
 {
     private readonly UserManager<AppUser> _userManager;

@@ -1,12 +1,15 @@
 ﻿using CarRent_CarRentalWebApp.Context;
 using CarRent_CarRentalWebApp.Helpers;
 using CarRent_CarRentalWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace CarRent_CarRentalWebApp.Areas.Manage.Controllers;
 [Area("Manage")]
+[Authorize(Roles = "SuperAdmin,Admin,Editor")]
 public class PeculiarityController : Controller
 {
     private readonly CarRentDbContext _carRentDbContext;
