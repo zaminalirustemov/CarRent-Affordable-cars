@@ -23,6 +23,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
     opt.Password.RequireUppercase = true;
 
     opt.User.RequireUniqueEmail = false;
+    opt.SignIn.RequireConfirmedEmail = true;
 
 }).AddEntityFrameworkStores<CarRentDbContext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<AdminLayoutService>();

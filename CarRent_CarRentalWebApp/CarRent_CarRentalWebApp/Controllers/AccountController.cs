@@ -72,12 +72,28 @@ public class AccountController : Controller
                 ModelState.AddModelError("", error.Description);
             }
         }
+        string token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+        string link = Url.Action(nameof(Verify), "Account", new { email = appUser.Email, token = token }, Request.Scheme, Request.Host.ToString());
+
+        MailExtension.SendMessage(appUser.Email, "Verify Email", link);
 
         await _userManager.AddToRoleAsync(appUser, "Member");
 
-        await _signInManager.SignInAsync(appUser, isPersistent: false);
 
         return RedirectToAction("index", "home");
+    }
+
+
+    public async Task<IActionResult> Verify(string email, string token)
+    {
+        AppUser user = await _userManager.FindByEmailAsync(email);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        await _userManager.ConfirmEmailAsync(user, token);
+        await _signInManager.SignInAsync(user, true);
+        return RedirectToAction("index", "Home");
     }
 
     //Log in-------------------------------------------------------------------------------------------------------
@@ -100,6 +116,12 @@ public class AccountController : Controller
 
         if (!result.Succeeded)
         {
+            if (!user.EmailConfirmed)
+            {
+                ModelState.AddModelError("", "Please verify email");
+                return View();
+
+            }
             ModelState.AddModelError("", "Username or password is false");
             return View();
         }

@@ -64,6 +64,7 @@ public class OrderController : Controller
         order.OrderStatus = OrderStatus.Pending;
         order.UpdatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
+        MailExtension.SendMessage(order.Email, "Order Pending", $"Dear {order.Fullname}, your order number {order.Id} has been pending.");
         return RedirectToAction(nameof(Index));
     }
     public IActionResult Accepted(int id)
@@ -77,7 +78,7 @@ public class OrderController : Controller
         order.OrderStatus = OrderStatus.Accepted;
         order.UpdatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
-        MailExtension.SendMessage(order.Email, "This is Accepted", "Acccepteddddddddd");
+        MailExtension.SendMessage(order.Email, "Order Accepted", $"Dear {order.Fullname}, your order number {order.Id} has been accepted.");
         return RedirectToAction(nameof(Index));
     }
     public IActionResult Rejected(int id)
@@ -91,6 +92,7 @@ public class OrderController : Controller
         order.OrderStatus = OrderStatus.Rejected;
         order.UpdatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
+        MailExtension.SendMessage(order.Email, "Order Rejected", $"Dear {order.Fullname}, your order number {order.Id} has been rejected.");
         return RedirectToAction(nameof(Index));
     }
     public IActionResult Finished(int id)
@@ -104,6 +106,7 @@ public class OrderController : Controller
         order.OrderStatus = OrderStatus.Finished;
         order.UpdatedDate = DateTime.UtcNow.AddHours(4);
         _carRentDbContext.SaveChanges();
+        MailExtension.SendMessage(order.Email, "Order Finished", $"Dear {order.Fullname}, your order number {order.Id} has been finished.");
         return RedirectToAction(nameof(Index));
     }
 

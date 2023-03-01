@@ -20,7 +20,7 @@ public class PeculiarityController : Controller
     }
     public IActionResult Index(int page=1)
     {
-        var query = _carRentDbContext.Peculiarities.Where(x => x.isDeleted == false).AsQueryable();
+        var query = _carRentDbContext.Peculiarities.Where(x => x.isDeleted == false).OrderByDescending(x=>x.CreatedDate).AsQueryable();
         var paginatedList = PaginatedList<Peculiarity>.Create(query, 7, page);
         return View(paginatedList);
     }

@@ -21,7 +21,7 @@ public class BrandController : Controller
     }
     public IActionResult Index(int page = 1)
     {
-        var query = _carRentDbContext.Brands.Where(x => x.isDeleted == false).AsQueryable();
+        var query = _carRentDbContext.Brands.Where(x => x.isDeleted == false).OrderByDescending(x=>x.CreatedDate).AsQueryable();
         var paginatedList = PaginatedList<Brand>.Create(query, 7, page);
         return View(paginatedList);
     }
