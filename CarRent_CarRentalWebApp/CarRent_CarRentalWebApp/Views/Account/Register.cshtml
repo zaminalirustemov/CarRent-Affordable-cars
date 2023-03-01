@@ -16,6 +16,63 @@
 
     <link rel="stylesheet" href="~/assets/register/css/style.css">
     <link rel="shortcut icon" href="~/assets/images/memperphoto.jpg" />
+    <style>
+       
+
+            .button-register {
+          padding: 1.3em 3em;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 2.5px;
+          font-weight: 500;
+          color: #000;
+          background-color: #5999e0;
+          border: none;
+          border-radius: 45px;
+          box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease 0s;
+          cursor: pointer;
+          outline: none;
+        }
+
+        .button-register:hover {
+          background-color: #e147f9;
+          box-shadow: 0px 5px 10px rgba(140, 127, 134, 0.76);
+          color: #fff;
+          transform: translateY(-7px);
+        }
+
+        .button-register:active {
+          transform: translateY(-1px);
+        }
+
+           .button-back {
+          padding: 1.3em 3em;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 2.5px;
+          font-weight: 500;
+          color: #000;
+          background-color: #e1bb66;
+          border: none;
+          border-radius: 45px;
+          box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease 0s;
+          cursor: pointer;
+          outline: none;
+        }
+
+        .button-back:hover {
+          background-color: #8b8b8b;
+          box-shadow: 0px 15px 20px rgba(140, 127, 134, 0.76);
+          color: #fff;
+          transform: translateY(-7px);
+        }
+
+        .button-back:active {
+          transform: translateY(-1px);
+        }
+    </style>
     <meta name="robots" content="noindex, follow">
     <script nonce="d481b8ad-20a3-493a-a678-379909436891">(function (w, d) { !function (f, g, h, i) { f[h] = f[h] || {}; f[h].executed = []; f.zaraz = { deferred: [], listeners: [] }; f.zaraz.q = []; f.zaraz._f = function (j) { return function () { var k = Array.prototype.slice.call(arguments); f.zaraz.q.push({ m: j, a: k }) } }; for (const l of ["track", "set", "debug"]) f.zaraz[l] = f.zaraz._f(l); f.zaraz.init = () => { var m = g.getElementsByTagName(i)[0], n = g.createElement(i), o = g.getElementsByTagName("title")[0]; o && (f[h].t = g.getElementsByTagName("title")[0].text); f[h].x = Math.random(); f[h].w = f.screen.width; f[h].h = f.screen.height; f[h].j = f.innerHeight; f[h].e = f.innerWidth; f[h].l = f.location.href; f[h].r = g.referrer; f[h].k = f.screen.colorDepth; f[h].n = g.characterSet; f[h].o = (new Date).getTimezoneOffset(); if (f.dataLayer) for (const s of Object.entries(Object.entries(dataLayer).reduce(((t, u) => ({ ...t[1], ...u[1] }))))) zaraz.set(s[0], s[1], { scope: "page" }); f[h].q = []; for (; f.zaraz.q.length;) { const v = f.zaraz.q.shift(); f[h].q.push(v) } n.defer = !0; for (const w of [localStorage, sessionStorage]) Object.keys(w || {}).filter((y => y.startsWith("_zaraz_"))).forEach((x => { try { f[h]["z_" + x.slice(7)] = JSON.parse(w.getItem(x)) } catch { f[h]["z_" + x.slice(7)] = w.getItem(x) } })); n.referrerPolicy = "origin"; n.src = "../../../cdn-cgi/zaraz/sd0d9.js?z=" + btoa(encodeURIComponent(JSON.stringify(f[h]))); m.parentNode.insertBefore(n, m) };["complete", "interactive"].includes(g.readyState) ? zaraz.init() : f.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);</script>
 </head>
@@ -63,9 +120,15 @@
                                 <input asp-for="ConfirmPassword" placeholder="Repeat your password" />
                                 <span asp-validation-for="ConfirmPassword" style="color:red"></span>
                             </div>
-                            <div class="form-group form-button">
-                                <button type="submit" class="form-submit" style="padding-top:19px;padding-bottom:19px;border:none;background: #9c71f4">Register</button>
-                                <a asp-action="index" asp-controller="home" style="display: inline-block;background: #4f4a4aab;color: #fff;border-bottom: none;width: auto;padding: 15px 39px;-webkit-border-radius: 5px;margin-top: 25px;text-decoration: none;border-top-width: 5px;">Go back</a>
+                            <div style="display:flex">
+                                <div class="form-group form-button">
+                                    <button type="submit" class="button-register form-submit">Register</button>
+                                </div>
+                                <div style="padding-top: 25px;padding-left: 10px;margin-top: 11px;">
+                                    <a class="button-back" asp-action="index" asp-controller="home" style="text-decoration: none;color:black">
+                                        Back
+                                    </a>
+                                </div>
                             </div>
                         </form>
                     </div>
