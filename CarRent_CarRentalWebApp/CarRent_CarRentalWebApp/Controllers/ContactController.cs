@@ -23,6 +23,7 @@ public class ContactController : Controller
     public async Task<IActionResult> Index(ContactViewModel contactVM)
     {
         AppUser appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+        if (!ModelState.IsValid) return View(contactVM);
         Contact contact = new Contact
         {
             AppUser = appUser,
@@ -32,6 +33,7 @@ public class ContactController : Controller
             SendedDate = DateTime.UtcNow.AddHours(4),
             isActive=null,
         };
+        
         _carRentDbContext.Contacts.Add(contact);
         _carRentDbContext.SaveChanges();
         return RedirectToAction(nameof(Index));
